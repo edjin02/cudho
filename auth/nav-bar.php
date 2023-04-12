@@ -162,17 +162,12 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item ">
-                <a href="./index.html" class="nav-link">
+                <a href="masterlist.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Reports v1</p>
+                  <p>Masterlist</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Reports v2</p>
-                </a>
-              </li>
+              
             </ul>
             </li>
             <li class="nav-item">
