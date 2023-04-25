@@ -32,11 +32,11 @@
 </head>
 <body>
 
-
 <style>
     * {
         font-family: Arial, sans-serif;
     }
+
     .chead-color
     {
         background-color:maroon; 
@@ -59,13 +59,23 @@
     table {
         width: 100%;
         border-collapse: collapse;
+        table-layout: auto;
+        
     }
     
-    th, td {
+    th, td  {
+        font-size:13px;
+        height: 0;
         text-align: center;
-        padding: 8px;
+        padding: 20px;
         border: 1px solid #ddd;
     }
+    
+    td:nth-of-type(3) {
+    word-wrap: break-word;
+    white-space: normal;
+    }
+
     
     th:nth-child(1) {
         width: 5%;
@@ -90,6 +100,28 @@
     td:hover{
       cursor: pointer;
     }
+
+    
+    .modal-header {
+        background-color: #800000;
+        padding: 10px;
+    }  
+
+    .modal-title {
+        color: #ffffff; 
+        margin-left:5px;
+    }
+
+    .modal-body {
+        padding: 10px;
+    }
+
+    .modal-footer {
+        background-color: #800000;
+        padding: 8px;
+    }
+
+ 
     
 </style>
 
@@ -103,7 +135,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h4 class="m-1 text-dark">Search Record <a style="font-size:16px">Verify, Search or/and Add a new Member</h4>
+                        <h4 class="m-1 text-dark">Search Record <a style="font-size:13px">Verify, Search or/and Add a new Member</h4>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -158,37 +190,150 @@
                                 <option value="Tagapo" data-select2-id="18">Tagapo</option>
                             </select>
                             </div>
+
                         </div>
                         <button type="button" class="btn btn-block" data-toggle="modal" data-target="#myModal" style="height:36px; width:100px; color:white; background-color:maroon">
                             Add
                         </button>
-
+                       
                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                                        <h5 class="modal-title" id="addmember">Add Member</h5>
                                     </div>
+
+                                    <form action="../include/addmember_inc.php" method="post">
                                     <div class="modal-body">
-                                        <p>Modal body text goes here.</p>
+                                        <div class="card" style="border: 2px solid maroon;">
+                                            <div class="card-body">
+
+                                                <div class="row" style="margin-top:-10px">
+                                                    <label style = "margin-right:35px">Tag:</label>
+                                                    <label style = "margin-right:360px">Community:</label>
+                                                    <label>Barangay:</label>
+                                                </div>
+                                                
+                                                <div class="row">
+                                                    <input type="text" name="tag" size = "2" style = "margin-right:10px; height:30px;" placeholder="Tag">
+                                                    <input type="text" name="samahan" size = "50" style = "margin-right:10px;height:30px;" placeholder="Community/Samahan">
+                                                    
+                                                    <div class="form-group" style="width:225px;">
+                                                        <select name = "barangay_select" class="select2 select2-hidden-accessible" style="width: 100%; height: 30px;" data-select2-id="3" tabindex="-1" aria-hidden="true">
+                                                            <option value="" selected="" data-select2-id="0"></option>
+                                                            <option value="Aplaya" data-select2-id="1">Aplaya</option>
+                                                            <option value="Balibago" data-select2-id="2">Balibago</option>
+                                                            <option value="Caingin" data-select2-id="3">Caingin</option>
+                                                            <option value="Dila" data-select2-id="4">Dila</option>
+                                                            <option value="Dita" data-select2-id="5">Dita</option>
+                                                            <option value="Don Jose" data-select2-id="6">Don Jose</option>
+                                                            <option value="Ibaba" data-select2-id="7">Ibaba</option>
+                                                            <option value="Kanluran" data-select2-id="8">Kanluran </option>
+                                                            <option value="Labas" data-select2-id="9">Labas</option>
+                                                            <option value="Macabling" data-select2-id="10">Macabling</option>
+                                                            <option value="Malitlit" data-select2-id="11">Malitlit</option>
+                                                            <option value="Malusak" data-select2-id="12">Malusak </option>
+                                                            <option value="Market Area" data-select2-id="13">Market Area</option>
+                                                            <option value="Pooc" data-select2-id="14">Pooc </option>
+                                                            <option value="Pulong Santa Cruz" data-select2-id="15">Pulong Santa Cruz</option>
+                                                            <option value="Santo Domingo" data-select2-id="16">Santo Domingo</option>
+                                                            <option value="Sinalhan" data-select2-id="17">Sinalhan</option>
+                                                            <option value="Tagapo" data-select2-id="18">Tagapo</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row" style="margin-top: 10px;">
+                                                    <label style = "margin-right:90px">LastName:</label>
+                                                    <label style = "margin-right:90px">FirstName:</label>
+                                                    <label style = "margin-right:72px">MiddleName:</label>
+                                                    <label style = "margin-right:35px">Extension:</label>
+                                                    <label>Marketlist:</label>
+                                                </div>
+
+                                                <div class="row">
+                                                    <input type="text" name="lastname" size = "15" style = "margin-right:10px; height: 30px;" placeholder="Last Name">
+                                                    <input type="text" name="firstname" size = "15" style = "margin-right:10px; height: 30px;" placeholder="First Name">
+                                                    <input type="text" name="middlename" size = "15" style = "margin-right:10px; height: 30px;" placeholder="Middle Name">
+                                                    <input type="text" name="extension" size = "8" style = "margin-right:10px; height: 30px;" placeholder="Sr. Jr. II III">
+                                                    <div class="form-group" style="width:115px;" >
+                                                        <select name="masterlist_select" class="select2 select2-hidden-accessible" style="width: 100%; height: 30px;" data-select2-id="3" tabindex="-1" aria-hidden="true">
+                                                            <option value="" selected="" data-select2-id="0"></option>
+                                                            <option value="Listed" data-select2-id="1">Listed</option>
+                                                            <option value="Not Listed" data-select2-id="2">Not Listed</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row" style="margin-top: 10px;">
+                                                    <label style = "margin-right:38px">Gender:</label>
+                                                    <label style = "margin-right:80px">Birthday:</label>
+                                                    <label style = "margin-right:32px">Civil Status:</label>
+                                                    <label style = "margin-right:137px">Occupation:</label>
+                                                    <label>Monthly Income:</label>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="form-group" style="width:90px; margin-right:10px;">
+                                                        <select name="gender_select" class="select2 select2-hidden-accessible" style="width: 100%; height: 30px;" data-select2-id="3" tabindex="-1" aria-hidden="true">
+                                                            <option value="" selected="" data-select2-id="0"></option>
+                                                            <option value="Male" data-select2-id="1">Male</option>
+                                                            <option value="Female" data-select2-id="2">Female</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="input-group mb-3" style="width:140px; margin-right:10px;">
+                                                        <input type="date" name="birthdate_select" class="form-control" name="startdate" style="height: 31px;">
+                                                    </div>
+                                                    <div class="form-group" style="width:115px; margin-right:10px;">
+                                                        <select name="civil_status" class="select2 select2-hidden-accessible" style="width: 100%; height: 30px;" data-select2-id="3" tabindex="-1" aria-hidden="true">
+                                                            <option value="Single" selected="" data-select2-id="0">Single</option>
+                                                            <option value="Married" data-select2-id="1">Married</option>
+                                                            <option value="Divorced" data-select2-id="2">Divorced</option>
+                                                        </select>
+                                                    </div>
+                                                    <input type="text" name="occupation" size = "22" style = "margin-right:10px; height: 30px;" placeholder="Occupation">
+                                                    <input type="text" name="monthly_income" size = "12" style = "height: 30px;" placeholder="Income" >
+                                                </div>
+
+                                                <div class="row" style="margin-top: 10px;">
+                                                    <label>
+                                                        Membership in:
+                                                    </label>
+                                                </div>
+
+                                                <div class="row" style="margin-top:-15px;">
+                                                    <input type="checkbox" id="pagibigCheckbox" name="myCheckbox" value="checked" style="margin-right:5px;">
+                                                    <label for="pagibigCheckbox" style="margin-top:6px; margin-right:30px;">PAGIBIG/HDMF</label>
+                                                    
+                                                    <input type="checkbox" id="sssCheckbox" name="myCheckbox" value="checked" style="margin-right:5px;">
+                                                    <label for="sssCheckbox" style="margin-top:6px; margin-right:30px;">SSS/GSIS</label>
+
+                                                    <input type="checkbox" id="othersCheckbox" name="myCheckbox" value="checked" style="margin-right:5px;">
+                                                    <label for="othersCheckbox" style="margin-top:6px; margin-right:30px;">OTHERS</label>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        <button type="button" class="btn btn-warning mr-auto btn-sm" data-dismiss="modal" style="margin-left:10px;">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-primary btn-sm" style="margin-right:10px;">Save</button>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
+
 
 
                     </div>
                         </div>
                         <div class="card" style="margin-left:25px; margin-right:25px">
                           <div class="card-header" style="background-color:maroon; padding:1px">
-
+                          
                           </div>
                           <div class="card-body" style="padding:5px">
                           <div class="row">
@@ -222,8 +367,9 @@
                               $result = $connection->query($sql);
                          
                               while($row = $result->fetch_assoc()){
-                                echo "<tr data-searchable=\"" . $row["tag"] . " " . $row["household_head"] . " " . $row["samahan"] . " " . $row["barangay"] . " " . $row["monthly_income"] . "\" onclick=\"window.location='memberview.php?tag=" . urlencode($row['tag']) . "&head=" . urlencode($row['household_head']) . "&samahan=" . urlencode($row['samahan']) . "&barangay=" . urlencode($row['barangay']) . "&income=" . urlencode($row['monthly_income']) . "';\"><td>" . $row["tag"] . "</td>
-                                    <td>" . $row["household_head"] . "</td>
+                                
+                                echo "<tr data-searchable=\"" . $row["tag"] . " " . $row["firstname"] . " " . $row["middlename"] . " " . $row["lastname"] . " " . $row["samahan"] . " " . $row["barangay"] . " " . $row["monthly_income"] . "\" onclick=\"window.location='memberview.php?id=" . urlencode($row['id']) ."';\"><td>" . $row["tag"] . "</td>
+                                    <td>" . $row["firstname"] . " " . $row["middlename"] . " " . $row["lastname"] . "</td>
                                     <td>" . $row["samahan"] . "</td>
                                     <td>" . $row["barangay"] . "</td>
                                     <td>" . $row["monthly_income"] . "</td>
@@ -250,22 +396,26 @@
         </div>
 </div>
 
-<script>
+<!-- <script>
     
     const searchInput = document.getElementById('search');
     const tableData = document.getElementById('table-data');
     const barangaySelect = document.getElementById('barangay-select');
     
     searchInput.addEventListener('keyup', function() {
-        const searchText = searchInput.value.toUpperCase();
-        
-        // Loop through all table rows and hide those that don't match the search text
-        Array.from(tableData.children).forEach(function(row) {
-            const searchableText = row.dataset.searchable.toUpperCase();
-            row.style.display = searchableText.indexOf(searchText) >= 0 ? 'table-row' : 'none';
-        });
+   const searchText = searchInput.value.trim().toUpperCase(); // trim whitespace and convert to uppercase
+   
+   // Loop through all table rows and hide those that don't match the search text
+   Array.from(tableData.children).forEach(function(row) {
+      const searchableText = row.dataset.searchable.toUpperCase();
+      row.style.display = (searchText && searchableText.indexOf(searchText) >= 0) ? 'table-row' : 'none'; // check if searchText is truthy and searchableText contains it
     });
-    
+    });
+
+    searchInput.addEventListener('input', function() {
+    searchInput.value = searchInput.value.toUpperCase();
+    });
+
     searchInput.addEventListener('input', function() {
         searchInput.value = searchInput.value.toUpperCase();
     });
@@ -274,7 +424,7 @@
    var selectedBarangay = $('#barangay-select').val();
    $('#table-data tr').each(function() {
       var rowBarangay = $(this).find('td:eq(3)').text();
-      if (rowBarangay == selectedBarangay || selectedBarangay == "") {
+      if (selectedBarangay && rowBarangay == selectedBarangay) {
          $(this).show();
       } else {
          $(this).hide();
@@ -290,7 +440,47 @@ $(document).ready(function() {
    });
 });
 
+
+</script> -->
+
+<script>    
+const searchInput = document.getElementById('search');
+const tableData = document.getElementById('table-data');
+const barangaySelect = document.getElementById('barangay-select');
+
+function updateTableData() {
+   const selectedBarangay = $('#barangay-select').val();
+   const searchText = searchInput.value.trim().toUpperCase(); // trim whitespace and convert to uppercase
+   const showAll = !selectedBarangay && !searchText; // show all table rows if no barangay selected and search input is empty or whitespace
+   
+   $('#table-data tr').each(function() {
+      const rowBarangay = $(this).find('td:eq(3)').text();
+      const rowSearchable = $(this).attr('data-searchable').toUpperCase();
+      const showRow = (showAll || (selectedBarangay && rowBarangay == selectedBarangay && rowSearchable.indexOf(searchText) >= 0)); // show table row if showAll is true or selected barangay matches and row searchable contains search text
+      $(this).toggle(showRow); // toggle row visibility
+   });
+}
+
+$(document).ready(function() {
+   updateTableData();
+
+   $('#barangay-select').on('change', function() {
+      updateTableData();
+   });
+
+   searchInput.addEventListener('keyup', function() {
+      updateTableData();
+   });
+
+   searchInput.addEventListener('input', function() {
+      searchInput.value = searchInput.value.toUpperCase();
+      updateTableData();
+   });
+});
+
 </script>
+
+
 
 
 </body>

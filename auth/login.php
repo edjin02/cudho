@@ -3,7 +3,7 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if (isset($_POST['username'])) {
+    if (isset($_POST['username'])) {
         $username = $_POST['username'];
     }
     if (isset($_POST['password'])) {
@@ -33,20 +33,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         } else {
             echo "<script type='text/javascript'>alert('Invalid username or password');
-          </script>";
-            
+                  window.history.back();
+                  </script>";
         }
     } else {
         echo "<script type='text/javascript'>alert('Invalid username or password');
-        </script>";
+              window.history.back();
+              </script>";
     }
 
     $stmt->close();
     $con->close();
-
 }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -104,6 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <span class="fas fa-lock"></span>
                         </div>
                     </div>
+                    
                     </div>
                     <!-- /.col -->
                     <div class="col-13">
@@ -125,6 +127,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
+<!-- Toastr -->
+<script src="../../plugins/toastr/toastr.min.js"></script>
 
 
 </body>
