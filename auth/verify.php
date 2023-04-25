@@ -449,17 +449,43 @@ const tableData = document.getElementById('table-data');
 const barangaySelect = document.getElementById('barangay-select');
 
 function updateTableData() {
-   const selectedBarangay = $('#barangay-select').val();
+   let selectedBarangay = $('#barangay-select').val();
    const searchText = searchInput.value.trim().toUpperCase(); // trim whitespace and convert to uppercase
-   const showAll = !selectedBarangay && !searchText; // show all table rows if no barangay selected and search input is empty or whitespace
    
-   $('#table-data tr').each(function() {
-      const rowBarangay = $(this).find('td:eq(3)').text();
-      const rowSearchable = $(this).attr('data-searchable').toUpperCase();
-      const showRow = (showAll || (selectedBarangay && rowBarangay == selectedBarangay && rowSearchable.indexOf(searchText) >= 0)); // show table row if showAll is true or selected barangay matches and row searchable contains search text
-      $(this).toggle(showRow); // toggle row visibility
-   });
+   if (selectedBarangay === '') {
+      selectedBarangay = null; // set selected barangay to null if it is blank
+   }
+   
+   let showAll = false;
+   if (selectedBarangay || searchText) { // only show table rows if either barangay or search is selected
+      $('#table-data tr').each(function() {
+         const rowBarangay = $(this).find('td:eq(3)').text();
+         const rowSearchable = $(this).attr('data-searchable').toUpperCase();
+         let showRow = false;
+
+         if (selectedBarangay === null) {
+            // if selected barangay is null, show row if it matches the search input
+            showRow = rowSearchable.indexOf(searchText) >= 0;
+         } else {
+            // show table row if selected barangay matches and row searchable contains search text
+            showRow = rowBarangay == selectedBarangay && rowSearchable.indexOf(searchText) >= 0;
+         }
+
+         $(this).toggle(showRow); // toggle row visibility
+         if (showRow) {
+            showAll = true; // if at least one row is shown, set showAll to true
+         }
+      });
+   }
+   
+   if (!showAll) {
+      $('#table-data').hide(); // hide table if no rows are shown
+   } else {
+      $('#table-data').show(); // show table if at least one row is shown
+   }
 }
+
+
 
 $(document).ready(function() {
    updateTableData();
