@@ -29,7 +29,20 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 
 <script text="text/javascript" src="../auth/loginfunc.php"></script>
- 
+
+<script text="text/javascript" src="../functions/function.js"></script>
+
+<script text="text/javascript" src="../functions/function.php"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="../functions/verify-script.js"></script>
+
+<script src="../functions/memberview-script.js"></script>
+
+<link rel="stylesheet" href="../css/style.css">
+
+
 
 
 
