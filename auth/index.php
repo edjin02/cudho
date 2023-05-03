@@ -8,35 +8,9 @@
     <title> CUDHO | Dashboard </title>
     
     
-
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
-
-
-<style>
-    * {
-        font-family: Arial, sans-serif;
-    }
-    .chead-color
-    {
-        background-color:maroon; 
-        color:white;
-        border-top-left-radius: 0.25rem;
-        border-top-right-radius: 0.25rem; 
-        height: 135px;
-        padding: 1rem;
-        text-align: center;
-    }
-    .chead-text
-    {
-        font-size: 20px;
-        font-weight: 300;
-        margin-bottom: 0;
-        margin-top: 5px;
-        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-    }
-</style>
-
 
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper" style="min-height: 820px;">

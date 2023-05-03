@@ -2,131 +2,6 @@
 <?php $id = $_GET['id'];?>
 
 
-<?php // for member view data
-require '../include/connect.php'; //$con
-require '../include/getday_inc.php'; //$php_timestamp
-
-
-$query = "SELECT * FROM table_verification WHERE id = $id";
-$result = $con->query($query);
-
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $tag = $row["tag"];
-    $firstname = $row["firstname"];
-    $lastname = $row["lastname"];
-    $middlename = $row["middlename"];
-    $barangay_select = $row["barangay"];
-    $samahan = $row["samahan"];
-    $monthly_income = $row["monthly_income"];
-    $gender_select = $row["gender"];
-    $civil_status = $row["civil_status"];
-    $extension = $row["extension"];
-    $occupation = $row["occupation"];
-    $birthdate_select = $row['birthday']; 
-    $marketlist_select = $row['marketlist'];
-    $age = date_diff(date_create($birthdate_select), date_create($php_timestamp));
-    $age = $age->format('%y'); 
-} 
-$con->close();
-?>
-
-<?php // for spouse info
-require '../include/connect.php'; //$con
-$query = "SELECT * FROM family_info WHERE for_id = $id AND relationship = 'spouse'";
-$result = $con->query($query);
-
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $spouse_fname = $row["firstname"];
-    $spouse_mname = $row["middlename"];
-    $spouse_lname = $row["lastname"];
-    $spouse_mon_inc = $row["monthly_income"];
-    $spouse_mem_ship = $row["membership"];
-    $spouse_birthdate = $row["birthday"];
-    $spouse_age = date_diff(date_create($spouse_birthdate), date_create($php_timestamp));
-    $spouse_age = $spouse_age->format('%y'); 
-    }
-else {
-    $spouse_fname = "None";
-    $spouse_mname = "";
-    $spouse_lname = "";
-    $spouse_mon_inc = "None";
-    $spouse_mem_ship = "None";
-    $spouse_age = "None";
-}
-$con->close();
-?>
-
-<?php
-
-require '../include/connect.php'; //$con
-$query = "SELECT * FROM family_info WHERE for_id = $id";
-$result = $con->query($query);
-
-
-$family_info = array();
-while ($row = $result->fetch_assoc()) {
-  $family_info[] = array(
-    'for_id' => $row['for_id'],
-    'firstname' => $row['firstname'],
-    'lastname' => $row['lastname'],
-    'middlename' => $row['middlename'],
-    'extension' => $row['extension'],
-    'gender' => $row['gender'],
-    'birthday' => $row['birthday'],
-    'civil_status' => $row['civil_status'],
-    'occupation' => $row['occupation'],
-    'monthly_income' => $row['monthly_income'],
-    'relationship' => $row['relationship'],
-    'membership' => $row['membership']
-  );
-}
-
-$num_Fam = $result->num_rows;
-
-// $info = $family_info[0];
-// $Fam_for_id = $info['for_id'];
-// $Fam_firstname = $info['firstname'];
-// $Fam_lastname = $info['lastname'];
-// $Fam_middlename = $info['middlename'];
-// $Fam_extension = $info['extension'];
-// $Fam_gender = $info['gender'];
-// $Fam_birthday = $info['birthday'];
-// $Fam_civil_status = $info['civil_status'];
-// $Fam_occupation = $info['occupation'];
-// $Fam_monthly_income = $info['monthly_income'];
-// $Fam_relationship = $info['relationship'];
-// $Fam_membership = $info['membership'];
-
-  
-// echo $num_Fam . "<br>";
-// echo $Fam_for_id . "<br>";
-// echo $Fam_firstname . "<br>";
-// echo $Fam_lastname . "<br>";
-// echo $Fam_middlename . "<br>";
-// echo $Fam_extension . "<br>";
-// echo $Fam_gender . "<br>";
-// echo $Fam_birthday . "<br>";
-// echo $Fam_civil_status . "<br>";
-// echo $Fam_occupation . "<br>";
-// echo $Fam_monthly_income . "<br>";
-// echo $Fam_relationship . "<br>";
-// echo $Fam_membership . "<br>";
-
-// $family_info = array(array(1,2,3),array(4,5,6));
-
-// list($id, $for_id, $firstname) = $family_info[1];
-
-// echo $id; // Output: 1
-// echo $for_id; // Output: 2
-// echo $firstname; // Output: 3
-
-?>
-
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,120 +9,14 @@ $num_Fam = $result->num_rows;
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> CUDHO | Dashboard </title>
     
-    <link rel="stylesheet" href="../css/style.css">
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+    <?php
+        include '..\..\cudho\functions\scripts.php';
+        include 'option.php';
+        include '..\..\cudho\include\memberview_phps.php';
+    ?>
     
-    <link rel="stylesheet" href="../../adminLTE/AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css">
-    
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    
-    <link rel="stylesheet" href="../../adminLTE/AdminLTE-3.2.0/dist/css/adminlte.min.css">
-    
-    <link rel="stylesheet" href="../../adminLTE/AdminLTE-3.2.0/dist/css/adminlte.css">
-
-    <link rel="stylesheet" href="../../adminLTE/AdminLTE-3.2.0/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-
-    <link rel="stylesheet" href="../../adminLTE/AdminLTE-3.2.0/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-
-    <link rel="stylesheet" href="../../adminLTE/AdminLTE-3.2.0/plugins/jqvmap/jqvmap.min.css">
-
-    <link rel="stylesheet" href="../../adminLTE/AdminLTE-3.2.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-
-    <link rel="stylesheet" href="../../adminLTE/AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.css">
-
 </head>
 <body>
-
-<style>
-    * {
-        font-family: Arial, sans-serif;
-    }
-    .chead-color
-    {
-        background-color:maroon; 
-        color:white;
-        border-top-left-radius: 0.25rem;
-        border-top-right-radius: 0.25rem; 
-        padding: 5px;
-    }
-    .chead-text
-    {
-        font-size: 15px;
-        font-weight: 300;
-        margin-bottom: 0;
-        margin-top: 5px;
-    }
-    .chead-color .add
-    {
-        color:white;
-        text-align: right;
-    }
-
-    .custom-btn {
-        background-color: maroon;   
-        border: none;
-    }
-
-    .cfooter {
-        font-weight: bold;
-        padding: 0.75rem 1.25rem;
-        background-color: rgba(0, 0, 0, 0.03);
-        border-top: 0 solid rgba(0, 0, 0, 0.125);
-    }
-
-    .cfooter:last-child {
-        border-radius: 0 0 calc(0.25rem - 0) calc(0.25rem - 0);
-    }
-
-    div.col h8 {
-        font-size: 13px;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: auto;
-        
-    }
-    
-    th, td  {
-        font-size:13px;
-        height: 0;
-        text-align: center;
-        padding: 20px;
-        border: 1px solid #ddd;
-    }
-    
-    td:nth-of-type(3) {
-    word-wrap: break-word;
-    white-space: normal;
-    }
-
-    td:hover{
-      cursor: pointer;
-    }
-
-    .modal-header {
-        background-color: #800000;
-        padding: 10px;
-    }  
-
-    .modal-title {
-        color: #ffffff; 
-        margin-left:5px;
-    }
-
-    .modal-body {
-        padding: 10px;
-    }
-
-    .modal-footer {
-        background-color: #800000;
-        padding: 8px;
-    }
-</style>
-
 
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper" style="min-height: 820px;">
@@ -262,7 +31,7 @@ $num_Fam = $result->num_rows;
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="index.php"><i class="fas fa-home"></i> Home</a></li>
                             <li class="breadcrumb-item"><a href="#">Records</a></li>
-                            <li class="breadcrumb-item"><a href="#">Verification</a></li>
+                            <li class="breadcrumb-item"><a href="verify.php">Verification</a></li>
                             <li class="breadcrumb-item">Member View</li>
                         </ol>   
                     </div><!-- /.col -->
@@ -274,13 +43,13 @@ $num_Fam = $result->num_rows;
     <section class="content">
         <div class="col-md-20">
             <div class="card card-widget widget-user">
-                <div class="chead-color">
-                        <h3 class="chead-text">
+                <div class="cheader-color">
+                        <h3 class="cheader-text">
                             Member Information 
                         </h3>
                     </div>
 
-                <div class="cfooter" style ="padding-top: 10px;">
+                <div class="cfooter1" style ="padding-top: 10px;">
                     <div class="row">
                     <div class="col">
                         <h8 >Household Head:</h8>
@@ -326,11 +95,11 @@ $num_Fam = $result->num_rows;
             <div class="col-md-4">
                 <div class="card card-widget widget-user">
 
-                    <div class="chead-color">
-                        <h3 class="chead-text">Other Info</h3>
+                    <div class="cheader-color">
+                        <h3 class="cheader-text">Other Info</h3>
                     </div>
                     
-                    <div class="cfooter" style ="padding-top: 10px; padding-left: 2px;">
+                    <div class="cfooter1" style ="padding-top: 10px; padding-left: 2px;">
                         <div class="col">
                             <h8>Age:</h8>
                             <?php echo "<h8>" . $age . "</h8>"; ?>
@@ -383,10 +152,10 @@ $num_Fam = $result->num_rows;
                     <!-- Widget: user widget style 1 -->
                     <div class="card card-widget widget-user">
                     <!-- Add the bg color to the header using any of the bg-* classes -->
-                    <div class="chead-color">
+                    <div class="cheader-color">
                         <div class="row">
                             <div class="col">
-                                <h3 class="chead-text">Family Info</h3>
+                                <h3 class="cheader-text">Family Info</h3>
                             </div>
 
                             <div class="col text-right">
@@ -410,18 +179,7 @@ $num_Fam = $result->num_rows;
                             <tbody>
 
                             <?php
-                                require '../include/connect.php'; //$con
-                                $query = "SELECT * FROM family_info WHERE for_id = $id";
-                                $result = $con->query($query);
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr class='row-clickable' data-toggle='modal' data-target='#editFamilyModal'
-                                    onclick='testclick(\"" . $row["firstname"] . " " . $row["id"] . "\");'>
-                                        <td>" . $row["firstname"] . "</td>
-                                        <td>" . $row["lastname"] . "</td>
-                                        <td>" . $row["middlename"] . "</td>
-                                    </tr>";
-                                }
-                                $con->close();
+                                include '..\..\cudho\include\get_family_info.php';
                             ?>
 
 
@@ -441,10 +199,10 @@ $num_Fam = $result->num_rows;
                     <!-- Widget: user widget style 1 -->
                     <div class="card card-widget widget-user">
                     <!-- Add the bg color to the header using any of the bg-* classes -->
-                    <div class="chead-color">
+                    <div class="cheader-color">
                         <div class="row">
                             <div class="col">
-                                <h3 class="chead-text">Response Info</h3>
+                                <h3 class="cheader-text">Response Info</h3>
                             </div>
 
                             <div class="col text-right">
@@ -468,17 +226,7 @@ $num_Fam = $result->num_rows;
                             <tbody>
 
                                 <?php
-                                    require '../include/connect.php'; //$con
-                                    $query = "SELECT * FROM response_info WHERE for_id = $id";
-                                    $result = $con->query($query);
-                                    while ($row = $result->fetch_assoc()) {
-                                    echo " <tr>
-                                            <td>" . $row["respondent"] . "</td>
-                                            <td>" . $row["interviewer"] . "</td>
-                                            <td>" . $row["remarks"] . "</td>
-                                            </tr>";
-                                    }
-                                    $con->close();
+                                    include '../include/get_response_info.php'; //$con
                                 ?>
 
                             </tbody>
@@ -528,24 +276,10 @@ $num_Fam = $result->num_rows;
                             <div class="form-group" style="width:225px;">
                                 <select name = "barangay_select"  class="select2 select2-hidden-accessible" style="width: 100%; height: 30px;" data-select2-id="3" tabindex="-1" aria-hidden="true">
                                     <option value="<?php echo $barangay_select ?>" selected="" data-select2-id="0"><?php echo $barangay_select ?></option>
-                                    <option value="Aplaya" data-select2-id="1">Aplaya</option>
-                                    <option value="Balibago" data-select2-id="2">Balibago</option>
-                                    <option value="Caingin" data-select2-id="3">Caingin</option>
-                                    <option value="Dila" data-select2-id="4">Dila</option>
-                                    <option value="Dita" data-select2-id="5">Dita</option>
-                                    <option value="Don Jose" data-select2-id="6">Don Jose</option>
-                                    <option value="Ibaba" data-select2-id="7">Ibaba</option>
-                                    <option value="Kanluran" data-select2-id="8">Kanluran </option>
-                                    <option value="Labas" data-select2-id="9">Labas</option>
-                                    <option value="Macabling" data-select2-id="10">Macabling</option>
-                                    <option value="Malitlit" data-select2-id="11">Malitlit</option>
-                                    <option value="Malusak" data-select2-id="12">Malusak </option>
-                                    <option value="Market Area" data-select2-id="13">Market Area</option>
-                                    <option value="Pooc" data-select2-id="14">Pooc </option>
-                                    <option value="Pulong Santa Cruz" data-select2-id="15">Pulong Santa Cruz</option>
-                                    <option value="Santo Domingo" data-select2-id="16">Santo Domingo</option>
-                                    <option value="Sinalhan" data-select2-id="17">Sinalhan</option>
-                                    <option value="Tagapo" data-select2-id="18">Tagapo</option>
+                                    <?php foreach ($options as $value => $label): ?>
+                                    <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+                                    <?php endforeach; ?>
+                                    
                                 </select>
                             </div>
 
@@ -843,7 +577,7 @@ $num_Fam = $result->num_rows;
     </div>
 </div>
 
-<div class="modal fade" id="editFamilyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editFamilyModal" tabindex="-1" role="dialog" aria-labelledby="editFamilyModallLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -865,9 +599,9 @@ $num_Fam = $result->num_rows;
                             
                             <div class="row">
                                 <input type="hidden" name="for_id" value="<?php echo $id ?>">
-                                <input type="text" name="lastname" size = "16" style = "margin-right:10px; height:30px;" placeholder="Last Name">
-                                <input type="text" name="firstname" size = "16" style = "margin-right:10px;height:30px;" placeholder="First Name">
-                                <input type="text" name="middlename" size = "16" style = "margin-right:10px; height:30px;" placeholder="Middle Name">
+                                <input type="text" id="lastname" size = "16" style = "margin-right:10px; height:30px;" placeholder="Last Name">
+                                <input type="text" id="firstname" size = "16" style = "margin-right:10px;height:30px;" placeholder="First Name">
+                                <input type="text" id="middlename" size = "16" style = "margin-right:10px; height:30px;" placeholder="Middle Name">
                                 <input type="text" name="extension" size = "8" style = "margin-right:10px;height:30px;" placeholder="Sr. Jr. II III">
                                 <div class="form-group" style="width:90px">
                                 <select name="gender" class="select2 select2-hidden-accessible" style="width: 100%; height: 30px;" data-select2-id="3" tabindex="-1" aria-hidden="true">
@@ -945,44 +679,10 @@ $num_Fam = $result->num_rows;
     </div>
 </div>
 
-<!-- <script>
-    $(document).ready(function() {
-        // Add a click event listener to all rows with the class 'row-clickable'
-        $('.row-clickable').click(function() {
-            // Get the data from the clicked row
-            var firstname = $(this).find('td:nth-child(1)').text();
-            var lastname = $(this).find('td:nth-child(2)').text();
-            var middlename = $(this).find('td:nth-child(3)').text();
 
-            // Update the modal with the row details
-            $('#exampleModal .modal-body').html(
-                '<p>First Name: ' + firstname + '</p>' +
-                '<p>Last Name: ' + lastname + '</p>' +
-                '<p>Middle Name: ' + middlename + '</p>'
-            );
-        });
-    });
-</script> -->
 
-<script>
-    $('#editFamilyModal').on('show.bs.modal', function (event) {
-    var row = $(event.relatedTarget); // get the row that was clicked
-    var firstname = row.data('firstname'); // get the value of the data-firstname attribute
-    var modal = $(this);
-    modal.find('.modal-body input#firstname').val(firstname); // populate the modal input field with the firstname value
-});
 
-</script>
-<script>
-    $(document).ready(function() {
-  function testclick(x){
-//   $('#myInput').val(firstCellValue);
-alert(x);
-}
-testclick("TEST");
-});
 
-</script>
 
 </body>
 </html>
