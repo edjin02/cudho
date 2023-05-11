@@ -11,7 +11,9 @@ function viewUserData(id){
         dataType : 'json',
         success : function(result)
         {
-            
+            $('#mode').val('edit');$('#id').val(result.val)
+        }, error : function() {
+            alert('Y');
         }
     })
 }

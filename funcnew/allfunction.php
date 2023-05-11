@@ -5,33 +5,41 @@ if(isset($_POST['action']) && !empty($_POST['action']))
     $action = $_POST['action'];
     switch ($action) {
         
-        case 'userDisplay':
-            userDisplay($con);
+        case 'getUserData':
+            $id = $_POST['id'];
+            $userData = getUserData($id);
+            echo json_encode($userData);
             break;
-            
 
-            
         default: # code...
         break;
 
     }
 }
 
-function userDisplay($con){
-    
-    $sql = "SELECT * FROM user";
+function getUserData($id) {
+    // create a database connection
+    require '../include/connect.php';
+
+    // prepare SQL query
+    $sql = "SELECT * FROM users WHERE id = $id";
+
+    // execute query
     $result = mysqli_query($con, $sql);
-    $r = mysqli_fetch_assoc($result);
 
-    while($row = $result->fetch_assoc()){
-        echo "<tr data-toggle='modal' data-target='#editModal' data-id='" . $row["1"] . "'>
-            <td>" . $row["isactive"] . "</td>
-            <td>" . $row["username"] . "</td>
-            <td style='text-align: left'>" . $row["firstname"] . " " . $row["middlename"] . " " . $row["lastname"] . "</td>
-            <td>" . $row["contactno"] . "</td>
-            <td>" . $row["memberof"] . "</td>
-        </tr>";
+    // check if query returned any results
+    if (mysqli_num_rows($result) > 0) {
+        // fetch data from query result
+        $row = mysqli_fetch_assoc($result);
+
+        // return user data as an array
+        return $row;
+    } else {
+        // if no results were found, return false
+        return false;
     }
-}
 
+    // close database connection
+    mysqli_close($con);
+}
 ?>
