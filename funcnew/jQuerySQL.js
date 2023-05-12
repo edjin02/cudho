@@ -1,29 +1,32 @@
-
-$(document).ready(function(){
+$(document).ready(function() {
     alert("yow");
-    showUserList('userData');
-    
+    showUserList('showUserData');
 })
 
-function showUserList(x){
+function showUserList(x) {
     alert("yowaw");
-    var action; 
+    var action;
     var body;
-    
+
     var id = $("#id").val();
-    
-    if(x == 'userData'){ action = 'showUserData'; body = '#userTable'}
+
+    if (x === 'showUserData') {
+        action = 'showUserData';
+        body = '#userTable';
+    }
+
     $.ajax({
         url: '../funcnew/functionSelect.php',
-        type : 'POST',
-        data : {action: action, id: id},
+        type: 'POST',
+        data: {
+            action: action,
+            id: id
+        },
         dataType: 'html',
-        success : function(result)
-        {
+        success: function(result) {
             alert("yowawiwa");
             alert(result);
             $(body).html(result);
-            
         }
     });
 }
