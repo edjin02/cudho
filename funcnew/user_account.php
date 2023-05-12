@@ -1,10 +1,6 @@
 <?php include ('../auth/nav-bar.php');  ?>
-<!-- <script type="text/javascript" src="jQueryallfunc.js"></script> -->
-<!-- <script type="text/javascript" src="allfunction.php"></script> -->
-<!-- <script type="text/javascript" src="userdata.php"></script> -->
-<!-- <script type="text/javascript" src="userdata.js"></script> -->
 <script src="../funcnew/userdata-script.js"></script>
-<script src="../funcnew/allfunction.php"></script>
+<script src="../funcnew/jQuerySQL.js"></script>
 
 <!DOCTYPE html>
 <html>
@@ -37,13 +33,15 @@
         </div>
     </div>
 
-    <div class="content">
+    <section class="content">
         <div class="col-md-15">
             <div class="card card" >
                 <div class="card-header" style="background-color:maroon; padding: .10rem;">
                 <h7 style="font-size: 15px;margin-left: 10px;">Account Management</h7>
-                </div>
-
+            </div><br>
+                
+                
+            <form method="post">
                 <div class="card-body">
                     <div class="row justify-content-between">
                         <div class="form-group col-auto ml-5">
@@ -64,78 +62,53 @@
 
                 <div class="box box-primary" style="width:98%; margin: 0 auto;">
                     <div class="box-body table-bordered">
-                        <table class="table table-hover text-bordered table-condensed table-striped" id="viewUserData">
-                            <thead style="background-color: #ffcc00">
-                            <tr>
-                            <th class="text-center">ISACTIVE</th>
-                            <th class="text-center">USERNAME</th>
-                            <th class="text-center">FULLNAME</th>
-                            <th class="text-center">CONTANCTNO</th>
-                            <th class="text-center">MEMBEROF</th>
-                            </tr>
-                            </thead>
+                        <table class="table table-hover text-bordered table-condensed table-striped" id="getUserData">
+                            
                             <tbody id="userTable">
                             
 
                             </tbody>
                             </table>
-                            </div></div>
-
-                            </div>
-
-                            </div>
-                            </div>
-                        </div>
-                        
                     </div>
+                </div>
+            </form>
+
             </div>
+
         </div>
-    </div>
+    </section>
+     
+<!--    / .content-->
 </div>
-
-<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addmember">User Account Form</h5>
-                <!-- open a print form modal -->
-                <button type="button" id='printForm' name='printForm' class="btn-info btn pull-left"
-                data-toggle='modal' data-target="#printFormModal">Print Form</button>
-            </div>
-
-            <div class="modal-body">
-                <form id="editUser">
-                <div class="card" style="border: 2px solid maroon;">
-                    <div class="card-body">
-                    <div class="row" style="margin-top:-10px">
+<!--    /.content-wrapper-->
                         
-                    <div class="col-md-4 text-center">
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <label>Username:</label>
-                                <input name ="username"  type="text" class="form-control" id="username" size="20" placeholder="Username">    
-                            </div>
-                        </div>   
-<!--                             
-                        <div class="form-group">
-                            <div class="col-md-12">
-                            </div>
-                        </div>   
+                    
+<!--User Account-->
+<div class="modal fade in" id="viewUserModal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered modal-primary small">
+        
+        <form id="editUser">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editmember">User Account Form</h5>
+                    <!-- open a print form modal -->
+                    <button type="button" id='printForm' name='printForm' class="btn-info btn pull-left"
+                    data-toggle='modal' data-target="#printFormModal">Print Form</button>
+                </div>
+                <div class="modal-body">
+                    <form id="editUser">
+                    <div class="card" style="border: 2px solid maroon;">
+                        <div class="card-body">
+                        <div class="row" style="margin-top:-10px">
 
-                        <div class="col-md-12">
-                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label>Username:</label>
+                                    <input name ="username"  type="text" class="form-control" id="username" size="20" placeholder="Username">    
+                                </div>
+                            </div>   
 
-                        <div class="col-md-12 mt-2">
-                            <label>Password:</label>
-                        </div>
-                        <div class="col-md-12">
-                            <input name ="password" type="passsword" size="20" placeholder="Password">    
-                        </div>
-
-                        <div class="col-md-12 mt-2">
-                            <label>MemberOf:</label>
-                        </div> -->
                         <div class="col-md-12">
                             <div class="form-group">
                                 <select name="memberof" class="select2 select2-hidden-accessible" style="width: 200px; height: 30px;" data-select2-id="3" tabindex="-1" aria-hidden="true">
@@ -158,36 +131,6 @@
                         </div>
                         
                     </div>
-                            
-                    <!-- <div class="col-md-4 text-center">
-                        <div class="col-md-12">
-                            <label>Lastname:</label>
-                        </div>
-                        <div class="col-md-12">
-                            <input name = "lastname" type="text" size="20" placeholder="Lastname">    
-                        </div>
-
-                        <div class="col-md-12 mt-2">
-                            <label>Firstname:</label>
-                        </div>
-                        <div class="col-md-12">
-                            <input name = "firstname" type="text" size="20" placeholder="Firsname">    
-                        </div>
-
-                        <div class="col-md-12 mt-2">
-                            <label>Middlename:</label>
-                        </div>
-                        <div class="col-md-12">
-                            <input name = "middlename" type="text" size="20" placeholder="Middlename">    
-                        </div>
-
-                        <div class="col-md-12 mt-2">
-                            <label>ContactNo:</label>
-                        </div>
-                        <div class="col-md-12">
-                            <input name = "contactno" type="text" size="20" placeholder="ContactNo">    
-                        </div>
-                    </div> -->
                     <div class="form-group">
                         <div class="col-md-4 text-left" style="font-size: 14px;">
                             <div class="col-md-12 text-center" style="font-size: 15px;">
@@ -199,29 +142,6 @@
                                     <label class="form-check-label" for="incomingmodule">Incoming_Module</label>
                                 </div>
                             </div>
-                            
-                            <!-- <div class="col-md-12">
-                                <input type="checkbox" id="remarksforincoming" name="myCheckbox" value="checked" style="margin-right:5px;">
-                                <label for="remarksforincoming" style="margin-top:6px; margin-right:30px;">Remarks for Incoming</label>
-                            </div>
-                            <div class="col-md-12">
-                                <input type="checkbox" id="staffassignment" name="myCheckbox" value="checked" style="margin-right:5px;">
-                                <label for="staffassignment" style="margin-top:6px; margin-right:30px;">Staff Assignment</label>
-                            </div>
-                            <div class="col-md-12">
-                                <input type="checkbox" id="outgoingmodule" name="myCheckbox" value="checked" style="margin-right:5px;">
-                                <label for="outgoingmodule" style="margin-top:6px; margin-right:30px;">Outgoing Module</label>
-                            </div>
-                            <div class="col-md-12">
-                                <input type="checkbox" id="workingpermitmodule" name="myCheckbox" value="checked" style="margin-right:5px;">
-                                <label for="workingpermitmodule" style="margin-top:6px; margin-right:30px;">Working Permit Module</label>
-                            </div>
-                            <div class="col-md-12">
-                                <input type="checkbox" id="clearancemodule" name="myCheckbox" value="checked" style="margin-right:5px;">
-                                <label for="clearancemodule" style="margin-top:6px; margin-right:30px;">Clearance Module</label>
-                            </div> -->
-                        
-                            
                         </div>
                         
                     </div>
@@ -241,11 +161,9 @@
             <div class="modal-footer">
                         <button type="button" class="btn btn-warning mr-auto btn-sm" data-dismiss="modal" style="margin-left:10px;">Close</button>
                         <button type="submit" id="saveEditModal" name="saveEditModal" class="btn btn-primary submit" style="margin-right:10px;">Save</button>
-                    </div>
-
-            
-        </div>
-    </form>
+            </div>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -418,11 +336,13 @@
 </div> -->
 
 <!-- Modal --><!-- The modal -->
-<!-- Edit User Modal -->
+    
+<!--
+ Edit User Modal 
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <!-- <form id="editForm" method="post" action="allfunction.php"> -->
+             <form id="editForm" method="post" action="allfunction.php"> 
                 <div class="modal-header">
                     <h4 class="modal-title" id="editModalLabel">Edit User</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -458,9 +378,11 @@
         </div>
     </div>
 </div>
+-->
 
 
-<!-- <script>
+<!--
+ <script>
     $(document).ready(function() {
         // Handle the click event of the table row
         $('table').on('click', 'tr', function() {
@@ -489,7 +411,7 @@
         });
     });
 </script>
- -->
+-->
 
 
 </body>
