@@ -27,7 +27,6 @@
                 <div class="card-body">
 
 
-
                 <form id="login-form" method="POST" action="../include/loginfunc_inc.php">
                     <div class="input-group mb-3">
                     <input type="username" id="username" class="form-control" name="username" placeholder="username" required>
@@ -61,9 +60,6 @@
     </div> 
     </div>
 <!-- /.login-box -->
-
-
-
 
 </body>
 </html>

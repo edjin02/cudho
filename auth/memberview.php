@@ -1,5 +1,5 @@
 <?php include ('nav-bar.php');  ?>
-<?php $id = $_GET['id'];?>
+
 
 
 <!DOCTYPE html>

@@ -1,11 +1,5 @@
 <?php
-  session_start();
-  $user_id = $_SESSION['user_id'];
-  $user_username = $_SESSION['user_username'];
-  $ar_dashboard =  $_SESSION['ar_dashboard'];
-  $ar_record = $_SESSION['ar_record'];
-  $ar_report = $_SESSION['ar_report'];
-  $ar_systman = $_SESSION['ar_systman'];
+
 
 ?>
 
@@ -39,37 +33,37 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper" >
+          
 
-   
+        <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background-color: maroon;">
-    
+            <!-- Left navbar links -->
             <ul class="navbar-nav">
-              <li class="nav-item">
-                  <a class="nav-link" data-widget="pushmenu" href="#" role="button">
-                  <i class="fas fa-bars" style="color: white;"></i>
-                  </a>
-              </li>
-            </ul>
-
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="true" style="color:white;">
-                  <i class="fas fa-user"></i> <?php echo $user_username; ?>
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button">
+                <i class="fas fa-bars" style="color: white;"></i>
                 </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
-                  <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item">
-                    <i class="fas fa-envelope mr-2"></i>Change Password
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a href="login.php" class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i>Log Out
-                  </a>
-                </div>
-              </li>
+            </li>
+            <!-- Right navbar links -->
+            </ul>
+            <ul class="navbar-nav ml-auto">
+            <li class="nav-item d-none d-sm-inline-block" >
+                <a href="login.php" class="nav-link" style="color:white;">
+                    <i class="fas fa-user"></i>
+                    <?php
+                    session_start();
+                    if (isset($_SESSION['username'])) {
+                        echo $_SESSION['username'];
+                    } else {
+                        echo "Guest";
+                    }
+                    ?>
+                </a>
+            </li>
+            
             </ul>
         </nav>
-      </div>
+        </div>
 
     <aside class="main-sidebar sidebar-light-primary elevation-2">
         <div class="logo" style="background-color: maroon; height: 56px;">
@@ -99,6 +93,10 @@
           </h6></a>
         </div>
 
+
+  
+
+
         <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
@@ -110,7 +108,7 @@
             </a>
           </li>
 
-          <li class="nav-item" <?php if ($ar_dashboard === "0") { echo ' style="display: none;"'; } ?>>
+          <li class="nav-item">
             <a href="dashboard.php" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -119,74 +117,78 @@
             </a>
           </li>
           
-          <li class="nav-item"<?php if ($ar_record === "0") { echo ' style="display: none;"'; } ?>>
+            <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-folder"></i>
+              <i class="nav-icon  fas fa-folder"></i>
               <p>
                 Records
-              <i class="right fas fa-angle-left"></i>
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="verify.php" class="nav-link">
+              <li class="nav-item ">
+                <a href="verify.php" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Verification</p>
                 </a>
               </li>
             </ul>
-          </li>
-
-          <li class="nav-item" <?php if ($ar_report === "0") { echo ' style="display: none;"'; } ?>>
-          <a href="#" class="nav-link">
-            <i class="nav-icon  fas fa-clipboard"></i>
-            <p>
-              Reports
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item ">
-              <a href="masterlist.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Masterlist</p>
-              </a>
-            </li>
-            
-          </ul>
-          </li>
-
-          <li class="nav-item" <?php if ($ar_systman === "0") { echo ' style="display: none;"'; } ?>>
-          <a href="#" class="nav-link">
-            <i class="nav-icon  fas fa-cog"></i>
-            <p>
-              System Manager
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="user_account.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>User Account</p>
-              </a>
             </li>
             <li class="nav-item">
-              <a href="./index.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Audit Tra</p>
-              </a>
+            <a href="#" class="nav-link">
+              <i class="nav-icon  fas fa-clipboard"></i>
+              <p>
+                Reports
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item ">
+                <a href="masterlist.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Masterlist</p>
+                </a>
+              </li>
+              
+            </ul>
             </li>
-          </ul>
-          </li>
+            <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon  fas fa-cog"></i>
+              <p>
+                System Manager
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="user_account.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>User Account</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./index.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Blank</p>
+                </a>
+              </li>
+            </ul>
+            </li>
             
+
           </ul></nav>
-
+            <!-- /.sidebar-menu -->
           </li>
-    
+            <!-- Add the collapsible dashboard -->
             </div>
-
+            <!-- /.sidebar -->
         </aside>
+        
+        
+        
+       
+        
         
         
         <!-- jQuery -->

@@ -11,6 +11,7 @@
         include '..\..\cudho\functions\scripts.php';
         include 'option.php';
      ?>
+     
     
 
 </head>
@@ -201,7 +202,7 @@
                                                             <th>Monthly Income</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="table-data">
+                                                    <tbody id="record-data">
                                                     </tbody>
                                                 </table>
                                             </div>
