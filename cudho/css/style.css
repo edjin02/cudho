@@ -1,0 +1,174 @@
+* {
+    font-family: Arial, sans-serif;
+}
+
+.chead-color {
+    background-color: maroon; 
+    color: white;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem; 
+    height: 135px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.chead-text {
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 0;
+    margin-top: 5px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #fff;
+}
+
+.card-header {
+    text-align: left;
+    font-size: 20px;            
+    font-family: "Times New Roman", serif;
+    color: #ffff;
+}
+
+.main-nav {
+  background-color: #343a40;
+  color: #fff;
+  padding: 10px;
+}
+
+.main {
+  background-color: rgb(45, 45, 45);
+  color: white;
+  padding: 0;
+  margin: -10px;
+  text-align: center;
+}
+
+.main a {
+  text-decoration: none;
+}
+
+.main h6 {
+  font-size: 18px;
+}
+
+    
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+
+}
+
+th, td  {
+    font-size:13px;
+    height: 0;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+td:nth-of-type(3) {
+word-wrap: break-word;
+white-space: normal;
+}
+
+
+th:nth-child(1) {
+    width: 5%;
+}
+
+th:nth-child(2) {
+    width: 25%;
+}
+
+th:nth-child(3) {
+    width: 40%;
+}
+
+th:nth-child(4) {
+    width: 20%;
+}
+
+th:nth-child(5) {
+    width: 10%;
+}
+
+td:hover{
+  cursor: pointer;
+}
+
+
+.modal-header {
+    background-color: #800000;
+    padding: 10px;
+}  
+
+.modal-title {
+    color: #ffffff; 
+    margin-left:5px;
+}
+
+.modal-body {
+    padding: 10px;
+}
+
+.modal-footer {
+    background-color: #800000;
+    padding: 8px;
+}
+
+
+.cheader-color
+{
+    background-color:maroon; 
+    color:white;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem; 
+    padding: 5px;
+}
+.cheader-text
+{
+    font-size: 15px;
+    font-weight: 300;
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+.cheader-color .add
+{
+    color:white;
+    text-align: right;
+}
+
+.custom-btn {
+    background-color: maroon;   
+    border: none;
+}
+
+.cfooter1 {
+    font-weight: bold;
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-top: 0 solid rgba(0, 0, 0, 0.125);
+}
+
+.cfooter1:last-child {
+    border-radius: 0 0 calc(0.25rem - 0) calc(0.25rem - 0);
+}
+
+div.col h8 {
+    font-size: 13px;
+}
+
+
+  
+
+ 
