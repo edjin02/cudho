@@ -52,25 +52,30 @@ include '../functions/Functions.php';
             <div class="card card">
                 <div class="card-header" style="background-color:maroon;"></div>
                 <div class="card-body">
-                    <div class="row justify-content-center">
-                        <div class="form-group">
-                            <div class="input-group">
+                        <div class="form-group" style="display:flex; align-items: center; justify-content:center">
+                        <div class="col-sm-7">
+                            <div class="input-group" >
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
                                         <span class="fa fa-search"></span>
                                     </span>
                                 </div>
-                                <input type="search" id="search" class="form-control" style="width: 600px" name="search" placeholder="search">
+                                <input type="search" id="search" class="form-control" name="search" placeholder="Search">
                             </div>
-                        </div>
-
+                        </div></div>
+                    <div class="row justify-content-center">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <input type="text" id="barangay-select" class="form-control" onclick="showAllSuggestions()" oninput="showSuggestions(this.value)" onkeydown="handleKeyDown(event)" onblur="changePlaceholder()" placeholder="Barangay..." />
+                                <input type="text" id="barangay-select" class="form-control" onfocus="showAllSuggestions()" oninput="showSuggestions(this.value)" onkeydown="handleKeyDown(event)" onblur="changePlaceholder()" placeholder="Search by Barangay" />
                                 <div id="suggestionBox" style='display:none'></div>
                             </div>
-
                         </div>
+                        <div class="col-md-4 mb-3">
+                                    <div class="input-group">
+                                        <input type="text" name="community-selectSearch" id="community-selectSearch" class="form-control" onfocus="showAllSuggestionsCommunity()" oninput="showfilterCommunitySuggestions(this.value)" onkeydown="handlefilterCommunityKeyDown(event)" onblur="changefilterCommunityPlaceholder()" onkeyup="convertToUppercase(this)" placeholder="Search by Community Association">
+                                        <div id="communitysearchSuggestionBox" style="display:none"></div>
+                                    </div>
+                                </div>
                         <button type="button" class="btn btn-block" data-toggle="modal" data-target="#encode" style="height:36px; width:100px; color:white; background-color:maroon">
                             Add
                         </button>
@@ -923,7 +928,14 @@ include '../functions/Functions.php';
                 suggestionBox.style.display = 'none';
                 suggestionBoxVisible = false;
             }
+        });
 
+        document.getElementById('community-selectSearch').addEventListener('blur', function() {
+            if (suggestionBoxVisible) {
+                const suggestionBox = document.getElementById('communitysearchSuggestionBox');
+                suggestionBox.style.display = 'none';
+                suggestionBoxVisible = false;
+            }
         });
 
         // Structure owner checkbox 
