@@ -295,6 +295,7 @@ include '../functions/Functions.php';
                                         </select>
                                     </div>
                                 </div>
+                                
                                 <div class="col-md-4 mb-3">
                                     <label for="spouse_birthDate">Birthdate:</label>
                                     <div class="input-group">

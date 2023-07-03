@@ -95,16 +95,17 @@ function displayValue() {
         var child_givenName = document.getElementById(`Mchild_givenName_${i}`).value;
         var child_middleName = document.getElementById(`Mchild_middleName_${i}`).value;
         var child_maidenName = document.getElementById(`Mchild_maidenName_${i}`).value;
+        var child_Extension = document.getElementById(`Mchild_extension_${i}`).value;
         var child_birthDate = document.getElementById(`Mchild_birthDate_${i}`).value;
 
         minorlogMessage += "\nChild " + i + " - Gender: " + child_gender + " Last Name: " + child_lastName +
             " Given Name: " + child_givenName + " Middle Name: " + child_middleName +
-            " Maiden Name: " + child_maidenName + " Birthdate: " + child_birthDate;
+            " Maiden Name: " + child_maidenName + " Extension: " + child_Extension + " Birthdate: " + child_birthDate;
     }
 
     // display working children in log
     var numWorkChildren = parseInt(document.getElementById("num_workChildren").value);
-    var workinglogMessage = "Number of Working Children:  " + numWorkChildren;
+    var workinglogMessage = "Number of Working Children:  \n" + numWorkChildren;
 
     for (var i = 0; i < numWorkChildren; i++) {
         var Wchild_gender = document.getElementById(`Wchild_gender_${i}`).value;
@@ -144,7 +145,7 @@ function displayValue() {
 
     // display total monthly in logs
     var totalMonthly =parseInt(document.getElementById('totalMonthly').value)
-    var monthlyTotallogMessage = "Total Monthly Salary: " + totalMonthly;
+    var monthlyTotallogMessage = "\nTotal Monthly Salary: " + totalMonthly;
        
 
     // display Senior/PWD in log
@@ -238,6 +239,8 @@ radioButtons.forEach(function (radio) {
     radio.addEventListener('change', logSelectedOption);
 });
 
+
+
 // Function to calculate and update the totalMonthly value
 function updateTotalMonthly() {
   var numWorkChildren = parseInt(document.getElementById("num_workChildren").value);
@@ -261,6 +264,7 @@ function updateTotalMonthly() {
   }
 
   document.getElementById("totalMonthly").value = totalSalary + ".00";
+  
 }
 
 function generateSeniorFields() {
@@ -271,12 +275,19 @@ function generateSeniorFields() {
     for (let i = 1; i <= numSenior; i++) {
         const seniorField = `
             <div class="row">
-                <div class="col-md-3 mb-3">
-                    <label for="gender_${i}">Gender:</label>
-                    <div class="input-group">
-                        <input type="text" class="input-border form-control" name="gender_${i}" id="gender_${i}" placeholder="Gender">
-                    </div>
+            <div class="col-md-12">
+                <div class="card" style="border: 1px solid maroon;">
                 </div>
+            </div>
+            <div class="col-md-3 mb-3">
+            <label for="SP_gender_${i}">Gender:</label>
+            <div class="input-group">
+                <select class="input-border form-control" name="SP_gender_${i}" id="SP_gender_${i}" onchange="handleSeniorGenderChange(${i})">
+                    <option value="MALE">MALE</option>
+                    <option value="FEMALE">FEMALE</option>
+                </select>
+            </div>
+            </div>
                 <div class="col-md-3 mb-3">
                     <label for="birthDate_${i}">Birthdate:</label>
                     <div class="input-group">
@@ -312,16 +323,23 @@ function generateSeniorFields() {
                     placeholder="Middle Name">
                 </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-3" id="seniorMaidenNameCont_${i}">
                 <label for="SP_maidenName_${i}">Maiden Name:</label>
                 <div class="input-group">
-                    <input type="text" class="input-border form-control" name="SP_maidenName_${i}" id="SP_maidenName_${i}"
-                    placeholder="Maiden Name">
+                    <input type="text" class="input-border form-control" name="SP_maidenName_${i}" id="SP_maidenName_${i}" placeholder="Maiden Name">
                 </div>
                 </div>
+                <div class="col-md-3 mb-3" id="seniorExtensionCont_${i}">
+                    <label for="SP_extension_${i}">Extension:</label>
+                    <div class="input-group">
+                        <input type="text" class="input-border form-control" name="SP_extension_${i}" id="SP_extension_${i}" placeholder="Extension">
+                    </div>
+                </div>
+                
             </div>
         `;
         container.innerHTML += seniorField;
+        handleSeniorGenderChange(i);
     }
 }
 
@@ -342,11 +360,17 @@ function generateWorkChildFields() {
     for (var i = 0; i < numWorkChildren; i++) {
         var childField = `
         <div class = "row">
-            
+            <div class="col-md-12">
+                <div class="card" style="border: 1px solid maroon;">
+                </div>
+            </div>
             <div class="col-md-4 mb-3">
                 <label for="Wchild_gender_${i}">Gender:</label>
                 <div class="input-group">
-                    <input type="text" class="input-border form-control" name="Wchild_gender_${i}" id="Wchild_gender_${i}" placeholder="Gender">
+                    <select class="input-border form-control" name="Wchild_gender_${i}" id="Wchild_gender_${i}" onchange="handleWorkGenderChange(${i})">
+                        <option value="MALE">MALE</option>
+                        <option value="FEMALE">FEMALE</option>
+                    </select>
                 </div>
             </div>
             <div class="col-md-4 mb-3">
@@ -379,10 +403,16 @@ function generateWorkChildFields() {
                     <input type="text" class="input-border form-control" name="Wchild_middleName_${i}" id="Wchild_middleName_${i}" placeholder="Middle Name">
                 </div>
             </div>
-            <div class="col-md-3 mb-3">
+            <div class="col-md-3 mb-3" id="workMaidenNameCont_${i}">
                 <label for="Wchild_maidenName_${i}">Maiden Name:</label>
                 <div class="input-group">
                     <input type="text" class="input-border form-control" name="Wchild_maidenName_${i}" id="Wchild_maidenName_${i}" placeholder="Maiden Name">
+                </div>
+            </div>
+            <div class="col-md-3 mb-3" id="workExtensionCont_${i}">
+                <label for="Wchild_extension_${i}">Extension:</label>
+                <div class="input-group">
+                    <input type="text" class="input-border form-control" name="Wchild_extension_${i}" id="Wchild_extension_${i}" placeholder="Extension">
                 </div>
             </div>
             <div class="col-md-6 mb-3">
@@ -417,7 +447,7 @@ function generateWorkChildFields() {
             </div>
         `;
         container.innerHTML += childField;
-
+        handleWorkGenderChange(i);
 }
     var numWorkChildren = parseInt(document.getElementById('num_workChildren').value);
     var num_children = parseInt(document.getElementById('num_children').value);
@@ -430,78 +460,147 @@ function generateWorkChildFields() {
 
 function generateChildFields() {
     var numChildren = parseInt(document.getElementById("num_children").value);
-    if (isNaN(numChildren) || numChildren < 0) {
-        numChildren = 0;
-        document.getElementById("num_children").value = numChildren;
-    } else if (numChildren > 50) {
-        numChildren = 50;
-        document.getElementById("num_children").value = numChildren;
-    }
+  if (isNaN(numChildren) || numChildren < 0) {
+    numChildren = 0;
+    document.getElementById("num_children").value = numChildren;
+  } else if (numChildren > 50) {
+    numChildren = 50;
+    document.getElementById("num_children").value = numChildren;
+  }
 
-    var container = document.getElementById("child_fields_container");
-    container.innerHTML = "";
+  var container = document.getElementById("child_fields_container");
+  container.innerHTML = "";
 
-    for (var i = 1; i <= numChildren; i++) {
-        var childRow = document.createElement("div");
-        childRow.className = "row";
+  for (var i = 1; i <= numChildren; i++) {
+    var childRow = document.createElement("div");
+    childRow.className = "row";
 
-        var childFieldset = document.createElement("fieldset");
-        childFieldset.className = "col-md-12 mb-3";
-        childFieldset.innerHTML = `
-            <div class="row">
-                
-                <div class="col-md-2 mb-3">
-                    <label for="Mchild_gender_${i}">Gender:</label>
-                    <div class="input-group">
-                        <input type="text" class="input-border form-control" name="Mchild_gender_${i}" id="Mchild_gender_${i}"
-                            placeholder="Gender">
-                    </div>
-                </div>
-                <div class="col-md-2 mb-3">
-                    <label for="Mchild_lastName_${i}">Last Name:</label>
-                    <div class="input-group">
-                        <input type="text" class="input-border form-control" name="Mchild_lastName_${i}" id="Mchild_lastName_${i}"
-                            placeholder="Last Name">
-                    </div>
-                </div>
-                <div class="col-md-2 mb-3">
-                    <label for="Mchild_givenName_${i}">Given Name:</label>
-                    <div class="input-group">
-                        <input type="text" class="input-border form-control" name="Mchild_givenName_${i}" id="Mchild_givenName_${i}"
-                            placeholder="Given Name">
-                    </div>
-                </div>
-                <div class="col-md-2 mb-3">
-                    <label for="Mchild_middleName_${i}">Middle Name:</label>
-                    <div class="input-group">
-                        <input type="text" class="input-border form-control" name="Mchild_middleName_${i}" id="Mchild_middleName_${i}"
-                            placeholder="Middle Name">
-                    </div>
-                </div>
-                <div class="col-md-2 mb-3">
-                    <label for="Mchild_maidenName_${i}">Maiden Name:</label>
-                    <div class="input-group">
-                        <input type="text" class="input-border form-control" name="Mchild_maidenName_${i}" id="Mchild_maidenName_${i}"
-                            placeholder="Maiden Name">
-                    </div>
-                </div>
-                <div class="col-md-2 mb-3">
-                    <label for="Mchild_birthDate_${i}">Birthdate:</label>
-                    <div class="input-group">
-                        <input type="date" class="input-border form-control" name="Mchild_birthDate_${i}" id="Mchild_birthDate_${i}"
-                            placeholder="Birthdate">
-                    </div>
+    var childFieldset = document.createElement("fieldset");
+    childFieldset.className = "col-md-12 mb-3";
+    childFieldset.innerHTML = `
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card" style="border: 1px solid maroon;">
                 </div>
             </div>
-        `;
+            <div class="col-md-2 mb-3">
+                <label for="Mchild_gender_${i}">Gender:</label>
+                <div class="input-group">
+                    <select class="input-border form-control" name="Mchild_gender_${i}" id="Mchild_gender_${i}" onchange="handleMinorGenderChange(${i})">
+                        <option value="MALE">MALE</option>
+                        <option value="FEMALE">FEMALE</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="Mchild_lastName_${i}">Last Name:</label>
+                <div class="input-group">
+                    <input type="text" class="input-border form-control" name="Mchild_lastName_${i}" id="Mchild_lastName_${i}"
+                        placeholder="Last Name">
+                </div>
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="Mchild_givenName_${i}">Given Name:</label>
+                <div class="input-group">
+                    <input type="text" class="input-border form-control" name="Mchild_givenName_${i}" id="Mchild_givenName_${i}"
+                        placeholder="Given Name">
+                </div>
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="Mchild_middleName_${i}">Middle Name:</label>
+                <div class="input-group">
+                    <input type="text" class="input-border form-control" name="Mchild_middleName_${i}" id="Mchild_middleName_${i}"
+                        placeholder="Middle Name">
+                </div>
+            </div>
+            <div class="col-md-2 mb-3" id="minorMaidenNameCont_${i}">
+                <label for="Mchild_maidenName_${i}">Maiden Name:</label>
+                <div class="input-group">
+                    <input type="text" class="input-border form-control" name="Mchild_maidenName_${i}" id="Mchild_maidenName_${i}" placeholder="Maiden Name">
+                </div>
+            </div>
+            <div class="col-md-2 mb-3" id="minorExtensionCont_${i}">
+                <label for="Mchild_extension_${i}">Extension:</label>
+                <div class="input-group">
+                    <input type="text" class="input-border form-control" name="Mchild_extension_${i}" id="Mchild_extension_${i}" placeholder="Extension">
+                </div>
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="Mchild_birthDate_${i}">Birthdate:</label>
+                <div class="input-group">
+                    <input type="date" class="input-border form-control" name="Mchild_birthDate_${i}" id="Mchild_birthDate_${i}"
+                        placeholder="Birthdate">
+                </div>
+            </div>
+        </div>
+    `;
 
-        childRow.appendChild(childFieldset);
-        container.appendChild(childRow);
-    }
+    childRow.appendChild(childFieldset);
+    container.appendChild(childRow);
+    handleMinorGenderChange(i);
+  }
         var numWorkChildren = parseInt(document.getElementById('num_workChildren').value);
         var num_children = parseInt(document.getElementById('num_children').value);
 
         var sum =   numWorkChildren + num_children;
-        document.getElementById("total_children_label").value = sum.toString();
+        document.getElementById("total_children_label").value = sum.toString(); 
+
 }
 
+function handleMinorGenderChange(i) {
+    //minor child gender select filter
+    var minorGenderSelect = document.getElementById(`Mchild_gender_${i}`);
+    var minorGenderValue = minorGenderSelect.value;
+  
+    var maidenNameCont = document.getElementById(`minorMaidenNameCont_${i}`);
+    var extensionCont = document.getElementById(`minorExtensionCont_${i}`);
+  
+    if (minorGenderValue === "FEMALE") {
+      maidenNameCont.style.display = "block";
+      extensionCont.style.display = "none";
+    } else if (minorGenderValue === "MALE") {
+      maidenNameCont.style.display = "none";
+      extensionCont.style.display = "block";
+    }
+}
+
+function handleWorkGenderChange(i){
+    //working child gender select filter
+    var workGenderSelect = document.getElementById(`Wchild_gender_${i}`);
+    var workGenderValue = workGenderSelect.value;
+
+    var workMaidenNameCont = document.getElementById(`workMaidenNameCont_${i}`);
+    var workExtensionCont  = document.getElementById(`workExtensionCont_${i}`);
+
+    if (workGenderValue === "FEMALE") {
+        workMaidenNameCont.style.display = "block";
+        workExtensionCont.style.display = "none";
+    } else if (workGenderValue === "MALE") {
+        workMaidenNameCont.style.display = "none";
+        workExtensionCont.style.display  = "block";
+    }
+}
+
+function handleSeniorGenderChange(i){
+    var seniorGenderSelect = document.getElementById(`SP_gender_${i}`);
+    var seniorGenderValue = seniorGenderSelect.value;
+
+    var seniorMaidenNameCont = document.getElementById(`seniorMaidenNameCont_${i}`);
+    var seniorExtensionCont = document.getElementById(`seniorExtensionCont_${i}`);
+
+    if (seniorGenderValue === "FEMALE") {
+        seniorMaidenNameCont.style.display = "block";
+        seniorExtensionCont.style.display = "none";
+    } else if (seniorGenderValue === "MALE") {
+        seniorExtensionCont.style.display = "block";
+        seniorMaidenNameCont.style.display = "none";
+    }
+}
+
+
+
+
+    
+  
+
+  

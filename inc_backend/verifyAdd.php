@@ -95,10 +95,11 @@ function displayValue(){
         $child_middleName = isset($_POST["Mchild_middleName_" . $i]) ? $_POST["Mchild_middleName_" . $i] : "";
         $child_maidenName = isset($_POST["Mchild_maidenName_" . $i]) ? $_POST["Mchild_maidenName_" . $i] : "";
         $child_birthDate = isset($_POST["Mchild_birthDate_" . $i]) ? $_POST["Mchild_birthDate_" . $i] : "";
+        $child_extension = isset($_POST["Mchild_extension_" . $i]) ? $_POST["Mchild_extension_" . $i] : "";
 
         $minorlogMessage .= "\nChild " . $i . " - Gender: " . $child_gender . " Last Name: " . $child_lastName .
             " Given Name: " . $child_givenName . " Middle Name: " . $child_middleName .
-            " Maiden Name: " . $child_maidenName . " Birthdate: " . $child_birthDate;
+            " Maiden Name: " . $child_maidenName . " Extension: " . $child_extension . " Birthdate: " . $child_birthDate;
     }
 
     // Display working children
@@ -140,7 +141,7 @@ function displayValue(){
 
     // Display total monthly 
     $totalMonthly = isset($_POST["totalMonthly"]) ? intval($_POST["totalMonthly"]) : 0;
-    $monthlyTotallogMessage = "Total Monthly Salary: " . $totalMonthly;
+    $monthlyTotallogMessage = "\nTotal Monthly Salary: " . $totalMonthly;
     
     // Display Senior/PWD in log
     $numSenior = isset($_POST["num_senior"]) ? intval($_POST["num_senior"]) : 0;

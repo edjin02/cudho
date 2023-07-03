@@ -23,8 +23,7 @@
 
     <!-- jQuery -->
   <script src="../../adminLTE/AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap 4 -->
-  <script src="../../adminLTE/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 
 
 
