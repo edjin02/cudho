@@ -274,13 +274,13 @@ function generateSeniorFields() {
                 <div class="col-md-3 mb-3">
                     <label for="gender_${i}">Gender:</label>
                     <div class="input-group">
-                        <input type="text" class="input-border form-control" name="gender_${i}" id="gender_${i}" placeholder="Gender" required>
+                        <input type="text" class="input-border form-control" name="gender_${i}" id="gender_${i}" placeholder="Gender">
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="birthDate_${i}">Birthdate:</label>
                     <div class="input-group">
-                        <input type="date" class="input-border form-control" name="birthDate_${i}" id="birthDate_${i}" placeholder="BirthDate" required>
+                        <input type="date" class="input-border form-control" name="birthDate_${i}" id="birthDate_${i}" placeholder="BirthDate">
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
@@ -295,28 +295,28 @@ function generateSeniorFields() {
                 <label for="SP_lastName_${i}">LastName:</label>
                 <div class="input-group">
                     <input type="text" class="input-border form-control" name="SP_lastName_${i}" id="SP_lastname_${i}"
-                    placeholder="Last Name" required>
+                    placeholder="Last Name">
                 </div>
                 </div>
                 <div class="col-md-3 mb-3">
                 <label for="SP_givenName_${i}">Given Name:</label>
                 <div class="input-group">
                     <input type="text" class="input-border form-control" name="SP_givenName_${i}" id="SP_givenName_${i}"
-                    placeholder="Given Name" required>
+                    placeholder="Given Name">
                 </div>
                 </div>
                 <div class="col-md-3 mb-3">
                 <label for="SP_middleName_${i}">Middle Name:</label>
                 <div class="input-group">
                     <input type="text" class="input-border form-control" name="SP_middleName_${i}" id="SP_middleName_${i}"
-                    placeholder="Middle Name" required>
+                    placeholder="Middle Name">
                 </div>
                 </div>
                 <div class="col-md-3 mb-3">
                 <label for="SP_maidenName_${i}">Maiden Name:</label>
                 <div class="input-group">
                     <input type="text" class="input-border form-control" name="SP_maidenName_${i}" id="SP_maidenName_${i}"
-                    placeholder="Maiden Name" required>
+                    placeholder="Maiden Name">
                 </div>
                 </div>
             </div>
@@ -346,55 +346,55 @@ function generateWorkChildFields() {
             <div class="col-md-4 mb-3">
                 <label for="Wchild_gender_${i}">Gender:</label>
                 <div class="input-group">
-                    <input type="text" class="input-border form-control" name="Wchild_gender_${i}" id="Wchild_gender_${i}" placeholder="Gender" required>
+                    <input type="text" class="input-border form-control" name="Wchild_gender_${i}" id="Wchild_gender_${i}" placeholder="Gender">
                 </div>
             </div>
             <div class="col-md-4 mb-3">
                 <label for="Wchild_birthDate_${i}">Birthdate:</label>
                 <div class="input-group">
-                    <input type="date" class="input-border form-control" name="Wchild_birthDate_${i}" id="Wchild_birthDate_${i}" placeholder="Birthdate" required>
+                    <input type="date" class="input-border form-control" name="Wchild_birthDate_${i}" id="Wchild_birthDate_${i}" placeholder="Birthdate">
                 </div>
             </div>
             <div class="col-md-4 mb-3">
                 <label for="Wchild_civilStatus_${i}">Civil Status:</label>
                 <div class="input-group">
-                    <input type="text" class="input-border form-control" name="Wchild_civilStatus_${i}" id="Wchild_civilStatus_${i}" placeholder="Civil Status" required>
+                    <input type="text" class="input-border form-control" name="Wchild_civilStatus_${i}" id="Wchild_civilStatus_${i}" placeholder="Civil Status">
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="Wchild_lastName_${i}">LastName:</label>
                 <div class="input-group">
-                    <input type="text" class="input-border form-control" name="Wchild_lastName_${i}" id="Wchild_lastname_${i}" placeholder="Last Name" required>
+                    <input type="text" class="input-border form-control" name="Wchild_lastName_${i}" id="Wchild_lastname_${i}" placeholder="Last Name">
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="Wchild_givenName_${i}">Given Name:</label>
                 <div class="input-group">
-                    <input type="text" class="input-border form-control" name="Wchild_givenName_${i}" id="Wchild_givenName_${i}" placeholder="Given Name" required>
+                    <input type="text" class="input-border form-control" name="Wchild_givenName_${i}" id="Wchild_givenName_${i}" placeholder="Given Name">
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="Wchild_middleName_${i}">Middle Name:</label>
                 <div class="input-group">
-                    <input type="text" class="input-border form-control" name="Wchild_middleName_${i}" id="Wchild_middleName_${i}" placeholder="Middle Name" required>
+                    <input type="text" class="input-border form-control" name="Wchild_middleName_${i}" id="Wchild_middleName_${i}" placeholder="Middle Name">
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="Wchild_maidenName_${i}">Maiden Name:</label>
                 <div class="input-group">
-                    <input type="text" class="input-border form-control" name="Wchild_maidenName_${i}" id="Wchild_maidenName_${i}" placeholder="Maiden Name" required>
+                    <input type="text" class="input-border form-control" name="Wchild_maidenName_${i}" id="Wchild_maidenName_${i}" placeholder="Maiden Name">
                 </div>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="Wchild_occupation_${i}">Occupation:</label>
                 <div class="input-group">
-                    <input type="text" class="input-border form-control" name="Wchild_occupation_${i}" id="Wchild_occupation_${i}" placeholder="Occupation" required>
+                    <input type="text" class="input-border form-control" name="Wchild_occupation_${i}" id="Wchild_occupation_${i}" placeholder="Occupation">
                 </div>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="Wchild_monthSalary_${i}">Monthly Salary:</label>
                 <div class="input-group">
-                    <input type="number" class="input-border form-control" name="Wchild_monthSalary_${i}" id="Wchild_monthSalary_${i}" placeholder="Monthly Salary" oninput="updateTotalMonthly()" required>
+                    <input type="number" class="input-border form-control" name="Wchild_monthSalary_${i}" id="Wchild_monthSalary_${i}" placeholder="Monthly Salary" oninput="updateTotalMonthly()">
                 </div>
             </div>
             <div class="col-md-11" style="margin-left:20px;">
@@ -454,42 +454,42 @@ function generateChildFields() {
                     <label for="Mchild_gender_${i}">Gender:</label>
                     <div class="input-group">
                         <input type="text" class="input-border form-control" name="Mchild_gender_${i}" id="Mchild_gender_${i}"
-                            placeholder="Gender" required>
+                            placeholder="Gender">
                     </div>
                 </div>
                 <div class="col-md-2 mb-3">
                     <label for="Mchild_lastName_${i}">Last Name:</label>
                     <div class="input-group">
                         <input type="text" class="input-border form-control" name="Mchild_lastName_${i}" id="Mchild_lastName_${i}"
-                            placeholder="Last Name" required>
+                            placeholder="Last Name">
                     </div>
                 </div>
                 <div class="col-md-2 mb-3">
                     <label for="Mchild_givenName_${i}">Given Name:</label>
                     <div class="input-group">
                         <input type="text" class="input-border form-control" name="Mchild_givenName_${i}" id="Mchild_givenName_${i}"
-                            placeholder="Given Name" required>
+                            placeholder="Given Name">
                     </div>
                 </div>
                 <div class="col-md-2 mb-3">
                     <label for="Mchild_middleName_${i}">Middle Name:</label>
                     <div class="input-group">
                         <input type="text" class="input-border form-control" name="Mchild_middleName_${i}" id="Mchild_middleName_${i}"
-                            placeholder="Middle Name" required>
+                            placeholder="Middle Name">
                     </div>
                 </div>
                 <div class="col-md-2 mb-3">
                     <label for="Mchild_maidenName_${i}">Maiden Name:</label>
                     <div class="input-group">
                         <input type="text" class="input-border form-control" name="Mchild_maidenName_${i}" id="Mchild_maidenName_${i}"
-                            placeholder="Maiden Name" required>
+                            placeholder="Maiden Name">
                     </div>
                 </div>
                 <div class="col-md-2 mb-3">
                     <label for="Mchild_birthDate_${i}">Birthdate:</label>
                     <div class="input-group">
                         <input type="date" class="input-border form-control" name="Mchild_birthDate_${i}" id="Mchild_birthDate_${i}"
-                            placeholder="Birthdate" required>
+                            placeholder="Birthdate">
                     </div>
                 </div>
             </div>
