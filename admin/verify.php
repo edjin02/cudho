@@ -960,10 +960,7 @@ include '../functions/Functions.php';
     </div>
 </form>
 
-<!-- display text to monthly total when monthsalary is inputted -->
-<script>
 
-</script>
 
 
 
