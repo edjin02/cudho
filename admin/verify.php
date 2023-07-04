@@ -738,13 +738,7 @@ include '../functions/Functions.php';
                                 <div class="col-md-12">
                                     <label>Respondent (Tumugon):</label>
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="respondent_gender">Gender:</label>
-                                    <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="respondent_gender" id="respondent_gender" placeholder="Gender">
-                                    </div>
-                                </div>
-                                <div class="col-md-9 mb-3">
+                                <div class="col-md-12 mb-3">
                                     <label for="respondent_relation">Relationship to Household Head:</label>
                                     <div class="input-group">
                                         <input type="text" class="input-border form-control" name="respondent_relation" id="respondent_relation" placeholder="Relationship to Household Head">
@@ -783,31 +777,25 @@ include '../functions/Functions.php';
                                 <div class="col-md-12 mb">
                                     <label>Interviewer (Nakipagpanayam):</label>
                                 </div>
-                                <div class="col-md-2 mb-3">
-                                    <label for="interviewer_gender">Gender:</label>
-                                    <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="interviewer_gender" id="interviewer_gender" placeholder="Gender">
-                                    </div>
-                                </div>
-                                <div class="col-md-2 mb-3">
+                                <div class="col-md-3 mb-3">
                                     <label for="interviewer_lastName">Last Name:</label>
                                     <div class="input-group">
                                         <input type="text" class="input-border form-control" name="interviewer_lastName" id="interviewer_lastName" placeholder="Last Name">
                                     </div>
                                 </div>
-                                <div class="col-md-2 mb-3">
+                                <div class="col-md-3 mb-3">
                                     <label for="interviewer_givenName">Given Name:</label>
                                     <div class="input-group">
                                         <input type="text" class="input-border form-control" name="interviewer_givenName" id="interviewer_givenName" placeholder="Given Name">
                                     </div>
                                 </div>
-                                <div class="col-md-2 mb-3">
+                                <div class="col-md-3 mb-3">
                                     <label for="interviewer_middleName">Middle Name:</label>
                                     <div class="input-group">
                                         <input type="text" class="input-border form-control" name="interviewer_middleName" id="interviewer_middleName" placeholder="Middle Name">
                                     </div>
                                 </div>
-                                <div class="col-md-2 mb-3">
+                                <div class="col-md-3 mb-3">
                                     <label for="interviewer_maidenName">Maiden Name:</label>
                                     <div class="input-group">
                                         <input type="text" class="input-border form-control" name="interviewer_maidenName" id="interviewer_maidenName" placeholder="Maiden Name">
