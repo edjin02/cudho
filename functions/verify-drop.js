@@ -1,123 +1,123 @@
 // Sample suggestions
-    // const suggestions = ['APLAYA', 'BALIBAGO', 'CAINGIN', 'DILA', 'DITA', 'DON JOSE', 'IBABA', 'KANLURAN', 'LABAS', 'MACABLING', 'MALITLIT', 'MALUSAK', 'MARKET AREA', 'POOC', 'PULONG SANTA CRUZ', 'SANTO DOMINGO', 'SINALHAN', 'TAGAPO'];
-    // let selectedIndex = -1;
-    // let suggestionBoxVisible = false;
+// const suggestions = ['APLAYA', 'BALIBAGO', 'CAINGIN', 'DILA', 'DITA', 'DON JOSE', 'IBABA', 'KANLURAN', 'LABAS', 'MACABLING', 'MALITLIT', 'MALUSAK', 'MARKET AREA', 'POOC', 'PULONG SANTA CRUZ', 'SANTO DOMINGO', 'SINALHAN', 'TAGAPO'];
+// let selectedIndex = -1;
+// let suggestionBoxVisible = false;
 
-    // function showAllSuggestions() {
-    //     showSuggestions('');
-    // }
+// function showAllSuggestions() {
+//     showSuggestions('');
+// }
 
-    // function showSuggestions(input) {
-    //     const suggestionBox = document.getElementById('suggestionBox');
-    //     suggestionBox.innerHTML = '';
+// function showSuggestions(input) {
+//     const suggestionBox = document.getElementById('suggestionBox');
+//     suggestionBox.innerHTML = '';
 
-    //     if (input.length === 0) {
-    //         suggestionBox.style.display = 'block'; // Show suggestion box
-    //         suggestionBoxVisible = true;
-    //         suggestions.forEach((suggestion, index) => {
-    //             const suggestionElement = createSuggestionElement(suggestion, index);
-    //             suggestionBox.appendChild(suggestionElement);
-    //         });
+//     if (input.length === 0) {
+//         suggestionBox.style.display = 'block'; // Show suggestion box
+//         suggestionBoxVisible = true;
+//         suggestions.forEach((suggestion, index) => {
+//             const suggestionElement = createSuggestionElement(suggestion, index);
+//             suggestionBox.appendChild(suggestionElement);
+//         });
 
-    //         // Set the first suggestion as placeholder
-    //         if (suggestions.length > 0) {
-    //             document.getElementById('barangay-select').placeholder = suggestions[0];
-    //         }
-    //     } else {
-    //         const filteredSuggestions = suggestions.filter(suggestion =>
-    //             suggestion.toLowerCase().startsWith(input.toLowerCase())
-    //         );
+//         // Set the first suggestion as placeholder
+//         if (suggestions.length > 0) {
+//             document.getElementById('barangay-select').placeholder = suggestions[0];
+//         }
+//     } else {
+//         const filteredSuggestions = suggestions.filter(suggestion =>
+//             suggestion.toLowerCase().startsWith(input.toLowerCase())
+//         );
 
-    //         if (filteredSuggestions.length === 0) {
-    //             suggestionBox.style.display = 'none';
-    //             suggestionBoxVisible = false;
-    //         } else {
-    //             suggestionBox.style.display = 'block';
-    //             suggestionBoxVisible = true;
-    //             filteredSuggestions.forEach((suggestion, index) => {
-    //                 const suggestionElement = createSuggestionElement(suggestion, index);
-    //                 suggestionBox.appendChild(suggestionElement);
-    //             });
+//         if (filteredSuggestions.length === 0) {
+//             suggestionBox.style.display = 'none';
+//             suggestionBoxVisible = false;
+//         } else {
+//             suggestionBox.style.display = 'block';
+//             suggestionBoxVisible = true;
+//             filteredSuggestions.forEach((suggestion, index) => {
+//                 const suggestionElement = createSuggestionElement(suggestion, index);
+//                 suggestionBox.appendChild(suggestionElement);
+//             });
 
-    //             // Set the first filtered suggestion as placeholder
-    //             if (filteredSuggestions.length > 0) {
-    //                 document.getElementById('barangay-select').placeholder = filteredSuggestions[0];
-    //             }
-    //         }
-    //     }
+//             // Set the first filtered suggestion as placeholder
+//             if (filteredSuggestions.length > 0) {
+//                 document.getElementById('barangay-select').placeholder = filteredSuggestions[0];
+//             }
+//         }
+//     }
 
-    //     // Always hover over the first suggestion
-    //     selectedIndex = 0;
-    //     toggleSelectedSuggestion();
-    // }
+//     // Always hover over the first suggestion
+//     selectedIndex = 0;
+//     toggleSelectedSuggestion();
+// }
 
-    // function createSuggestionElement(suggestion, index) {
-    //     const suggestionElement = document.createElement('div');
-    //     suggestionElement.className = 'suggestion';
-    //     suggestionElement.textContent = suggestion;
-    //     suggestionElement.onclick = () => {
-    //         document.getElementById('barangay-select').value = suggestion;
-    //         suggestionBox.style.display = 'none';
-    //         suggestionBoxVisible = false;
-    //     };
-    //     suggestionElement.onmouseover = () => {
-    //         selectedIndex = index;
-    //         toggleSelectedSuggestion();
-    //     };
-    //     return suggestionElement;
-    // }
+// function createSuggestionElement(suggestion, index) {
+//     const suggestionElement = document.createElement('div');
+//     suggestionElement.className = 'suggestion';
+//     suggestionElement.textContent = suggestion;
+//     suggestionElement.onclick = () => {
+//         document.getElementById('barangay-select').value = suggestion;
+//         suggestionBox.style.display = 'none';
+//         suggestionBoxVisible = false;
+//     };
+//     suggestionElement.onmouseover = () => {
+//         selectedIndex = index;
+//         toggleSelectedSuggestion();
+//     };
+//     return suggestionElement;
+// }
 
-    // function toggleSelectedSuggestion() {
-    //     const suggestionBox = document.getElementById('suggestionBox');
-    //     const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
-    //     Array.from(suggestionElements).forEach((suggestionElement, index) => {
-    //         suggestionElement.classList.toggle('selected', index === selectedIndex);
-    //     });
+// function toggleSelectedSuggestion() {
+//     const suggestionBox = document.getElementById('suggestionBox');
+//     const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
+//     Array.from(suggestionElements).forEach((suggestionElement, index) => {
+//         suggestionElement.classList.toggle('selected', index === selectedIndex);
+//     });
 
-    //     // Update the placeholder with the selected suggestion
-    //     const selectedSuggestion = suggestionElements[selectedIndex];
-    //     if (selectedSuggestion) {
-    //         document.getElementById('barangay-select').placeholder = selectedSuggestion.textContent;
-    //     }
-    // }
+//     // Update the placeholder with the selected suggestion
+//     const selectedSuggestion = suggestionElements[selectedIndex];
+//     if (selectedSuggestion) {
+//         document.getElementById('barangay-select').placeholder = selectedSuggestion.textContent;
+//     }
+// }
 
-    // function handleKeyDown(event) {
-    //     const suggestionBox = document.getElementById('suggestionBox');
-    //     const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
+// function handleKeyDown(event) {
+//     const suggestionBox = document.getElementById('suggestionBox');
+//     const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
 
-    //     if (event.key === 'ArrowDown') {
-    //         event.preventDefault();
-    //         selectedIndex = Math.min(selectedIndex + 1, suggestionElements.length - 1);
-    //     } else if (event.key === 'ArrowUp') {
-    //         event.preventDefault();
-    //         selectedIndex = Math.max(selectedIndex - 1, -1);
-    //     } else if (event.key === 'Tab' && selectedIndex >= 0) {
-    //         event.preventDefault();
-    //         const selectedSuggestion = suggestionElements[selectedIndex];
-    //         document.getElementById('barangay-select').value = selectedSuggestion.textContent;
-    //         suggestionBox.style.display = 'none';
-    //         suggestionBoxVisible = false;
-    //         selectedIndex = -1;
-    //         return;
-    //     } else if (event.key === 'Enter' && selectedIndex >= 0) {
-    //         event.preventDefault();
-    //         const selectedSuggestion = suggestionElements[selectedIndex];
-    //         document.getElementById('barangay-select').value = selectedSuggestion.textContent;
-    //         suggestionBox.style.display = 'none';
-    //         suggestionBoxVisible = false;
-    //         selectedIndex = -1;
-    //         return;
-    //     }
+//     if (event.key === 'ArrowDown') {
+//         event.preventDefault();
+//         selectedIndex = Math.min(selectedIndex + 1, suggestionElements.length - 1);
+//     } else if (event.key === 'ArrowUp') {
+//         event.preventDefault();
+//         selectedIndex = Math.max(selectedIndex - 1, -1);
+//     } else if (event.key === 'Tab' && selectedIndex >= 0) {
+//         event.preventDefault();
+//         const selectedSuggestion = suggestionElements[selectedIndex];
+//         document.getElementById('barangay-select').value = selectedSuggestion.textContent;
+//         suggestionBox.style.display = 'none';
+//         suggestionBoxVisible = false;
+//         selectedIndex = -1;
+//         return;
+//     } else if (event.key === 'Enter' && selectedIndex >= 0) {
+//         event.preventDefault();
+//         const selectedSuggestion = suggestionElements[selectedIndex];
+//         document.getElementById('barangay-select').value = selectedSuggestion.textContent;
+//         suggestionBox.style.display = 'none';
+//         suggestionBoxVisible = false;
+//         selectedIndex = -1;
+//         return;
+//     }
 
-    //     toggleSelectedSuggestion();
+//     toggleSelectedSuggestion();
 
-    // }
+// }
 
-    // function changePlaceholder() {
-    //     document.getElementById('barangay-select').placeholder = 'Barangay';
-    // }
+// function changePlaceholder() {
+//     document.getElementById('barangay-select').placeholder = 'Barangay';
+// }
 
-   
+
 //original copy
 // barangay filter droplist
 const suggestions = ['APLAYA', 'BALIBAGO', 'CAINGIN', 'DILA', 'DITA', 'DON JOSE', 'IBABA', 'KANLURAN', 'LABAS', 'MACABLING', 'MALITLIT', 'MALUSAK', 'MARKET AREA', 'POOC', 'PULONG SANTA CRUZ', 'SANTO DOMINGO', 'SINALHAN', 'TAGAPO'];
@@ -125,119 +125,133 @@ let selectedIndex = -1;
 let suggestionBoxVisible = false;
 
 function showAllSuggestions() {
-    showSuggestions('');
+  showSuggestions('');
 }
 
 function showSuggestions(input) {
-    const suggestionBox = document.getElementById('suggestionBox');
-    suggestionBox.innerHTML = '';
+  const suggestionBox = document.getElementById('suggestionBox');
+  suggestionBox.innerHTML = '';
 
-    if (input.length === 0) {
-        suggestionBox.style.display = 'block'; // Show suggestion box
-        suggestionBoxVisible = true;
-        suggestions.forEach((suggestion, index) => {
-            const suggestionElement = createSuggestionElement(suggestion, index);
-            suggestionBox.appendChild(suggestionElement);
-        });
+  if (input.length === 0) {
+    suggestionBox.style.display = 'block'; // Show suggestion box
+    suggestionBoxVisible = true;
+    suggestions.forEach((suggestion, index) => {
+      const suggestionElement = createSuggestionElement(suggestion, index);
+      suggestionBox.appendChild(suggestionElement);
+    });
 
-        // Set the first suggestion as placeholder
-        if (suggestions.length > 0) {
-            document.getElementById('barangay-select').placeholder = suggestions[0];
-        }
-    } else {
-        const filteredSuggestions = suggestions.filter(suggestion =>
-            suggestion.toLowerCase().startsWith(input.toLowerCase())
-        );
-
-        if (filteredSuggestions.length === 0) {
-            suggestionBox.style.display = 'none';
-            suggestionBoxVisible = false;
-        } else {
-            suggestionBox.style.display = 'block';
-            suggestionBoxVisible = true;
-            filteredSuggestions.forEach((suggestion, index) => {
-                const suggestionElement = createSuggestionElement(suggestion, index);
-                suggestionBox.appendChild(suggestionElement);
-            });
-
-            // Set the first filtered suggestion as placeholder
-            if (filteredSuggestions.length > 0) {
-                document.getElementById('barangay-select').placeholder = filteredSuggestions[0];
-            }
-        }
+    // Set the first suggestion as placeholder
+    if (suggestions.length > 0) {
+      document.getElementById('barangay-select').placeholder = suggestions[0];
     }
+  } else {
+    const filteredSuggestions = suggestions.filter(suggestion =>
+      suggestion.toLowerCase().startsWith(input.toLowerCase())
+    );
 
-    // Always hover over the first suggestion
-    selectedIndex = 0;
-    toggleSelectedSuggestion();
+    if (filteredSuggestions.length === 0) {
+      suggestionBox.style.display = 'none';
+      suggestionBoxVisible = false;
+    } else {
+      suggestionBox.style.display = 'block';
+      suggestionBoxVisible = true;
+      filteredSuggestions.forEach((suggestion, index) => {
+        const suggestionElement = createSuggestionElement(suggestion, index);
+        suggestionBox.appendChild(suggestionElement);
+      });
+
+      // Set the first filtered suggestion as placeholder
+      if (filteredSuggestions.length > 0) {
+        document.getElementById('barangay-select').placeholder = filteredSuggestions[0];
+      }
+    }
+  }
+
+  // Always hover over the first suggestion
+  selectedIndex = 0;
+  toggleSelectedSuggestion();
 }
 
 function createSuggestionElement(suggestion, index) {
-    const suggestionElement = document.createElement('div');
-    suggestionElement.className = 'suggestion';
-    suggestionElement.textContent = suggestion;
-    suggestionElement.onclick = () => {
-      document.getElementById('barangay-select').value = suggestion;
-      const suggestionBox = document.getElementById('suggestionBox');
-      suggestionBox.style.display = 'none';
-      suggestionBoxVisible = false;
-    };
-    suggestionElement.onmouseover = () => {
-      selectedIndex = index;
-      toggleSelectedSuggestion();
-    };
-    return suggestionElement;
-  }
-  
-  function toggleSelectedSuggestion() {
+  const suggestionElement = document.createElement('div');
+  suggestionElement.className = 'suggestion';
+  suggestionElement.textContent = suggestion;
+  suggestionElement.addEventListener('mousedown', () => {
+    const textbox = document.getElementById('barangay-select');
+    const currentValue = textbox.value;
+    textbox.value = suggestion;
     const suggestionBox = document.getElementById('suggestionBox');
-    const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
-    Array.from(suggestionElements).forEach((suggestionElement, index) => {
-      suggestionElement.classList.toggle('selected', index === selectedIndex);
-    });
-  
-    // Update the placeholder with the selected suggestion
-    const selectedSuggestion = suggestionElements[selectedIndex];
-    if (selectedSuggestion) {
-      document.getElementById('barangay-select').placeholder = selectedSuggestion.textContent;
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+
+    // Blur the textbox only if the value changed
+    if (currentValue !== suggestion) {
+      textbox.blur();
     }
-  }
-  
-  function handleKeyDown(event) {
-    const suggestionBox = document.getElementById('suggestionBox');
-    const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
-  
-    if (event.key === 'ArrowDown') {
-      event.preventDefault();
-      selectedIndex = Math.min(selectedIndex + 1, suggestionElements.length - 1);
-    } else if (event.key === 'ArrowUp') {
-      event.preventDefault();
-      selectedIndex = Math.max(selectedIndex - 1, -1);
-    } else if (event.key === 'Tab' && selectedIndex >= 0) {
-      event.preventDefault();
-      const selectedSuggestion = suggestionElements[selectedIndex];
-      document.getElementById('barangay-select').value = selectedSuggestion.textContent;
-      suggestionBox.style.display = 'none';
-      suggestionBoxVisible = false;
-      selectedIndex = -1;
-      return;
-    } else if (event.key === 'Enter' && selectedIndex >= 0) {
-      event.preventDefault();
-      const selectedSuggestion = suggestionElements[selectedIndex];
-      document.getElementById('barangay-select').value = selectedSuggestion.textContent;
-      suggestionBox.style.display = 'none';
-      suggestionBoxVisible = false;
-      selectedIndex = -1;
-      return;
-    }
-  
+  });
+  suggestionElement.addEventListener('mouseover', () => {
+    selectedIndex = index;
     toggleSelectedSuggestion();
+  });
+  return suggestionElement;
+}
+
+
+function toggleSelectedSuggestion() {
+  const suggestionBox = document.getElementById('suggestionBox');
+  const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
+  Array.from(suggestionElements).forEach((suggestionElement, index) => {
+    suggestionElement.classList.toggle('selected', index === selectedIndex);
+  });
+
+  // Update the placeholder with the selected suggestion
+  const selectedSuggestion = suggestionElements[selectedIndex];
+  if (selectedSuggestion) {
+    document.getElementById('barangay-select').placeholder = selectedSuggestion.textContent;
   }
+}
+
+function handleKeyDown(event) {
+  const suggestionBox = document.getElementById('suggestionBox');
+  const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
+  const selectedSuggestion = suggestionElements[selectedIndex];
   
-  function changePlaceholder() {
-    document.getElementById('barangay-select').placeholder = 'Barangay';
+  if (event.key === 'ArrowDown') {
+    event.preventDefault();
+    selectedIndex = Math.min(selectedIndex + 1, suggestionElements.length - 1);
+  } else if (event.key === 'ArrowUp') {
+    event.preventDefault();
+    selectedIndex = Math.max(selectedIndex - 1, -1);
+  } else if (event.key === 'Tab') {
+    if (selectedIndex >= 0 && selectedSuggestion) {
+      event.preventDefault();
+      document.getElementById('barangay-select').value = selectedSuggestion.textContent;
+    }
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+    selectedIndex = -1;
+    return;
+  } else if (event.key === 'Enter' && selectedIndex >= 0) {
+    event.preventDefault();
+    if (selectedSuggestion) {
+      document.getElementById('barangay-select').value = selectedSuggestion.textContent;
+    }
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+    selectedIndex = -1;
+    return;
   }
-  
+
+  toggleSelectedSuggestion();
+}
+
+
+function changePlaceholder() {
+  const suggestionBox = document.getElementById('suggestionBox');
+  suggestionBox.style.display = "none";
+  document.getElementById('barangay-select').placeholder = 'Barangay';
+}
+
 // Functions for the modal community textbox
 
 function showAllSuggestionsCommunity() {
@@ -249,69 +263,69 @@ function showfilterCommunitySuggestions(input) {
   suggestionBox.innerHTML = '';
 
   const suggestions = [
-      'COMMUNITY1',
-      'COMMUNITY2',
-      'COMMUNITY3',
-      'COMMUNITY4',
-      'COMMUNITY5',
-      'COMMUNITY6',
-      'COMMUNITY7',
-      'COMMUNITY8',
-      'COMMUNITY9',
-      'COMMUNITY10',
-      'COMMUNITY11',
-      'COMMUNITY12',
-      'COMMUNITY13',
-      'COMMUNITY14',
-      'COMMUNITY15',
-      'COMMUNITY16'
+    'COMMUNITY1',
+    'COMMUNITY2',
+    'COMMUNITY3',
+    'COMMUNITY4',
+    'COMMUNITY5',
+    'COMMUNITY6',
+    'COMMUNITY7',
+    'COMMUNITY8',
+    'COMMUNITY9',
+    'COMMUNITY10',
+    'COMMUNITY11',
+    'COMMUNITY12',
+    'COMMUNITY13',
+    'COMMUNITY14',
+    'COMMUNITY15',
+    'COMMUNITY16'
   ];
 
   const barangayValue = document.getElementById('barangay-select').value;
 
   if (input.length === 0) {
-      suggestionBox.style.display = 'block'; // Show suggestion box
-      suggestionBoxVisible = true;
+    suggestionBox.style.display = 'block'; // Show suggestion box
+    suggestionBoxVisible = true;
 
-      // SELECTION BASED ON INPUT IN BARANGAY-SELECT
-      let filteredSuggestions;
-      if (barangayValue === 'APLAYA') {
-          filteredSuggestions = suggestions.filter((suggestion) =>
-              suggestion === 'COMMUNITY1' || suggestion === 'COMMUNITY2'
-          );
-      } else if (barangayValue === 'BALIBAGO') {
-          filteredSuggestions = suggestions.filter((suggestion) =>
-              suggestion === 'COMMUNITY3' || suggestion === 'COMMUNITY4'
-          );
-      } else {
-          filteredSuggestions = suggestions;
-      }
-
-      filteredSuggestions.forEach((suggestion, index) => {
-          const suggestionElement = createSuggestionElementCommunity(suggestion, index);
-          suggestionBox.appendChild(suggestionElement);
-      });
-  } else {
-      const filteredSuggestions = suggestions.filter((suggestion) =>
-          suggestion.toLowerCase().startsWith(input.toLowerCase())
+    // SELECTION BASED ON INPUT IN BARANGAY-SELECT
+    let filteredSuggestions;
+    if (barangayValue === 'APLAYA') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY1' || suggestion === 'COMMUNITY2'
       );
+    } else if (barangayValue === 'BALIBAGO') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY3' || suggestion === 'COMMUNITY4'
+      );
+    } else {
+      filteredSuggestions = suggestions;
+    }
 
-      if (filteredSuggestions.length === 0) {
-          suggestionBox.style.display = 'none';
-          suggestionBoxVisible = false;
-      } else {
-          suggestionBox.style.display = 'block';
-          suggestionBoxVisible = true;
-          filteredSuggestions.forEach((suggestion, index) => {
-              const suggestionElement = createSuggestionElementCommunity(suggestion, index);
-              suggestionBox.appendChild(suggestionElement);
-          });
+    filteredSuggestions.forEach((suggestion, index) => {
+      const suggestionElement = createSuggestionElementCommunity(suggestion, index);
+      suggestionBox.appendChild(suggestionElement);
+    });
+  } else {
+    const filteredSuggestions = suggestions.filter((suggestion) =>
+      suggestion.toLowerCase().startsWith(input.toLowerCase())
+    );
 
-          // Set the first filtered suggestion as placeholder
-          if (filteredSuggestions.length > 0) {
-              document.getElementById('community-selectSearch').placeholder = filteredSuggestions[0];
-          }
+    if (filteredSuggestions.length === 0) {
+      suggestionBox.style.display = 'none';
+      suggestionBoxVisible = false;
+    } else {
+      suggestionBox.style.display = 'block';
+      suggestionBoxVisible = true;
+      filteredSuggestions.forEach((suggestion, index) => {
+        const suggestionElement = createSuggestionElementCommunity(suggestion, index);
+        suggestionBox.appendChild(suggestionElement);
+      });
+
+      // Set the first filtered suggestion as placeholder
+      if (filteredSuggestions.length > 0) {
+        document.getElementById('community-selectSearch').placeholder = filteredSuggestions[0];
       }
+    }
   }
 
   // Always hover over the first suggestion
@@ -323,16 +337,22 @@ function createSuggestionElementCommunity(suggestion, index) {
   const suggestionElement = document.createElement('div');
   suggestionElement.className = 'suggestion';
   suggestionElement.textContent = suggestion;
-  suggestionElement.addEventListener('click', () => {
-      const textbox = document.getElementById('community-selectSearch');
-      textbox.value = suggestion;
-      const suggestionBox = document.getElementById('communitysearchSuggestionBox');
-      suggestionBox.style.display = 'none';
-      suggestionBoxVisible = false;
+  suggestionElement.addEventListener('mousedown', () => {
+    const textbox = document.getElementById('community-selectSearch');
+    const currentValue = textbox.value;
+    textbox.value = suggestion;
+    const suggestionBox = document.getElementById('communitysearchSuggestionBox');
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+
+    // Blur the textbox only if the value changed
+    if (currentValue !== suggestion) {
+      textbox.blur();
+    }
   });
   suggestionElement.addEventListener('mouseover', () => {
-      selectedIndex = index;
-      toggleSelectedSuggestionCommunity();
+    selectedIndex = index;
+    toggleSelectedSuggestionCommunity();
   });
   return suggestionElement;
 }
@@ -341,311 +361,336 @@ function toggleSelectedSuggestionCommunity() {
   const suggestionBox = document.getElementById('communitysearchSuggestionBox');
   const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
   Array.from(suggestionElements).forEach((suggestionElement, index) => {
-      suggestionElement.classList.toggle('selected', index === selectedIndex);
+    suggestionElement.classList.toggle('selected', index === selectedIndex);
   });
 
   // Update the placeholder with the selected suggestion
   const selectedSuggestion = suggestionElements[selectedIndex];
   if (selectedSuggestion) {
-      document.getElementById('community-selectSearch').placeholder = selectedSuggestion.textContent;
+    document.getElementById('community-selectSearch').placeholder = selectedSuggestion.textContent;
   }
 }
 
 function handlefilterCommunityKeyDown(event) {
   const suggestionBox = document.getElementById('communitysearchSuggestionBox');
   const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
-
+  const selectedSuggestion = suggestionElements[selectedIndex];
+  
   if (event.key === 'ArrowDown') {
-      event.preventDefault();
-      selectedIndex = Math.min(selectedIndex + 1, suggestionElements.length - 1);
+    event.preventDefault();
+    selectedIndex = Math.min(selectedIndex + 1, suggestionElements.length - 1);
   } else if (event.key === 'ArrowUp') {
+    event.preventDefault();
+    selectedIndex = Math.max(selectedIndex - 1, -1);
+  } else if (event.key === 'Tab') {
+    if (selectedIndex >= 0 && selectedSuggestion) {
       event.preventDefault();
-      selectedIndex = Math.max(selectedIndex - 1, -1);
-  } else if (event.key === 'Tab' && selectedIndex >= 0) {
-      event.preventDefault();
-      const selectedSuggestion = suggestionElements[selectedIndex];
-      const textbox = document.getElementById('community-selectSearch');
-      textbox.value = selectedSuggestion.textContent;
-      suggestionBox.style.display = 'none';
-      suggestionBoxVisible = false;
-      selectedIndex = -1;
-      return;
+      document.getElementById('community-selectSearch').value = selectedSuggestion.textContent;
+    }
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+    selectedIndex = -1;
+    return;
   } else if (event.key === 'Enter' && selectedIndex >= 0) {
-      event.preventDefault();
-      const selectedSuggestion = suggestionElements[selectedIndex];
-      const textbox = document.getElementById('community-selectSearch');
-      textbox.value = selectedSuggestion.textContent;
-      suggestionBox.style.display = 'none';
-      suggestionBoxVisible = false;
-      selectedIndex = -1;
-      return;
+    event.preventDefault();
+    if (selectedSuggestion) {
+      document.getElementById('community-selectSearch').value = selectedSuggestion.textContent;
+    }
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+    selectedIndex = -1;
+    return;
   }
 
   toggleSelectedSuggestionCommunity();
 }
 
+
+
 function changefilterCommunityPlaceholder() {
+  const suggestionBox = document.getElementById('communitysearchSuggestionBox');
+  suggestionBox.style.display = "none";
   document.getElementById('community-selectSearch').placeholder = 'Community Association';
 }
 
 // Functions for the modal textbox barangay
 
 function showAllSuggestionsModal() {
-    showSuggestionsModal('');
+  showSuggestionsModal('');
 }
 
 function showSuggestionsModal(input) {
-    
-    const suggestionBox = document.getElementById('suggestionBoxModal');
-    suggestionBox.innerHTML = '';
 
-    if (input.length === 0) {
-        suggestionBox.style.display = 'block'; // Show suggestion box
-        suggestionBoxVisible = true;
-        suggestions.forEach((suggestion, index) => {
-            const suggestionElement = createSuggestionElementModal(suggestion, index);
-            suggestionBox.appendChild(suggestionElement);
-        });
+  const suggestionBox = document.getElementById('suggestionBoxModal');
+  suggestionBox.innerHTML = '';
 
-        // Set the first suggestion as placeholder
-        if (suggestions.length > 0) {
-            document.getElementById('barangay-select-modal').placeholder = suggestions[0];
-        }
-    } else {
-        const filteredSuggestions = suggestions.filter(suggestion =>
-            suggestion.toLowerCase().startsWith(input.toLowerCase())
-        );
+  if (input.length === 0) {
+    suggestionBox.style.display = 'block'; // Show suggestion box
+    suggestionBoxVisible = true;
+    suggestions.forEach((suggestion, index) => {
+      const suggestionElement = createSuggestionElementModal(suggestion, index);
+      suggestionBox.appendChild(suggestionElement);
+    });
 
-        if (filteredSuggestions.length === 0) {
-            suggestionBox.style.display = 'none';
-            suggestionBoxVisible = false;
-        } else {
-            suggestionBox.style.display = 'block';
-            suggestionBoxVisible = true;
-            filteredSuggestions.forEach((suggestion, index) => {
-                const suggestionElement = createSuggestionElementModal(suggestion, index);
-                suggestionBox.appendChild(suggestionElement);
-            });
-
-            // Set the first filtered suggestion as placeholder
-            if (filteredSuggestions.length > 0) {
-                document.getElementById('barangay-select-modal').placeholder = filteredSuggestions[0];
-            }
-        }
+    // Set the first suggestion as placeholder
+    if (suggestions.length > 0) {
+      document.getElementById('barangay-select-modal').placeholder = suggestions[0];
     }
+  } else {
+    const filteredSuggestions = suggestions.filter(suggestion =>
+      suggestion.toLowerCase().startsWith(input.toLowerCase())
+    );
 
-    // Always hover over the first suggestion
-    selectedIndex = 0;
-    toggleSelectedSuggestionModal();
+    if (filteredSuggestions.length === 0) {
+      suggestionBox.style.display = 'none';
+      suggestionBoxVisible = false;
+    } else {
+      suggestionBox.style.display = 'block';
+      suggestionBoxVisible = true;
+      filteredSuggestions.forEach((suggestion, index) => {
+        const suggestionElement = createSuggestionElementModal(suggestion, index);
+        suggestionBox.appendChild(suggestionElement);
+      });
+
+      // Set the first filtered suggestion as placeholder
+      if (filteredSuggestions.length > 0) {
+        document.getElementById('barangay-select-modal').placeholder = filteredSuggestions[0];
+      }
+    }
+  }
+
+  // Always hover over the first suggestion
+  selectedIndex = 0;
+  toggleSelectedSuggestionModal();
 }
 
 function createSuggestionElementModal(suggestion, index) {
-    const suggestionElement = document.createElement('div');
-    suggestionElement.className = 'suggestion';
-    suggestionElement.textContent = suggestion;
-    suggestionElement.addEventListener('click', () => {
-      const textbox = document.getElementById('barangay-select-modal');
-      textbox.value = suggestion;
-      const suggestionBox = document.getElementById('suggestionBoxModal');
-      suggestionBox.style.display = 'none';
-      suggestionBoxVisible = false;
-    });
-    suggestionElement.addEventListener('mouseover', () => {
-      selectedIndex = index;
-      toggleSelectedSuggestionModal();
-    });
-    return suggestionElement;
-  }
-  
-  function toggleSelectedSuggestionModal() {
+  const suggestionElement = document.createElement('div');
+  suggestionElement.className = 'suggestion';
+  suggestionElement.textContent = suggestion;
+  suggestionElement.addEventListener('mousedown', () => {
+    const textbox = document.getElementById('barangay-select-modal');
+    const currentValue = textbox.value;
+    textbox.value = suggestion;
     const suggestionBox = document.getElementById('suggestionBoxModal');
-    const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
-    Array.from(suggestionElements).forEach((suggestionElement, index) => {
-      suggestionElement.classList.toggle('selected', index === selectedIndex);
-    });
-  
-    // Update the placeholder with the selected suggestion
-    const selectedSuggestion = suggestionElements[selectedIndex];
-    if (selectedSuggestion) {
-      document.getElementById('barangay-select-modal').placeholder = selectedSuggestion.textContent;
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+
+    // Blur the textbox only if the value changed
+    if (currentValue !== suggestion) {
+      textbox.blur();
     }
-  }
-
-  function handleKeyModal(event) {
-    const suggestionBox = document.getElementById('suggestionBoxModal');
-    const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
-
-    if (event.key === 'ArrowDown') {
-        event.preventDefault();
-        selectedIndex = Math.min(selectedIndex + 1, suggestionElements.length - 1);
-    } else if (event.key === 'ArrowUp') {
-        event.preventDefault();
-        selectedIndex = Math.max(selectedIndex - 1, -1);
-    } else if (event.key === 'Tab' && selectedIndex >= 0) {
-        event.preventDefault();
-        const selectedSuggestion = suggestionElements[selectedIndex];
-        const textbox = document.getElementById('barangay-select-modal');
-        textbox.value = selectedSuggestion.textContent;
-        suggestionBox.style.display = 'none';
-        suggestionBoxVisible = false;
-        selectedIndex = -1;
-        return;
-    } else if (event.key === 'Enter' && selectedIndex >= 0) {
-        event.preventDefault();
-        const selectedSuggestion = suggestionElements[selectedIndex];
-        const textbox = document.getElementById('barangay-select-modal');
-        textbox.value = selectedSuggestion.textContent;
-        suggestionBox.style.display = 'none';
-        suggestionBoxVisible = false;
-        selectedIndex = -1;
-        return;
-    }
-
+  });
+  suggestionElement.addEventListener('mouseover', () => {
+    selectedIndex = index;
     toggleSelectedSuggestionModal();
+  });
+  return suggestionElement;
+}
+
+
+function toggleSelectedSuggestionModal() {
+  const suggestionBox = document.getElementById('suggestionBoxModal');
+  const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
+  Array.from(suggestionElements).forEach((suggestionElement, index) => {
+    suggestionElement.classList.toggle('selected', index === selectedIndex);
+  });
+
+  // Update the placeholder with the selected suggestion
+  const selectedSuggestion = suggestionElements[selectedIndex];
+  if (selectedSuggestion) {
+    document.getElementById('barangay-select-modal').placeholder = selectedSuggestion.textContent;
+  }
+}
+
+function handleKeyModal(event) {
+  const suggestionBox = document.getElementById('suggestionBoxModal');
+  const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
+  const selectedSuggestion = suggestionElements[selectedIndex];
+  
+  if (event.key === 'ArrowDown') {
+    event.preventDefault();
+    selectedIndex = Math.min(selectedIndex + 1, suggestionElements.length - 1);
+  } else if (event.key === 'ArrowUp') {
+    event.preventDefault();
+    selectedIndex = Math.max(selectedIndex - 1, -1);
+  } else if (event.key === 'Tab') {
+    if (selectedIndex >= 0 && selectedSuggestion) {
+      event.preventDefault();
+      document.getElementById('barangay-select-modal').value = selectedSuggestion.textContent;
+    }
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+    selectedIndex = -1;
+    return;
+  } else if (event.key === 'Enter' && selectedIndex >= 0) {
+    event.preventDefault();
+    if (selectedSuggestion) {
+      document.getElementById('barangay-select-modal').value = selectedSuggestion.textContent;
+    }
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+    selectedIndex = -1;
+    return;
+  }
+
+  toggleSelectedSuggestionModal();
 }
 
 function convertToUppercase(inputElement) {
-    inputElement.value = inputElement.value.toUpperCase();
+  inputElement.value = inputElement.value.toUpperCase();
 }
 
-  
-  function changePlaceholderModal() {
-    document.getElementById('barangay-select-modal').placeholder = 'Barangay';
-  }
+
+function changePlaceholderModal() {
+  const suggestionBox = document.getElementById('suggestionBoxModal');
+  suggestionBox.style.display = "none";
+  document.getElementById('barangay-select-modal').placeholder = 'Barangay';
+}
 
 // Function for housing modal textbox
 
 function showAllSuggestionsHouseModal() {
-    showSuggestionsHouseModal('');
-  }
-  
-  function showSuggestionsHouseModal(input) {
-    const suggestionBox = document.getElementById('suggestionBoxHouseModal');
-    suggestionBox.innerHTML = '';
-  
-    const suggestions = [
-      'FLOOD',
-      'LANDSLIDE',
-      'SEA LEVEL RISE',
-      'DROUGHT',
-      'COASTAL AREAS',
-      'WATERWAYS',
-      'EARTHQUAKE',
-      'HUMAN INDUCED DISASTER',
-      'INFRASTRUCTURE PROJECTS',
-      'EROTION/ DEMOLITION ORDER',
-      'THREAT OF EVICTION'
-    ];
-  
-    if (input.length === 0) {
-      suggestionBox.style.display = 'block'; // Show suggestion box
+  showSuggestionsHouseModal('');
+}
+
+function showSuggestionsHouseModal(input) {
+  const suggestionBox = document.getElementById('suggestionBoxHouseModal');
+  suggestionBox.innerHTML = '';
+
+  const suggestions = [
+    'FLOOD',
+    'LANDSLIDE',
+    'SEA LEVEL RISE',
+    'DROUGHT',
+    'COASTAL AREAS',
+    'WATERWAYS',
+    'EARTHQUAKE',
+    'HUMAN INDUCED DISASTER',
+    'INFRASTRUCTURE PROJECTS',
+    'EROTION/ DEMOLITION ORDER',
+    'THREAT OF EVICTION'
+  ];
+
+  if (input.length === 0) {
+    suggestionBox.style.display = 'block'; // Show suggestion box
+    suggestionBoxVisible = true;
+    suggestions.forEach((suggestion, index) => {
+      const suggestionElement = createSuggestionElementHouseModal(suggestion, index);
+      suggestionBox.appendChild(suggestionElement);
+    });
+
+    // Set the first suggestion as placeholder
+    if (suggestions.length > 0) {
+      document.getElementById('basicHouse').placeholder = suggestions[0];
+    }
+  } else {
+    const filteredSuggestions = suggestions.filter((suggestion) =>
+      suggestion.toLowerCase().startsWith(input.toLowerCase())
+    );
+
+    if (filteredSuggestions.length === 0) {
+      suggestionBox.style.display = 'none';
+      suggestionBoxVisible = false;
+    } else {
+      suggestionBox.style.display = 'block';
       suggestionBoxVisible = true;
-      suggestions.forEach((suggestion, index) => {
+      filteredSuggestions.forEach((suggestion, index) => {
         const suggestionElement = createSuggestionElementHouseModal(suggestion, index);
         suggestionBox.appendChild(suggestionElement);
       });
-  
-      // Set the first suggestion as placeholder
-      if (suggestions.length > 0) {
-        document.getElementById('basicHouse').placeholder = suggestions[0];
-      }
-    } else {
-      const filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion.toLowerCase().startsWith(input.toLowerCase())
-      );
-  
-      if (filteredSuggestions.length === 0) {
-        suggestionBox.style.display = 'none';
-        suggestionBoxVisible = false;
-      } else {
-        suggestionBox.style.display = 'block';
-        suggestionBoxVisible = true;
-        filteredSuggestions.forEach((suggestion, index) => {
-          const suggestionElement = createSuggestionElementHouseModal(suggestion, index);
-          suggestionBox.appendChild(suggestionElement);
-        });
-  
-        // Set the first filtered suggestion as placeholder
-        if (filteredSuggestions.length > 0) {
-          document.getElementById('basicHouse').placeholder = filteredSuggestions[0];
-        }
+
+      // Set the first filtered suggestion as placeholder
+      if (filteredSuggestions.length > 0) {
+        document.getElementById('basicHouse').placeholder = filteredSuggestions[0];
       }
     }
-  
-    // Always hover over the first suggestion
-    selectedIndex = 0;
-    toggleSelectedSuggestionHouseModal();
   }
-  
-  function createSuggestionElementHouseModal(suggestion, index) {
-    const suggestionElement = document.createElement('div');
-    suggestionElement.className = 'suggestion';
-    suggestionElement.textContent = suggestion;
-    suggestionElement.addEventListener('click', () => {
-      const textbox = document.getElementById('basicHouse');
-      textbox.value = suggestion;
-      const suggestionBox = document.getElementById('suggestionBoxHouseModal');
-      suggestionBox.style.display = 'none';
-      suggestionBoxVisible = false;
-    });
-    suggestionElement.addEventListener('mouseover', () => {
-      selectedIndex = index;
-      toggleSelectedSuggestionHouseModal();
-    });
-    return suggestionElement;
-  }
-  
-  function toggleSelectedSuggestionHouseModal() {
+
+  // Always hover over the first suggestion
+  selectedIndex = 0;
+  toggleSelectedSuggestionHouseModal();
+}
+
+function createSuggestionElementHouseModal(suggestion, index) {
+  const suggestionElement = document.createElement('div');
+  suggestionElement.className = 'suggestion';
+  suggestionElement.textContent = suggestion;
+  suggestionElement.addEventListener('mousedown', () => {
+    const textbox = document.getElementById('basicHouse');
+    const currentValue = textbox.value;
+    textbox.value = suggestion;
     const suggestionBox = document.getElementById('suggestionBoxHouseModal');
-    const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
-    Array.from(suggestionElements).forEach((suggestionElement, index) => {
-      suggestionElement.classList.toggle('selected', index === selectedIndex);
-    });
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+
+    // Blur the textbox only if the value changed
+    if (currentValue !== suggestion) {
+      textbox.blur();
+    }
+  });
+  suggestionElement.addEventListener('mouseover', () => {
+    selectedIndex = index;
+    toggleSelectedSuggestionHouseModal();
+  });
+  return suggestionElement;
+}
+
+
+function toggleSelectedSuggestionHouseModal() {
+  const suggestionBox = document.getElementById('suggestionBoxHouseModal');
+  const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
+  Array.from(suggestionElements).forEach((suggestionElement, index) => {
+    suggestionElement.classList.toggle('selected', index === selectedIndex);
+  });
+
+  // Update the placeholder with the selected suggestion
+  const selectedSuggestion = suggestionElements[selectedIndex];
+  if (selectedSuggestion) {
+    document.getElementById('basicHouse').placeholder = selectedSuggestion.textContent;
+  }
+}
+
+function handleKeyHouseModal(event) {
+  const suggestionBox = document.getElementById('suggestionBoxHouseModal');
+  const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
+  const selectedSuggestion = suggestionElements[selectedIndex];
   
-    // Update the placeholder with the selected suggestion
-    const selectedSuggestion = suggestionElements[selectedIndex];
+  if (event.key === 'ArrowDown') {
+    event.preventDefault();
+    selectedIndex = Math.min(selectedIndex + 1, suggestionElements.length - 1);
+  } else if (event.key === 'ArrowUp') {
+    event.preventDefault();
+    selectedIndex = Math.max(selectedIndex - 1, -1);
+  } else if (event.key === 'Tab') {
+    if (selectedIndex >= 0 && selectedSuggestion) {
+      event.preventDefault();
+      document.getElementById('basicHouse').value = selectedSuggestion.textContent;
+    }
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+    selectedIndex = -1;
+    return;
+  } else if (event.key === 'Enter' && selectedIndex >= 0) {
+    event.preventDefault();
     if (selectedSuggestion) {
-      document.getElementById('basicHouse').placeholder = selectedSuggestion.textContent;
+      document.getElementById('basicHouse').value = selectedSuggestion.textContent;
     }
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+    selectedIndex = -1;
+    return;
   }
-  
-  function handleKeyHouseModal(event) {
-    const suggestionBox = document.getElementById('suggestionBoxHouseModal');
-    const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
-  
-    if (event.key === 'ArrowDown') {
-      event.preventDefault();
-      selectedIndex = Math.min(selectedIndex + 1, suggestionElements.length - 1);
-    } else if (event.key === 'ArrowUp') {
-      event.preventDefault();
-      selectedIndex = Math.max(selectedIndex - 1, -1);
-    } else if (event.key === 'Tab' && selectedIndex >= 0) {
-      event.preventDefault();
-      const selectedSuggestion = suggestionElements[selectedIndex];
-      const textbox = document.getElementById('basicHouse');
-      textbox.value = selectedSuggestion.textContent;
-      suggestionBox.style.display = 'none';
-      suggestionBoxVisible = false;
-      selectedIndex = -1;
-      return;
-    } else if (event.key === 'Enter' && selectedIndex >= 0) {
-      event.preventDefault();
-      const selectedSuggestion = suggestionElements[selectedIndex];
-      const textbox = document.getElementById('basicHouse');
-      textbox.value = selectedSuggestion.textContent;
-      suggestionBox.style.display = 'none';
-      suggestionBoxVisible = false;
-      selectedIndex = -1;
-      return;
-    }
-  
-    toggleSelectedSuggestionHouseModal();
-  }
-  
-  function changePlaceholderHouseModal() {
-    document.getElementById('basicHouse').placeholder = 'Basic Housing Data';
-  }
-  
+
+  toggleSelectedSuggestionModal();
+}
+
+function changePlaceholderHouseModal() {
+  const suggestionBox = document.getElementById('suggestionBoxHouseModal');
+  suggestionBox.style.display = 'none';
+  document.getElementById('basicHouse').placeholder = 'Basic Housing Data';
+}
+
 // Function for Community Association Modal
 function showAllSuggestionsCommunityModal() {
   showSuggestionsCommunityModal('');
@@ -673,26 +718,25 @@ function showSuggestionsCommunityModal(input) {
     'COMMUNITY15',
     'COMMUNITY16'
   ];
-  
+
 
   const barangayValue = document.getElementById('barangay-select-modal').value;
 
   if (input.length === 0) {
     suggestionBox.style.display = 'block'; // Show suggestion box
     suggestionBoxVisible = true;
-    
+
     //SELECTION BASED ON INPUT IN BARANGAY-SELECT-MODAL
     let filteredSuggestions;
     if (barangayValue === 'APLAYA') {
       filteredSuggestions = suggestions.filter((suggestion) =>
         suggestion === 'COMMUNITY1' || suggestion === 'COMMUNITY2'
       );
-    }  else if (barangayValue === 'BALIBAGO') {
+    } else if (barangayValue === 'BALIBAGO') {
       filteredSuggestions = suggestions.filter((suggestion) =>
         suggestion === 'COMMUNITY3' || suggestion === 'COMMUNITY4'
       );
-    }
-    else {
+    } else {
       filteredSuggestions = suggestions;
     }
 
@@ -701,26 +745,26 @@ function showSuggestionsCommunityModal(input) {
       suggestionBox.appendChild(suggestionElement);
     });
   } else {
-      const filteredSuggestions = suggestions.filter((suggestion) =>
-          suggestion.toLowerCase().startsWith(input.toLowerCase())
-      );
+    const filteredSuggestions = suggestions.filter((suggestion) =>
+      suggestion.toLowerCase().startsWith(input.toLowerCase())
+    );
 
-      if (filteredSuggestions.length === 0) {
-          suggestionBox.style.display = 'none';
-          suggestionBoxVisible = false;
-      } else {
-          suggestionBox.style.display = 'block';
-          suggestionBoxVisible = true;
-          filteredSuggestions.forEach((suggestion, index) => {
-              const suggestionElement = createSuggestionElementCommunityModal(suggestion, index);
-              suggestionBox.appendChild(suggestionElement);
-          });
+    if (filteredSuggestions.length === 0) {
+      suggestionBox.style.display = 'none';
+      suggestionBoxVisible = false;
+    } else {
+      suggestionBox.style.display = 'block';
+      suggestionBoxVisible = true;
+      filteredSuggestions.forEach((suggestion, index) => {
+        const suggestionElement = createSuggestionElementCommunityModal(suggestion, index);
+        suggestionBox.appendChild(suggestionElement);
+      });
 
-          // Set the first filtered suggestion as placeholder
-          if (filteredSuggestions.length > 0) {
-              document.getElementById('community-select').placeholder = filteredSuggestions[0];
-          }
+      // Set the first filtered suggestion as placeholder
+      if (filteredSuggestions.length > 0) {
+        document.getElementById('community-select').placeholder = filteredSuggestions[0];
       }
+    }
   }
 
   // Always hover over the first suggestion
@@ -732,67 +776,338 @@ function createSuggestionElementCommunityModal(suggestion, index) {
   const suggestionElement = document.createElement('div');
   suggestionElement.className = 'suggestion';
   suggestionElement.textContent = suggestion;
-  suggestionElement.addEventListener('click', () => {
-      const textbox = document.getElementById('community-select');
-      textbox.value = suggestion;
-      const suggestionBox = document.getElementById('communitySuggestionBox');
-      suggestionBox.style.display = 'none';
-      suggestionBoxVisible = false;
+  suggestionElement.addEventListener('mousedown', () => {
+    const textbox = document.getElementById('community-select');
+    const currentValue = textbox.value;
+    textbox.value = suggestion;
+    const suggestionBox = document.getElementById('communitySuggestionBox');
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+
+    // Blur the textbox only if the value changed
+    if (currentValue !== suggestion) {
+      textbox.blur();
+    }
   });
   suggestionElement.addEventListener('mouseover', () => {
-      selectedIndex = index;
-      toggleSelectedSuggestionCommunityModal();
+    selectedIndex = index;
+    toggleSelectedSuggestionCommunityModal();
   });
   return suggestionElement;
 }
+
 
 function toggleSelectedSuggestionCommunityModal() {
   const suggestionBox = document.getElementById('communitySuggestionBox');
   const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
   Array.from(suggestionElements).forEach((suggestionElement, index) => {
-      suggestionElement.classList.toggle('selected', index === selectedIndex);
+    suggestionElement.classList.toggle('selected', index === selectedIndex);
   });
 
   // Update the placeholder with the selected suggestion
   const selectedSuggestion = suggestionElements[selectedIndex];
   if (selectedSuggestion) {
-      document.getElementById('community-select').placeholder = selectedSuggestion.textContent;
+    document.getElementById('community-select').placeholder = selectedSuggestion.textContent;
   }
 }
 
 function handleCommunityModalKeyDown(event) {
+  
   const suggestionBox = document.getElementById('communitySuggestionBox');
   const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
-
+  const selectedSuggestion = suggestionElements[selectedIndex];
+  
   if (event.key === 'ArrowDown') {
-      event.preventDefault();
-      selectedIndex = Math.min(selectedIndex + 1, suggestionElements.length - 1);
+    event.preventDefault();
+    selectedIndex = Math.min(selectedIndex + 1, suggestionElements.length - 1);
   } else if (event.key === 'ArrowUp') {
+    event.preventDefault();
+    selectedIndex = Math.max(selectedIndex - 1, -1);
+  } else if (event.key === 'Tab') {
+    if (selectedIndex >= 0 && selectedSuggestion) {
       event.preventDefault();
-      selectedIndex = Math.max(selectedIndex - 1, -1);
-  } else if (event.key === 'Tab' && selectedIndex >= 0) {
-      event.preventDefault();
-      const selectedSuggestion = suggestionElements[selectedIndex];
-      const textbox = document.getElementById('community-select');
-      textbox.value = selectedSuggestion.textContent;
-      suggestionBox.style.display = 'none';
-      suggestionBoxVisible = false;
-      selectedIndex = -1;
-      return;
+      document.getElementById('community-select').value = selectedSuggestion.textContent;
+    }
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+    selectedIndex = -1;
+    return;
   } else if (event.key === 'Enter' && selectedIndex >= 0) {
-      event.preventDefault();
-      const selectedSuggestion = suggestionElements[selectedIndex];
-      const textbox = document.getElementById('community-select');
-      textbox.value = selectedSuggestion.textContent;
-      suggestionBox.style.display = 'none';
-      suggestionBoxVisible = false;
-      selectedIndex = -1;
-      return;
+    event.preventDefault();
+    if (selectedSuggestion) {
+      document.getElementById('community-select').value = selectedSuggestion.textContent;
+    }
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+    selectedIndex = -1;
+    return;
   }
 
   toggleSelectedSuggestionCommunityModal();
 }
 
 function changeCommunityPlaceholder() {
+  const suggestionBox = document.getElementById('communitySuggestionBox');
+  suggestionBox.style.display = 'none';
   document.getElementById('community-select').placeholder = 'Community Association';
 }
+
+
+//spouse civil status modal dropdown
+function showAllSuggestionsCivilStatusModal() {
+  showSuggestionsCivilStatusModal('');
+}
+
+function showSuggestionsCivilStatusModal(input) {
+  const suggestionBox = document.getElementById('suggestionBoxCivilStatusModal');
+  suggestionBox.innerHTML = '';
+
+  const suggestions = ['SINGLE', 'MARRIED', 'WIDOWED', 'SEPARATED'];
+
+  if (input.length === 0) {
+    suggestionBox.style.display = 'block';
+    suggestionBoxVisible = true;
+    suggestions.forEach((suggestion, index) => {
+      const suggestionElement = createSuggestionElementCivilStatusModal(suggestion, index);
+      suggestionBox.appendChild(suggestionElement);
+    });
+
+    if (suggestions.length > 0) {
+      document.getElementById('spouse_civilStatus').placeholder = suggestions[0];
+    }
+  } else {
+    const filteredSuggestions = suggestions.filter((suggestion) =>
+      suggestion.toLowerCase().startsWith(input.toLowerCase())
+    );
+
+    if (filteredSuggestions.length === 0) {
+      suggestionBox.style.display = 'none';
+      suggestionBoxVisible = false;
+    } else {
+      suggestionBox.style.display = 'block';
+      suggestionBoxVisible = true;
+      filteredSuggestions.forEach((suggestion, index) => {
+        const suggestionElement = createSuggestionElementCivilStatusModal(suggestion, index);
+        suggestionBox.appendChild(suggestionElement);
+      });
+
+      if (filteredSuggestions.length > 0) {
+        document.getElementById('spouse_civilStatus').placeholder = filteredSuggestions[0];
+      }
+    }
+  }
+
+  selectedIndex = 0;
+  toggleSelectedSuggestionCivilStatusModal();
+}
+
+function createSuggestionElementCivilStatusModal(suggestion, index) {
+  const suggestionElement = document.createElement('div');
+  suggestionElement.className = 'suggestion';
+  suggestionElement.textContent = suggestion;
+  suggestionElement.addEventListener('mousedown', () => {
+    const textbox = document.getElementById('spouse_civilStatus');
+    const currentValue = textbox.value;
+    textbox.value = suggestion;
+    const suggestionBox = document.getElementById('suggestionBoxCivilStatusModal');
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+
+    // Blur the textbox only if the value changed
+    if (currentValue !== suggestion) {
+      textbox.blur();
+    }
+  });
+  suggestionElement.addEventListener('mouseover', () => {
+    selectedIndex = index;
+    toggleSelectedSuggestionCivilStatusModal();
+  });
+  return suggestionElement;
+}
+
+
+
+function toggleSelectedSuggestionCivilStatusModal() {
+  const suggestionBox = document.getElementById('suggestionBoxCivilStatusModal');
+  const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
+  Array.from(suggestionElements).forEach((suggestionElement, index) => {
+    suggestionElement.classList.toggle('selected', index === selectedIndex);
+  });
+
+  const selectedSuggestion = suggestionElements[selectedIndex];
+  if (selectedSuggestion) {
+    document.getElementById('spouse_civilStatus').placeholder = selectedSuggestion.textContent;
+  }
+}
+
+function handleKeyCivilStatusModal(event) {
+ 
+  const suggestionBox = document.getElementById('suggestionBoxCivilStatusModal');
+  const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
+  const selectedSuggestion = suggestionElements[selectedIndex];
+  
+  if (event.key === 'ArrowDown') {
+    event.preventDefault();
+    selectedIndex = Math.min(selectedIndex + 1, suggestionElements.length - 1);
+  } else if (event.key === 'ArrowUp') {
+    event.preventDefault();
+    selectedIndex = Math.max(selectedIndex - 1, -1);
+  } else if (event.key === 'Tab') {
+    if (selectedIndex >= 0 && selectedSuggestion) {
+      event.preventDefault();
+      document.getElementById('spouse_civilStatus').value = selectedSuggestion.textContent;
+    }
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+    selectedIndex = -1;
+    return;
+  } else if (event.key === 'Enter' && selectedIndex >= 0) {
+    event.preventDefault();
+    if (selectedSuggestion) {
+      document.getElementById('spouse_civilStatus').value = selectedSuggestion.textContent;
+    }
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+    selectedIndex = -1;
+    return;
+  }
+
+  toggleSelectedSuggestionCivilStatusModal();
+}
+
+function changePlaceholderCivilStatusModal() {
+  const suggestionBox = document.getElementById('suggestionBoxCivilStatusModal');
+  suggestionBox.style.display = 'none';
+  document.getElementById('spouse_civilStatus').placeholder = 'Civil Status';
+}
+
+// head civil status dropdown select 
+
+function showAllSuggestionsHeadCivilStatusModal() {
+  showSuggestionsHeadCivilStatusModal('');
+}
+
+function showSuggestionsHeadCivilStatusModal(input) {
+  const suggestionBox = document.getElementById('suggestionBoxHeadCivilStatusModal');
+  suggestionBox.innerHTML = '';
+
+  const suggestions = ['SINGLE', 'MARRIED', 'WIDOWED', 'SEPARATED'];
+
+  if (input.length === 0) {
+    suggestionBox.style.display = 'block';
+    suggestionBoxVisible = true;
+    suggestions.forEach((suggestion, index) => {
+      const suggestionElement = createSuggestionElementHeadCivilStatusModal(suggestion, index);
+      suggestionBox.appendChild(suggestionElement);
+    });
+
+    if (suggestions.length > 0) {
+      document.getElementById('head_civilStatus').placeholder = suggestions[0];
+    }
+  } else {
+    const filteredSuggestions = suggestions.filter((suggestion) =>
+      suggestion.toLowerCase().startsWith(input.toLowerCase())
+    );
+
+    if (filteredSuggestions.length === 0) {
+      suggestionBox.style.display = 'none';
+      suggestionBoxVisible = false;
+    } else {
+      suggestionBox.style.display = 'block';
+      suggestionBoxVisible = true;
+      filteredSuggestions.forEach((suggestion, index) => {
+        const suggestionElement = createSuggestionElementHeadCivilStatusModal(suggestion, index);
+        suggestionBox.appendChild(suggestionElement);
+      });
+
+      if (filteredSuggestions.length > 0) {
+        document.getElementById('head_civilStatus').placeholder = filteredSuggestions[0];
+      }
+    }
+  }
+
+  selectedIndex = 0;
+  toggleSelectedSuggestionHeadCivilStatusModal();
+}
+
+// Rest of the code remains the same
+
+
+function createSuggestionElementHeadCivilStatusModal(suggestion, index) {
+  const suggestionElement = document.createElement('div');
+  suggestionElement.className = 'suggestion';
+  suggestionElement.textContent = suggestion;
+  suggestionElement.addEventListener('mousedown', () => {
+    const textbox = document.getElementById('head_civilStatus');
+    const currentValue = textbox.value;
+    textbox.value = suggestion;
+    const suggestionBox = document.getElementById('suggestionBoxHeadCivilStatusModal');
+    suggestionBox.style.display = 'none';
+
+    // Blur the textbox only if the value changed
+    if (currentValue !== suggestion) {
+      textbox.blur();
+    }
+  });
+  suggestionElement.addEventListener('mouseover', () => {
+    selectedIndex = index;
+    toggleSelectedSuggestionHeadCivilStatusModal();
+  });
+  return suggestionElement;
+}
+
+function toggleSelectedSuggestionHeadCivilStatusModal() {
+  const suggestionBox = document.getElementById('suggestionBoxHeadCivilStatusModal');
+  const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
+  Array.from(suggestionElements).forEach((suggestionElement, index) => {
+    suggestionElement.classList.toggle('selected', index === selectedIndex);
+  });
+
+  const selectedSuggestion = suggestionElements[selectedIndex];
+  if (selectedSuggestion) {
+    document.getElementById('head_civilStatus').placeholder = selectedSuggestion.textContent;
+  }
+}
+
+function handleKeyHeadCivilStatusModal(event) {
+
+  const suggestionBox = document.getElementById('suggestionBoxHeadCivilStatusModal');
+  const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
+  const selectedSuggestion = suggestionElements[selectedIndex];
+  
+  if (event.key === 'ArrowDown') {
+    event.preventDefault();
+    selectedIndex = Math.min(selectedIndex + 1, suggestionElements.length - 1);
+  } else if (event.key === 'ArrowUp') {
+    event.preventDefault();
+    selectedIndex = Math.max(selectedIndex - 1, -1);
+  } else if (event.key === 'Tab') {
+    if (selectedIndex >= 0 && selectedSuggestion) {
+      event.preventDefault();
+      document.getElementById('head_civilStatus').value = selectedSuggestion.textContent;
+    }
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+    selectedIndex = -1;
+    return;
+  } else if (event.key === 'Enter' && selectedIndex >= 0) {
+    event.preventDefault();
+    if (selectedSuggestion) {
+      document.getElementById('head_civilStatus').value = selectedSuggestion.textContent;
+    }
+    suggestionBox.style.display = 'none';
+    suggestionBoxVisible = false;
+    selectedIndex = -1;
+    return;
+  }
+
+  toggleSelectedSuggestionHeadCivilStatusModal();
+}
+
+function changePlaceholderHeadCivilStatusModal() {
+  const suggestionBox = document.getElementById('suggestionBoxHeadCivilStatusModal');
+  suggestionBox.style.display = 'none';
+  document.getElementById('head_civilStatus').placeholder = 'Civil Status';
+}
+
+//working child civil status

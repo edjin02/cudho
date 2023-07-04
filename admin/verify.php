@@ -13,7 +13,7 @@ include '../functions/Functions.php';
 <!-- barangay editing on the modal -->
 <!-- <script src="../functions/verify-modal-drop.js"></script> -->
 <script src="../functions/verify-drop.js"></script>
-<script src="../admin/verify.js"></script>
+<script src="../admin/verifunction.js"></script>
 <script src="../functions/verify-filter.js"></script>
 <script src="../functions/jQuerySQL.js"></script>
 
@@ -52,31 +52,42 @@ include '../functions/Functions.php';
             <div class="card card">
                 <div class="card-header" style="background-color:maroon;"></div>
                 <div class="card-body">
-                        <div class="form-group" style="display:flex; align-items: center; justify-content:center">
+                    <div class="form-group" style="display:flex; align-items: center; justify-content:center">
                         <div class="col-sm-7">
-                            <div class="input-group" >
+                            <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
                                         <span class="fa fa-search"></span>
                                     </span>
                                 </div>
-                                <input type="search" id="search" class="form-control" name="search" placeholder="Search">
+                                <input type="search" id="search" class="form-control" name="search"
+                                    placeholder="Search">
                             </div>
-                        </div></div>
+                        </div>
+                    </div>
                     <div class="row justify-content-center">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <input type="text" id="barangay-select" class="form-control" onfocus="showAllSuggestions()" oninput="showSuggestions(this.value)" onkeydown="handleKeyDown(event)" onblur="changePlaceholder()" placeholder="Search by Barangay" />
+                                <input type="text" id="barangay-select" class="form-control"
+                                    onfocus="showAllSuggestions()" oninput="showSuggestions(this.value)"
+                                    onkeydown="handleKeyDown(event)" onblur="changePlaceholder()"
+                                    placeholder="Search by Barangay" />
                                 <div id="suggestionBox" style='display:none'></div>
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                                    <div class="input-group">
-                                        <input type="text" name="community-selectSearch" id="community-selectSearch" class="form-control" onfocus="showAllSuggestionsCommunity()" oninput="showfilterCommunitySuggestions(this.value)" onkeydown="handlefilterCommunityKeyDown(event)" onblur="changefilterCommunityPlaceholder()" onkeyup="convertToUppercase(this)" placeholder="Search by Community Association">
-                                        <div id="communitysearchSuggestionBox" style="display:none"></div>
-                                    </div>
-                                </div>
-                        <button type="button" class="btn btn-block" data-toggle="modal" data-target="#encode" style="height:36px; width:100px; color:white; background-color:maroon">
+                            <div class="input-group">
+                                <input type="text" name="community-selectSearch" id="community-selectSearch"
+                                    class="form-control" onfocus="showAllSuggestionsCommunity()"
+                                    oninput="showfilterCommunitySuggestions(this.value)"
+                                    onkeydown="handlefilterCommunityKeyDown(event)"
+                                    onblur="changefilterCommunityPlaceholder()" onkeyup="convertToUppercase(this)"
+                                    placeholder="Search by Community Association">
+                                <div id="communitysearchSuggestionBox" style="display:none"></div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-block" data-toggle="modal" data-target="#encode"
+                            style="height:36px; width:100px; color:white; background-color:maroon">
                             Add
                         </button>
 
@@ -126,7 +137,11 @@ include '../functions/Functions.php';
                                 <div class="col-md-6 mb-3">
                                     <label for="barangay">Barangay (Bario):</label>
                                     <div class="input-group">
-                                        <input type="text" name="barangay-select-modal" id="barangay-select-modal" class="form-control" onfocus="showAllSuggestionsModal()" oninput="showSuggestionsModal(this.value)" onkeydown="handleKeyModal(event)" onblur="changePlaceholderModal()" onkeyup="convertToUppercase(this)" placeholder="Barangay">
+                                        <input type="text" name="barangay-select-modal" id="barangay-select-modal"
+                                            class="form-control" onfocus="showAllSuggestionsModal()"
+                                            oninput="showSuggestionsModal(this.value)" onkeydown="handleKeyModal(event)"
+                                            onblur="changePlaceholderModal()" onkeyup="convertToUppercase(this)"
+                                            placeholder="Barangay">
                                         <div id="suggestionBoxModal" style='display:none'></div>
                                     </div>
                                     <!-- <div class="input-group">
@@ -137,7 +152,12 @@ include '../functions/Functions.php';
                                 <div class="col-md-6 mb-3">
                                     <label for="comAss">Community Association:</label>
                                     <div class="input-group">
-                                        <input type="text" name="community-select" id="community-select" class="form-control" onfocus="showAllSuggestionsCommunityModal()" oninput="showCommunitySuggestions(this.value)" onkeydown="handleCommunityModalKeyDown(event)" onblur="changeCommunityPlaceholder()" onkeyup="convertToUppercase(this)" placeholder="Community Association">
+                                        <input type="text" name="community-select" id="community-select"
+                                            class="form-control" onfocus="showAllSuggestionsCommunityModal()"
+                                            oninput="showSuggestionsCommunityModal(this.value)"
+                                            onkeydown="handleCommunityModalKeyDown(event)"
+                                            onblur="changeCommunityPlaceholder()" onkeyup="convertToUppercase(this)"
+                                            placeholder="Community Association">
                                         <div id="communitySuggestionBox" style="display:none"></div>
                                     </div>
                                 </div>
@@ -145,7 +165,12 @@ include '../functions/Functions.php';
                                 <div class="col-md-6 mb-3">
                                     <label for="basicHouse">Basic Housing Data:</label>
                                     <div class="input-group">
-                                        <input type="text" name="basicHouse" id="basicHouse" class="form-control" onfocus="showAllSuggestionsHouseModal()" oninput="showSuggestionsHouseModal(this.value)" onkeydown="handleKeyHouseModal(event)" onblur="changePlaceholderHouseModal()" onkeyup="convertToUppercase(this)" placeholder="Basic Housing Data">
+                                        <input type="text" name="basicHouse" id="basicHouse" class="form-control"
+                                            onfocus="showAllSuggestionsHouseModal()"
+                                            oninput="showSuggestionsHouseModal(this.value)"
+                                            onkeydown="handleKeyHouseModal(event)"
+                                            onblur="changePlaceholderHouseModal()" onkeyup="convertToUppercase(this)"
+                                            placeholder="Basic Housing Data">
                                         <div id="suggestionBoxHouseModal" style='display:none'></div>
                                     </div>
 
@@ -154,7 +179,8 @@ include '../functions/Functions.php';
                                 <div class="col-md-6 mb-3">
                                     <label for="tag">Tag:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="tag" id="tag" placeholder="Tag">
+                                        <input type="text" class="input-border form-control" name="tag" id="tag"
+                                            placeholder="Tag" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
 
@@ -174,10 +200,12 @@ include '../functions/Functions.php';
                                     <label for="structOwner" style="margin-top:6px;">Structure Owner</label>
                                 </div>
                                 <div class="col-md-4 mb-3">
-                                    <input type="text" class="input-border form-control" name="tenurStatus" id="tenurStatus" placeholder="Tenurial Status" style="display:none">
+                                    <input type="text" class="input-border form-control" name="tenurStatus"
+                                        id="tenurStatus" placeholder="Tenurial Status" style="display:none">
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <input type="text" class="input-border form-control" name="origOwner" id="origOwner" placeholder="Name in Original Masterlist" style="display:none">
+                                    <input type="text" class="input-border form-control" name="origOwner" id="origOwner"
+                                        placeholder="Name in Original Masterlist" style="display:none">
                                 </div>
 
                                 <div class="col-md-4 mb-3">
@@ -193,57 +221,75 @@ include '../functions/Functions.php';
                                 <div class="col-md-4 mb-3">
                                     <label for="head_birthDate">Birthdate:</label>
                                     <div class="input-group">
-                                        <input type="date" class="input-border form-control" name="head_birthDate" id="head_birthDate" placeholder="Birthdate">
+                                        <input type="date" class="input-border form-control" name="head_birthDate"
+                                            id="head_birthDate" placeholder="Birthdate">
                                     </div>
                                 </div>
+
                                 <div class="col-md-4 mb-3">
                                     <label for="head_civilStatus">Civil Status:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="head_civilStatus" id="head_civilStatus" placeholder="Civil Status">
+                                        <input type="text" class="input-border form-control" name="head_civilStatus"
+                                            id="head_civilStatus" placeholder="Civil Status"
+                                            onfocus="showAllSuggestionsHeadCivilStatusModal()"
+                                            oninput="showSuggestionsHeadCivilStatusModal(this.value)"
+                                            onkeydown="handleKeyHeadCivilStatusModal(event)"
+                                            onblur="changePlaceholderHeadCivilStatusModal()"
+                                            onkeyup="convertToUppercase(this)">
+                                        <div id="suggestionBoxHeadCivilStatusModal"></div>
                                     </div>
                                 </div>
+
 
                                 <div class="col-md-3 mb-3">
                                     <label for="head_lastName">LastName:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="head_lastName" id="head_lastname" placeholder="Last Name">
+                                        <input type="text" class="input-border form-control" name="head_lastName"
+                                            id="head_lastname" placeholder="Last Name" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="head_givenName">Given Name:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="head_givenName" id="head_givenName" placeholder="Given Name">
+                                        <input type="text" class="input-border form-control" name="head_givenName"
+                                            id="head_givenName" placeholder="Given Name" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="head_middleName">Middle Name:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="head_middleName" id="head_middleName" placeholder="Middle Name">
+                                        <input type="text" class="input-border form-control" name="head_middleName"
+                                            id="head_middleName" placeholder="Middle Name" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3" id="headMaidenNameCont">
                                     <label for="head_maidenName">Maiden Name:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="head_maidenName" id="head_maidenName" placeholder="Maiden Name">
+                                        <input type="text" class="input-border form-control" name="head_maidenName"
+                                            id="head_maidenName" placeholder="Maiden Name" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3" id="headextensionCont">
                                     <label for="head_extension">Extension:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="head_extension" id="head_extension" placeholder="Extension">
+                                        <input type="text" class="input-border form-control" name="head_extension"
+                                            id="head_extension" placeholder="Extension" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label for="head_occupation">Occupation:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="head_occupation" id="head_occupation" placeholder="Occupation">
+                                        <input type="text" class="input-border form-control" name="head_occupation"
+                                            id="head_occupation" placeholder="Occupation" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="head_monthSalary">Monthly Salary:</label>
                                     <div class="input-group">
-                                        <input type="number" class="input-border form-control" name="head_monthSalary" id="head_monthSalary" placeholder="Monthly Salary">
+                                        <input type="number" class="input-border form-control" name="head_monthSalary"
+                                            id="head_monthSalary" placeholder="Monthly Salary"
+                                            oninput="updateTotalMonthly()">
                                     </div>
                                 </div>
 
@@ -255,7 +301,8 @@ include '../functions/Functions.php';
                                 </div>
 
                                 <div class="col-md-2 mb-3">
-                                    <input type="checkbox" value="checked" name="head_pag-ibigBox" id="head_pag-ibigBox">
+                                    <input type="checkbox" value="checked" name="head_pag-ibigBox"
+                                        id="head_pag-ibigBox">
                                     <label for="head_pag-ibigBox" style="margin-top:6px;">Pag-IBIG/HDMF</label>
                                 </div>
 
@@ -266,13 +313,15 @@ include '../functions/Functions.php';
 
                                 <div class="col-md-2 mb-3">
                                     <div class="checkbox-container">
-                                        <input type="checkbox" value="checked" name="head_othersBox" id="head_othersBox">
+                                        <input type="checkbox" value="checked" name="head_othersBox"
+                                            id="head_othersBox">
                                         <label for="head_othersBox">Others</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-2">
                                     <div class="other-textbox-container">
-                                        <input type="text" class="input-border form-control" name="head_other" id="head_other" placeholder="Other" style="display: none;">
+                                        <input type="text" class="input-border form-control" name="head_other"
+                                            id="head_other" placeholder="Other" style="display: none;" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
 
@@ -289,67 +338,86 @@ include '../functions/Functions.php';
                                 <div class="col-md-4 mb-3">
                                     <label for="spouse_gender">Gender:</label>
                                     <div class="input-group">
-                                        <select class="input-border form-control" name="spouse_gender" id="spouse_gender">
+                                        <select class="input-border form-control" name="spouse_gender"
+                                            id="spouse_gender">
                                             <option value="MALE">MALE</option>
                                             <option value="FEMALE">FEMALE</option>
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-4 mb-3">
                                     <label for="spouse_birthDate">Birthdate:</label>
                                     <div class="input-group">
-                                        <input type="date" class="input-border form-control" name="spouse_birthDate" id="spouse_birthDate" placeholder="Birthdate">
+                                        <input type="date" class="input-border form-control" name="spouse_birthDate"
+                                            id="spouse_birthDate" placeholder="Birthdate" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="spouse_civilStatus">Civil Status:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="spouse_civilStatus" id="spouse_civilStatus" placeholder="Civil Status">
+                                        <input type="text" class="input-border form-control" name="spouse_civilStatus"
+                                            id="spouse_civilStatus" placeholder="Civil Status"
+                                            onfocus="showAllSuggestionsCivilStatusModal()"
+                                            oninput="showSuggestionsCivilStatusModal(this.value)"
+                                            onkeydown="handleKeyCivilStatusModal(event)"
+                                            onblur="changePlaceholderCivilStatusModal()"
+                                            onkeyup="convertToUppercase(this)">
+                                        <div id="suggestionBoxCivilStatusModal" style="display:none"></div>
+
                                     </div>
                                 </div>
+
 
                                 <div class="col-md-3 mb-3">
                                     <label for="spouse_lastName">LastName:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="spouse_lastName" id="spouse_lastname" placeholder="Last Name">
+                                        <input type="text" class="input-border form-control" name="spouse_lastName"
+                                            id="spouse_lastname" placeholder="Last Name" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="spouse_givenName">Given Name:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="spouse_givenName" id="spouse_givenName" placeholder="Given Name">
+                                        <input type="text" class="input-border form-control" name="spouse_givenName"
+                                            id="spouse_givenName" placeholder="Given Name" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="spouse_middleName">Middle Name:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="spouse_middleName" id="spouse_middleName" placeholder="Middle Name">
+                                        <input type="text" class="input-border form-control" name="spouse_middleName"
+                                            id="spouse_middleName" placeholder="Middle Name" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3" id="spouseMaidenNameCont">
                                     <label for="spouse_maidenName">Maiden Name:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="spouse_maidenName" id="spouse_maidenName" placeholder="Maiden Name">
+                                        <input type="text" class="input-border form-control" name="spouse_maidenName"
+                                            id="spouse_maidenName" placeholder="Maiden Name" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3" id="spouseextensionCont">
                                     <label for="spouse_extension">Extension:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="spouse_extension" id="spouse_extension" placeholder="Extension">
+                                        <input type="text" class="input-border form-control" name="spouse_extension"
+                                            id="spouse_extension" placeholder="Extension" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label for="spouse_occupation">Occupation:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="spouse_occupation" id="spouse_occupation" placeholder="Occupation">
+                                        <input type="text" class="input-border form-control" name="spouse_occupation"
+                                            id="spouse_occupation" placeholder="Occupation" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="spouse_monthSalary">Monthly Salary:</label>
                                     <div class="input-group">
-                                        <input type="number" class="input-border form-control" name="spouse_monthSalary" id="spouse_monthSalary" placeholder="Monthly Salary">
+                                        <input type="number" class="input-border form-control" name="spouse_monthSalary"
+                                            id="spouse_monthSalary" placeholder="Monthly Salary"
+                                            oninput="updateTotalMonthly()">
                                     </div>
                                 </div>
 
@@ -361,7 +429,8 @@ include '../functions/Functions.php';
                                 </div>
 
                                 <div class="col-md-2 mb-3">
-                                    <input type="checkbox" value="checked" name="spouse_pag-ibigBox" id="spouse_pag-ibigBox">
+                                    <input type="checkbox" value="checked" name="spouse_pag-ibigBox"
+                                        id="spouse_pag-ibigBox">
                                     <label for="spouse_pag-ibigBox" style="margin-top:6px;">Pag-IBIG/HDMF</label>
                                 </div>
 
@@ -371,12 +440,14 @@ include '../functions/Functions.php';
                                 </div>
 
                                 <div class="col-md-2 mb-3">
-                                    <input type="checkbox" value="checked" name="spouse_othersBox" id="spouse_othersBox">
+                                    <input type="checkbox" value="checked" name="spouse_othersBox"
+                                        id="spouse_othersBox">
                                     <label for="spouse_othersBox" style="margin-top:6px;">Others</label>
                                 </div>
                                 <div class="col-md-4 mb-2">
                                     <div class="other-textbox-container">
-                                        <input type="text" class="input-border form-control" name="spouse_other" id="spouse_other" placeholder="Other" style="display: none;">
+                                        <input type="text" class="input-border form-control" name="spouse_other"
+                                            id="spouse_other" placeholder="Other" style="display: none;" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
 
@@ -387,9 +458,14 @@ include '../functions/Functions.php';
 
                                 <div class="col-md-12 mb">
                                     <div class="row">
-                                        <label class="col-md-4" for="total_children_label">Total Number of Children:</label>
-                                        <div class="col-md-1 input-group"> <!-- Adjust the "col-md-2" to your desired width -->
-                                            <input type="number" class="input-border form-control" style="height: 25px; margin-left: -160px; margin-right: 185px" name="total_children_label" id="total_children_label" value="0" disabled>
+                                        <label class="col-md-4" for="total_children_label">Total Number of
+                                            Children:</label>
+                                        <div class="col-md-1 input-group">
+                                            <!-- Adjust the "col-md-2" to your desired width -->
+                                            <input type="number" class="input-border form-control"
+                                                style="height: 25px; margin-left: -160px; margin-right: 185px"
+                                                name="total_children_label" id="total_children_label" value="0"
+                                                disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -401,9 +477,14 @@ include '../functions/Functions.php';
 
                                 <div class="col-md-12 mb">
                                     <div class="row">
-                                        <label class="col-md-6" for="num_children">Number of Minor Children Living with Parents:</label>
-                                        <div class="col-md-1 input-group"> <!-- Adjust the "col-md-2" to your desired width -->
-                                            <input type="number" class="input-border form-control" style="height: 25px; margin-left: -180px; margin-right: 200px" name="num_children" id="num_children" value="0" placeholder="No." min="0" max="50" oninput="generateChildFields()">
+                                        <label class="col-md-6" for="num_children">Number of Minor Children Living with
+                                            Parents:</label>
+                                        <div class="col-md-1 input-group">
+                                            <!-- Adjust the "col-md-2" to your desired width -->
+                                            <input type="number" class="input-border form-control"
+                                                style="height: 25px; margin-left: -180px; margin-right: 200px"
+                                                name="num_children" id="num_children" value="0" placeholder="No."
+                                                min="0" max="50" oninput="generateChildFields()">
                                         </div>
                                     </div>
                                 </div>
@@ -463,14 +544,19 @@ include '../functions/Functions.php';
 
                                 <div class="col-md-12 mb">
                                     <div class="row">
-                                        <label class="col-md-6" for="num_workChildren">Number of Children Working and Living with Parents:</label>
-                                        <div class="col-md-1 input-group"> <!-- Adjust the "col-md-2" to your desired width -->
-                                            <input type="number" class="input-border form-control" style="height: 25px; margin-left: -130px; margin-right: 150px" name="num_workChildren" id="num_workChildren" value="0" placeholder="No." min="0" max="50" oninput="generateWorkChildFields()">
+                                        <label class="col-md-6" for="num_workChildren">Number of Children Working and
+                                            Living with Parents:</label>
+                                        <div class="col-md-1 input-group">
+                                            <!-- Adjust the "col-md-2" to your desired width -->
+                                            <input type="number" class="input-border form-control"
+                                                style="height: 25px; margin-left: -130px; margin-right: 150px"
+                                                name="num_workChildren" id="num_workChildren" value="0"
+                                                placeholder="No." min="0" max="50" oninput="generateWorkChildFields()">
                                         </div>
                                     </div>
                                 </div>
 
-                                 <!-- working child field codes
+                                <!-- working child field codes
                 <div class="container">
                 <div class="col-md-4 mb-3">
                 <label for="Wchild_gender">Gender:</label>
@@ -574,9 +660,13 @@ include '../functions/Functions.php';
                                 <!-- Senior Citizen -->
                                 <div class="col-md-12 mb">
                                     <div class="row">
-                                        <label class="col-md-6" for="num_senior">Total Number of Senior Citizen and PWD:</label>
+                                        <label class="col-md-6" for="num_senior">Total Number of Senior Citizen and
+                                            PWD:</label>
                                         <div class="col-md-1 input-group">
-                                            <input type="number" class="input-border form-control" style="height: 25px; margin-left: -220px; margin-right: 240px" name="num_senior" id="num_senior" value="0" placeholder="No." min="0" max="50" oninput="generateSeniorFields()">
+                                            <input type="number" class="input-border form-control"
+                                                style="height: 25px; margin-left: -220px; margin-right: 240px"
+                                                name="num_senior" id="num_senior" value="0" placeholder="No." min="0"
+                                                max="50" oninput="generateSeniorFields()">
                                         </div>
                                     </div>
                                 </div>
@@ -649,7 +739,9 @@ include '../functions/Functions.php';
                                     <div class="row">
                                         <label class="col-md-4" for="totalMonthly">Total Monthly Income:</label>
                                         <div class="col-md-2 input-group">
-                                            <input type="number" class="input-border form-control" style="height: 25px; margin-left: -180px; margin-right: 100px" name="totalMonthly" id="totalMonthly" value="0" disabled>
+                                            <input type="number" class="input-border form-control"
+                                                style="height: 25px; margin-left: -180px; margin-right: 100px"
+                                                name="totalMonthly" id="totalMonthly" value="0" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -663,12 +755,16 @@ include '../functions/Functions.php';
                                     <div class="row">
                                         <label class="col-md-2" for="yearStay">Year of Stay:</label>
                                         <div class="col-md-2 input-group">
-                                            <input type="date" class="input-border form-control" style="height: 25px; margin-left: -70px; margin-right: 90px" name="yearStay" id="yearStay" placeholder="Year of Stay">
+                                            <input type="date" class="input-border form-control"
+                                                style="height: 25px; margin-left: -70px; margin-right: 90px"
+                                                name="yearStay" id="yearStay" placeholder="Year of Stay">
                                         </div>
                                         <div class="col-md-4"></div> <!-- Empty column to create space -->
                                         <label class="col-md-2" for="yearLength">Length of Stay:</label>
                                         <div class="col-md-2 input-group">
-                                            <input type="number" class="input-border form-control" style="height: 25px; margin-left: -50px; margin-right: 50px" value=0 name="yearLength" id="yearLength" placeholder="Length of Stay">
+                                            <input type="number" class="input-border form-control"
+                                                style="height: 25px; margin-left: -50px; margin-right: 50px" value=0
+                                                name="yearLength" id="yearLength" placeholder="Length of Stay">
                                         </div>
                                     </div>
                                 </div>
@@ -685,25 +781,29 @@ include '../functions/Functions.php';
                                 <div class="col-md-3 mb-3">
                                     <label for="electricity">Electricity:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="electricity" id="electricity" placeholder="Electricity">
+                                        <input type="text" class="input-border form-control" name="electricity"
+                                            id="electricity" placeholder="Electricity" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="water_serv">Water Services:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="water_serv" id="water_serv" placeholder="Water Services">
+                                        <input type="text" class="input-border form-control" name="water_serv"
+                                            id="water_serv" placeholder="Water Services" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="toilet">Toilet:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="toilet" id="toilet" placeholder="Toilet">
+                                        <input type="text" class="input-border form-control" name="toilet" id="toilet"
+                                            placeholder="Toilet" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="kitchen">Kitchen:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="kitchen" id="kitchen" placeholder="Kitchen">
+                                        <input type="text" class="input-border form-control" name="kitchen" id="kitchen"
+                                            placeholder="Kitchen" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
 
@@ -716,12 +816,15 @@ include '../functions/Functions.php';
                                     <label>In case Relocation is unavailable, what will you choose?:</label>
                                 </div>
                                 <div class="col-md-4 mb-3">
-                                    <input type="radio" value="Financial Assistance" name="relocationChoice" id="financialAssistance">
-                                    <label for="financialAssistance" style="margin-top: 6px;">Financial Assistance</label>
+                                    <input type="radio" value="Financial Assistance" name="relocationChoice"
+                                        id="financialAssistance">
+                                    <label for="financialAssistance" style="margin-top: 6px;">Financial
+                                        Assistance</label>
                                 </div>
 
                                 <div class="col-md-4 mb-3">
-                                    <input type="radio" value="Balik Probinsya Program" name="relocationChoice" id="balikProbinsya">
+                                    <input type="radio" value="Balik Probinsya Program" name="relocationChoice"
+                                        id="balikProbinsya">
                                     <label for="balikProbinsya" style="margin-top: 6px;">Balik Probinsya Program</label>
                                 </div>
 
@@ -741,31 +844,38 @@ include '../functions/Functions.php';
                                 <div class="col-md-12 mb-3">
                                     <label for="respondent_relation">Relationship to Household Head:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="respondent_relation" id="respondent_relation" placeholder="Relationship to Household Head">
+                                        <input type="text" class="input-border form-control" name="respondent_relation"
+                                            id="respondent_relation" placeholder="Relationship to Household Head" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="respondent_lastName">LastName:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="respondent_lastName" id="respondent_lastname" placeholder="Last Name">
+                                        <input type="text" class="input-border form-control" name="respondent_lastName"
+                                            id="respondent_lastname" placeholder="Last Name" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="respondent_givenName">Given Name:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="respondent_givenName" id="respondent_givenName" placeholder="Given Name">
+                                        <input type="text" class="input-border form-control" name="respondent_givenName"
+                                            id="respondent_givenName" placeholder="Given Name" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="respondent_middleName">Middle Name:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="respondent_middleName" id="respondent_middleName" placeholder="Middle Name">
+                                        <input type="text" class="input-border form-control"
+                                            name="respondent_middleName" id="respondent_middleName"
+                                            placeholder="Middle Name" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="respondent_maidenName">Maiden Name:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="respondent_maidenName" id="respondent_maidenName" placeholder="Maiden Name">
+                                        <input type="text" class="input-border form-control"
+                                            name="respondent_maidenName" id="respondent_maidenName"
+                                            placeholder="Maiden Name" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
 
@@ -780,25 +890,32 @@ include '../functions/Functions.php';
                                 <div class="col-md-3 mb-3">
                                     <label for="interviewer_lastName">Last Name:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="interviewer_lastName" id="interviewer_lastName" placeholder="Last Name">
+                                        <input type="text" class="input-border form-control" name="interviewer_lastName"
+                                            id="interviewer_lastName" placeholder="Last Name" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="interviewer_givenName">Given Name:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="interviewer_givenName" id="interviewer_givenName" placeholder="Given Name">
+                                        <input type="text" class="input-border form-control"
+                                            name="interviewer_givenName" id="interviewer_givenName"
+                                            placeholder="Given Name" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="interviewer_middleName">Middle Name:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="interviewer_middleName" id="interviewer_middleName" placeholder="Middle Name">
+                                        <input type="text" class="input-border form-control"
+                                            name="interviewer_middleName" id="interviewer_middleName"
+                                            placeholder="Middle Name" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="interviewer_maidenName">Maiden Name:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="interviewer_maidenName" id="interviewer_maidenName" placeholder="Maiden Name">
+                                        <input type="text" class="input-border form-control"
+                                            name="interviewer_maidenName" id="interviewer_maidenName"
+                                            placeholder="Maiden Name" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
 
@@ -810,13 +927,15 @@ include '../functions/Functions.php';
                                 <div class="col-md-2 mb-3">
                                     <label for="type_structure">Type of Structure:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="type_structure" id="type_structure" placeholder="Type of Structure">
+                                        <input type="text" class="input-border form-control" name="type_structure"
+                                            id="type_structure" placeholder="Type of Structure" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
                                 <div class="col-md-10 mb-3">
                                     <label for="remark">Remark:</label>
                                     <div class="input-group">
-                                        <input type="text" class="input-border form-control" name="remark" id="remark" placeholder="Remark">
+                                        <input type="text" class="input-border form-control" name="remark" id="remark"
+                                            placeholder="Remark" onkeyup="convertToUppercase(this)">
                                     </div>
                                 </div>
 
@@ -828,8 +947,10 @@ include '../functions/Functions.php';
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-warning mr-auto btn-sm" tyle="margin-left:10px;" data-dismiss="modal">Close</button>
-                    <button type="submit" value="Submit" class="btn btn-primary btn-sm" style="margin-right:10px;" onclick="displayValue()">Save</button>
+                    <button type="button" class="btn btn-warning mr-auto btn-sm" tyle="margin-left:10px;"
+                        data-dismiss="modal">Close</button>
+                    <button type="submit" value="Submit" class="btn btn-primary btn-sm" style="margin-right:10px;"
+                        onclick="displayValue()">Save</button>
                 </div>
 
 
@@ -837,133 +958,85 @@ include '../functions/Functions.php';
             </div>
         </div>
     </div>
-    </form>
+</form>
 
-    <!-- display text to monthly total when monthsalary is inputted -->
-    <script>
-        // Attach event listeners to monthly input fields
-        document.getElementById("head_monthSalary").addEventListener("input", updateTotalMonthly);
-        document.getElementById("spouse_monthSalary").addEventListener("input", updateTotalMonthly);
+<!-- display text to monthly total when monthsalary is inputted -->
+<script>
 
-        var numWorkChildren = parseInt(document.getElementById("num_workChildren").value);
-        for (var i = 0; i < numWorkChildren; i++) {
-            document.getElementById(`Wchild_monthSalary_${i}`).addEventListener("input", updateTotalMonthly);
+</script>
+
+
+
+<!-- for gender change -->
+<script>
+    $(document).ready(function () {
+        function handleGenderChange(gender, maidenNameCont, extensionCont) {
+            if (gender === "FEMALE") {
+                $(maidenNameCont).show();
+                $(extensionCont).hide();
+            } else if (gender === "MALE") {
+                $(maidenNameCont).hide();
+                $(extensionCont).show();
+            } else {
+                $(maidenNameCont).hide();
+                $(extensionCont).hide();
+            }
         }
-    </script>
 
-
-
-    <!-- for gender change -->
-    <script>
-        $(document).ready(function() {
-            function handleGenderChange(gender, maidenNameCont, extensionCont) {
-                if (gender === "FEMALE") {
-                    $(maidenNameCont).show();
-                    $(extensionCont).hide();
-                } else if (gender === "MALE") {
-                    $(maidenNameCont).hide();
-                    $(extensionCont).show();
-                } else {
-                    $(maidenNameCont).hide();
-                    $(extensionCont).hide();
-                }
-            }
-
-            $("#head_gender").change(function() {
-                var selectedGender = $(this).val();
-                handleGenderChange(selectedGender, "#headMaidenNameCont", "#headextensionCont");
-            });
-
-            $("#spouse_gender").change(function() {
-                var selectedGender = $(this).val();
-                handleGenderChange(selectedGender, "#spouseMaidenNameCont", "#spouseextensionCont");
-            });
-
-            $("#head_gender").trigger("change"); // immediately change whether maiden or extension box
-            $("#spouse_gender").trigger("change"); // immediately change whether maiden or extension box
-        });
-    </script>
-
-    <!-- modal dropdown blur -->
-    <script>
-        document.getElementById('barangay-select').addEventListener('blur', function() {
-            if (suggestionBoxVisible) {
-                const suggestionBox = document.getElementById('suggestionBox');
-                suggestionBox.style.display = 'none';
-                suggestionBoxVisible = false;
-            }
-
+        $("#head_gender").change(function () {
+            var selectedGender = $(this).val();
+            handleGenderChange(selectedGender, "#headMaidenNameCont", "#headextensionCont");
         });
 
-        document.getElementById('barangay-select-modal').addEventListener('blur', () => {
-            if (suggestionBoxVisible) {
-                const suggestionBox = document.getElementById('suggestionBoxModal');
-                suggestionBox.style.display = 'none';
-                suggestionBoxVisible = false;
-            }
+        $("#spouse_gender").change(function () {
+            var selectedGender = $(this).val();
+            handleGenderChange(selectedGender, "#spouseMaidenNameCont", "#spouseextensionCont");
         });
 
-        document.getElementById('community-select').addEventListener('blur', () => {
-            if (suggestionBoxVisible) {
-                const suggestionBox = document.getElementById('communitySuggestionBox');
-                suggestionBox.style.display = 'none';
-                suggestionBoxVisible = false;
-            }
-        });
+        $("#head_gender").trigger("change"); // immediately change whether maiden or extension box
+        $("#spouse_gender").trigger("change"); // immediately change whether maiden or extension box
+    });
+</script>
 
-        document.getElementById('basicHouse').addEventListener('blur', function() {
-            if (suggestionBoxVisible) {
-                const suggestionBox = document.getElementById('suggestionBoxHouseModal');
-                suggestionBox.style.display = 'none';
-                suggestionBoxVisible = false;
-            }
-        });
+<!-- modal dropdown blur -->
+<script>
+    // Structure owner checkbox 
+    var checkbox = document.getElementById("structOwner");
+    var tenurStatusInput = document.getElementById("tenurStatus");
+    var origOwnerInput = document.getElementById("origOwner");
 
-        document.getElementById('community-selectSearch').addEventListener('blur', function() {
-            if (suggestionBoxVisible) {
-                const suggestionBox = document.getElementById('communitysearchSuggestionBox');
-                suggestionBox.style.display = 'none';
-                suggestionBoxVisible = false;
-            }
-        });
+    checkbox.addEventListener("change", function () {
+        if (this.checked) {
+            tenurStatusInput.style.display = "block";
+            origOwnerInput.style.display = "block";
+        } else {
+            tenurStatusInput.style.display = "none";
+            origOwnerInput.style.display = "none";
+        }
+    });
 
-        // Structure owner checkbox 
-        var checkbox = document.getElementById("structOwner");
-        var tenurStatusInput = document.getElementById("tenurStatus");
-        var origOwnerInput = document.getElementById("origOwner");
+    // head Other checkbox
+    var othercb = document.getElementById("head_othersBox");
+    var othertb = document.getElementById("head_other");
 
-        checkbox.addEventListener("change", function() {
-            if (this.checked) {
-                tenurStatusInput.style.display = "block";
-                origOwnerInput.style.display = "block";
-            } else {
-                tenurStatusInput.style.display = "none";
-                origOwnerInput.style.display = "none";
-            }
-        });
+    // spouse other checkbox
+    var spouseothercb = document.getElementById("spouse_othersBox");
+    var spouseothertb = document.getElementById("spouse_other");
 
-        // head Other checkbox
-        var othercb = document.getElementById("head_othersBox");
-        var othertb = document.getElementById("head_other");
+    othercb.addEventListener("change", function () {
+        if (this.checked) {
+            othertb.style.display = "block";
+        } else {
+            othertb.style.display = "none";
+        }
+    })
 
-        // spouse other checkbox
-        var spouseothercb = document.getElementById("spouse_othersBox");
-        var spouseothertb = document.getElementById("spouse_other");
-
-        othercb.addEventListener("change", function() {
-            if (this.checked) {
-                othertb.style.display = "block";
-            } else {
-                othertb.style.display = "none";
-            }
-        })
-
-        spouseothercb.addEventListener("change", function() {
-            if (this.checked) {
-                spouseothertb.style.display = "block";
-            } else {
-                spouseothertb.style.display = "none";
-            }
-        })
-    </script>
-    <?php include('footer.php'); ?>
+    spouseothercb.addEventListener("change", function () {
+        if (this.checked) {
+            spouseothertb.style.display = "block";
+        } else {
+            spouseothertb.style.display = "none";
+        }
+    })
+</script>
+<?php include('footer.php'); ?>

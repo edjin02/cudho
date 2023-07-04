@@ -173,6 +173,15 @@ $(document).ready(function() {
         }
     });
 
+    var suggestionBox = document.getElementById("suggestionBox");
+    suggestionBox.addEventListener("mousedown", function() {
+        var selectedSuggestion = document.getElementsByClassName("selected")[0];
+        if (selectedSuggestion) {
+            barangayInput.value = selectedSuggestion.textContent;
+            filterTable();
+        }
+    });
+
     // Get the search input element
     var searchInput = document.getElementById("search");
 
@@ -189,5 +198,14 @@ $(document).ready(function() {
     communityInput.addEventListener("keyup", function() {
         this.value = this.value.toUpperCase(); // Convert input to uppercase
         filterTable();
+    });
+
+    var suggestionBox = document.getElementById("communitysearchSuggestionBox");
+    suggestionBox.addEventListener("mousedown", function() {
+        var selectedSuggestion = document.getElementsByClassName("selected")[0];
+        if (selectedSuggestion) {
+            communityInput.value = selectedSuggestion.textContent;
+            filterTable();
+        }
     });
 });
