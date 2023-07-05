@@ -91,17 +91,36 @@
    
 
         <div class="sidebar">
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img src="../../adminLTE/AdminLTE-3.2.0/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div class="info">
-                    <a href="#" class="d-block" style="font-size: 20px;">
-                    <i class="fas fa-circle fa-xs text-success"></i>
-                    Online
-                    </a>
-                </div>
-            </div>
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="info" style="text-align: center; margin-left: 20px; padding: -10px;" >
+        <a class="d-block" style="font-size: 20px;">
+            <span id="currentDate"></span><br>
+            <span id="currentTime"></span>
+        </a>
+    </div>
+</div>
+
+<script>
+    function updateDateTime() {
+        var currentDateElement = document.getElementById("currentDate");
+        var currentTimeElement = document.getElementById("currentTime");
+        
+        var currentDateTime = new Date();
+        var currentDate = currentDateTime.toLocaleDateString();
+        var currentTime = currentDateTime.toLocaleTimeString();
+
+        currentDateElement.textContent = currentDate;
+        currentTimeElement.textContent = currentTime;
+    }
+
+    // Update the time every second
+    setInterval(updateDateTime, 1000);
+
+    // Initial call to display the time immediately
+    updateDateTime();
+</script>
+
+
       
         <div style="margin: -10px; text-align: center;">
           <a><h6 class="form-control form-control-sidebar" style=" color: white; background-color: black; font-size: 18px;">

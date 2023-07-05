@@ -156,6 +156,7 @@ $(document).ready(function() {
 
 
 // $(document).ready(function() {
+    
 //     // Function to filter table rows based on user input
 //     function filterTable() {
 //         var filterBarangay = document.getElementById("barangay-select").value.toUpperCase();
@@ -171,14 +172,9 @@ $(document).ready(function() {
 //                 rows[i].style.display = "none";
 //             }
 
-//             // Hide the paginator
-//             var paginator = document.getElementById("paginator");
-//             paginator.style.display = "none";
-
 //             // Display no data message
 //             var noDataMessage = document.getElementById("no-data-message");
 //             noDataMessage.style.display = "block";
-
 //             return; // Exit the function
 //         }
 
@@ -186,7 +182,7 @@ $(document).ready(function() {
 //         var rows = table.getElementsByTagName("tr");
 //         var noDataMessage = document.getElementById("no-data-message");
 
-//         var hasData = false; // Variable to track if there is matching data
+//         var filteredRows = [];
 
 //         for (var i = 0; i < rows.length; i++) {
 //             var row = rows[i];
@@ -232,61 +228,63 @@ $(document).ready(function() {
 //                 }
 //             }
 
-//             row.style.display = showRow ? "" : "none";
 //             if (showRow) {
-//                 hasData = true;
+//                 filteredRows.push(row);
+//             } else {
+//                 row.style.display = "none";
 //             }
 //         }
 
-//         // Display no data message if there are no matching rows
-//         if (!hasData) {
+//         // Display filtered rows based on pagination
+//         var startIndex = (currentPage - 1) * itemsPerPage;
+//         var endIndex = startIndex + itemsPerPage;
+
+//         for (var i = 0; i < filteredRows.length; i++) {
+//             if (i >= startIndex && i < endIndex) {
+//                 filteredRows[i].style.display = "";
+//             } else {
+//                 filteredRows[i].style.display = "none";
+//             }
+//         }
+
+//         // Display pagination links
+//         if (filteredRows.length > itemsPerPage) {
+//             var numPages = Math.ceil(filteredRows.length / itemsPerPage);
+
+//             var pagination = document.getElementById("pagination");
+//             pagination.innerHTML = "";
+
+//             for (var i = 1; i <= numPages; i++) {
+//                 var pageLink = document.createElement("a");
+//                 pageLink.href = "#";
+//                 pageLink.innerHTML = i;
+//                 pageLink.addEventListener("click", function(event) {
+//                     currentPage = parseInt(event.target.innerHTML);
+//                     filterTable();
+//                 });
+
+//                 if (i === currentPage) {
+//                     pageLink.classList.add("active");
+//                 }
+
+//                 pagination.appendChild(pageLink);
+//             }
+//         }
+
+//         // Hide or display the no data message
+//         if (filteredRows.length === 0) {
 //             noDataMessage.style.display = "block";
 //         } else {
 //             noDataMessage.style.display = "none";
 //         }
-
-        
-
-//         // Generate paginator
-//         var paginator = document.getElementById("paginator");
-//         paginator.innerHTML = "";
-//         var pageCount = Math.ceil(rows.length / 1); // Max 1 row per page
-
-//         if (pageCount > 1) {
-//             for (var page = 1; page <= pageCount; page++) {
-//                 var link = document.createElement("a");
-//                 link.href = "#";
-//                 link.innerText = page;
-//                 link.addEventListener("click", function(e) {
-//                     e.preventDefault();
-//                     var page = parseInt(this.innerText);
-//                     showPage(page);
-//                 });
-//                 paginator.appendChild(link);
-//             }
-//             paginator.style.display = "block";
-//         } else {
-//             paginator.style.display = "none";
-//         }
 //     }
 
-//     function showPage(page) {
-//         var table = document.getElementById("verifTable");
-//         var rows = table.getElementsByTagName("tr");
-//         for (var i = 0; i < rows.length; i++) {
-//             rows[i].style.display = i >= (page - 1) * 1 && i < page * 1 ? "" : "none";
-//         }
-//     }
+//     // Initialize pagination variables
+//     var currentPage = 1;
+//     var itemsPerPage = 1;
 
 //     // Call filterTable() when the page loads
-//     // window.addEventListener("load", function() {
-//     //     // Clear all textbox inputs
-//     //     barangayInput.value = "";
-//     //     searchInput.value = "";
-//     //     communityInput.value = "";
-        
-//     //     filterTable();
-//     // });
+//     filterTable();
 
 //     // Get the barangay input element
 //     var barangayInput = document.getElementById("barangay-select");
@@ -299,16 +297,6 @@ $(document).ready(function() {
 
 //     barangayInput.addEventListener("keydown", function(event) {
 //         if (event.key === "Tab" || event.key === "Enter") {
-//             filterTable();
-//         }
-//     });
-
-//     var suggestionBox = document.getElementById("suggestionBox");
-//     suggestionBox.addEventListener("mousedown", function() {
-//         var selectedSuggestion = document.getElementsByClassName("selected")[0];
-//         if (selectedSuggestion) {
-//             var selectedValue = selectedSuggestion.textContent;
-//             barangayInput.value = selectedValue; // Update barangay input value
 //             filterTable();
 //         }
 //     });
@@ -336,15 +324,6 @@ $(document).ready(function() {
 //             filterTable();
 //         }
 //     });
-
-//     var communitySuggestionBox = document.getElementById("communitysearchSuggestionBox");
-//     communitySuggestionBox.addEventListener("mousedown", function() {
-//         var communityselectedSuggestion = document.getElementsByClassName("selected")[1];
-//         if (communityselectedSuggestion) {
-//             var communityselectedValue = communityselectedSuggestion.textContent;
-//             communityInput.value = communityselectedValue;
-//             filterTable();
-//         }
-//     });
 // });
 
+    

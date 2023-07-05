@@ -110,9 +110,10 @@ include '../functions/Functions.php';
                             </tbody>
                         </table>
                         <div id="no-data-message" class="centered-text" style="display: none;"><span>No Data Available</span></div>
-                        <!-- Add the following pagination controls -->
-<!-- <button id="prevPageBtn">Previous</button>
-<button id="nextPageBtn">Next</button> -->
+                        <!-- Pagination element -->
+                        
+                        <div id="pagination"></div>
+                        
                     </div>
                 </div>
             </div>

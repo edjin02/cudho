@@ -83,7 +83,7 @@ include '../functions/Functions.php';
                                 </tbody>
                             </table>
 
-                            <p id="no-data-message" class="centered-text" style="display: none;">No user data existing</p>
+                            <p id="no-data-message" class="centered-text" style="display: none;"><span>No user data existing</span></p>
                         </div>
                     </div>
                 </form>

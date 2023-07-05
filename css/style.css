@@ -361,20 +361,22 @@ div.col h8 {
   animation: highlight 2s linear infinite;
 }
 
-#paginator {
+
+
+.info {
+  text-align: center;
+  margin-left: 35px;
+  padding: -10px;
+  font-family: 'Arial', sans-serif;
+}
+
+#currentDate {
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+#currentTime {
+  font-size: 20px;
+  letter-spacing: 5px;
   margin-top: 10px;
-}
-
-#paginator a {
-  display: inline-block;
-  padding: 5px 10px;
-  margin-right: 5px;
-  background-color: #f1f1f1;
-  text-decoration: none;
-  color: #333;
-}
-
-#paginator a.active {
-  background-color: #4CAF50;
-  color: white;
 }
