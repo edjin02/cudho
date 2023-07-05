@@ -1,6 +1,5 @@
 
-$(document).ready(function() {
-    
+document.addEventListener('DOMContentLoaded', function() {
     // Function to filter table rows based on user input
     function filterTable() {
         var filterBarangay = document.getElementById("barangay-select").value.toUpperCase();
