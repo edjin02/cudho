@@ -109,7 +109,10 @@ include '../functions/Functions.php';
                             <tbody id="verifTable">
                             </tbody>
                         </table>
-                        <div id="no-data-message" class="centered-text" style="display: none;">No Data Available</div>
+                        <div id="no-data-message" class="centered-text" style="display: none;"><span>No Data Available</span></div>
+                        <!-- Add the following pagination controls -->
+<!-- <button id="prevPageBtn">Previous</button>
+<button id="nextPageBtn">Next</button> -->
                     </div>
                 </div>
             </div>

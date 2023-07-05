@@ -312,11 +312,6 @@ div.col h8 {
 }
 
 
-
-
-
-
-
 .modal-open {
   overflow: hidden;
 }
@@ -339,4 +334,47 @@ div.col h8 {
 #cancelHeadBtnx:focus {
   outline: none;
   /* Remove the focus outline */
+}
+
+@keyframes highlight {
+  0% { color: #000; }
+  50% { color: #FF0000; }
+  100% { color: #000; }
+}
+
+.centered-text {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8vh;
+  font-size: 24px;
+  color: #333;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.centered-text span {
+  animation: highlight 2s linear infinite;
+}
+
+#paginator {
+  margin-top: 10px;
+}
+
+#paginator a {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-right: 5px;
+  background-color: #f1f1f1;
+  text-decoration: none;
+  color: #333;
+}
+
+#paginator a.active {
+  background-color: #4CAF50;
+  color: white;
 }

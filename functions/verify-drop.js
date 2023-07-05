@@ -252,7 +252,7 @@ function changePlaceholder() {
   document.getElementById('barangay-select').placeholder = 'Barangay';
 }
 
-// Functions for the modal community textbox
+// Functions for the community textbox
 
 function showAllSuggestionsCommunity() {
   showfilterCommunitySuggestions('');
@@ -297,7 +297,68 @@ function showfilterCommunitySuggestions(input) {
       filteredSuggestions = suggestions.filter((suggestion) =>
         suggestion === 'COMMUNITY3' || suggestion === 'COMMUNITY4'
       );
-    } else {
+    } else if (barangayValue === 'CAINGIN') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY5' || suggestion === 'COMMUNITY6'
+      );
+    } else if (barangayValue === 'DILA') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY7' || suggestion === 'COMMUNITY8'
+      );
+    } else if (barangayValue === 'DITA') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY9' || suggestion === 'COMMUNITY10'
+      );
+    } else if (barangayValue === 'DON JOSE') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY11'
+      );
+    } else if (barangayValue === 'IBABA') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY12'
+      );
+    } else if (barangayValue === 'KANLURAN') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY13'
+      );
+    } else if (barangayValue === 'LABAS') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY14'
+      );
+    } else if (barangayValue === 'MACABLING') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY15'
+      );
+    } else if (barangayValue === 'MALITLIT') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY1'
+      );
+    } else if (barangayValue === 'MALUSAK') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY3'
+      );
+    } else if (barangayValue === 'MARKET AREA') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY13'
+      );
+    } else if (barangayValue === 'POOC') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY5'
+      );
+    } else if (barangayValue === 'PULONG SANTA CRUZ') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY8'
+      );
+    } else if (barangayValue === 'SINALHAN') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY3'
+      );
+    } else if (barangayValue === 'TAGAPO') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY10'
+      );
+    }  
+    else {
       filteredSuggestions = suggestions;
     }
 
@@ -736,7 +797,68 @@ function showSuggestionsCommunityModal(input) {
       filteredSuggestions = suggestions.filter((suggestion) =>
         suggestion === 'COMMUNITY3' || suggestion === 'COMMUNITY4'
       );
-    } else {
+    } else if (barangayValue === 'CAINGIN') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY5' || suggestion === 'COMMUNITY6'
+      );
+    } else if (barangayValue === 'DILA') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY7' || suggestion === 'COMMUNITY8'
+      );
+    } else if (barangayValue === 'DITA') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY9' || suggestion === 'COMMUNITY10'
+      );
+    } else if (barangayValue === 'DON JOSE') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY11'
+      );
+    } else if (barangayValue === 'IBABA') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY12'
+      );
+    } else if (barangayValue === 'KANLURAN') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY13'
+      );
+    } else if (barangayValue === 'LABAS') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY14'
+      );
+    } else if (barangayValue === 'MACABLING') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY15'
+      );
+    } else if (barangayValue === 'MALITLIT') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY1'
+      );
+    } else if (barangayValue === 'MALUSAK') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY3'
+      );
+    } else if (barangayValue === 'MARKET AREA') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY13'
+      );
+    } else if (barangayValue === 'POOC') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY5'
+      );
+    } else if (barangayValue === 'PULONG SANTA CRUZ') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY8'
+      );
+    } else if (barangayValue === 'SINALHAN') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY3'
+      );
+    } else if (barangayValue === 'TAGAPO') {
+      filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion === 'COMMUNITY10'
+      );
+    }  
+    else {
       filteredSuggestions = suggestions;
     }
 
