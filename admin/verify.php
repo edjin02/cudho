@@ -953,15 +953,28 @@ include '../functions/Functions.php';
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning mr-auto btn-sm" tyle="margin-left:10px;"
                         data-dismiss="modal">Close</button>
-                    <button type="submit" value="Submit" class="btn btn-primary btn-sm" style="margin-right:10px;"
-                        onclick="displayValue()">Save</button>
+                    <button type="button" class="btn btn-primary btn-sm" style="margin-right:10px;"
+                    data-dismiss="modal" data-toggle="modal" data-target="#confirmationModal">Save</button>
                 </div>
-
-
 
             </div>
         </div>
     </div>
+      <!-- Confirmation Modal -->
+<div class="modal" id="confirmationModal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Are you sure you want to save these data?</h5>
+      </div>
+      <div class="modal-body d-flex justify-content-end">
+        <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal" data-toggle="modal" data-target="#encode">No</button>
+        <button type="submit" class="btn btn-primary">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </form>
 
 

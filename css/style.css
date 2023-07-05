@@ -380,3 +380,8 @@ div.col h8 {
   letter-spacing: 5px;
   margin-top: 10px;
 }
+
+.sidebar.modal-opened {
+  display: block !important;
+}
+
