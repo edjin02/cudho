@@ -121,6 +121,8 @@ include '../functions/Functions.php';
     </div>
 </div>
 
+<?php include('footer.php'); ?>
+
 <form action="../inc_backend/verifyAdd.php" method="POST">
     <div class="modal" id="encode" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-xl">
@@ -959,21 +961,23 @@ include '../functions/Functions.php';
 
             </div>
         </div>
+        
     </div>
-      <!-- Confirmation Modal -->
-<div class="modal" id="confirmationModal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog">
+
+    <!-- Confirmation Modal -->
+<div class="modal confirmation-modal" id="confirmationModal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Are you sure you want to save these data?</h5>
-      </div>
       <div class="modal-body d-flex justify-content-end">
-        <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal" data-toggle="modal" data-target="#encode">No</button>
-        <button type="submit" class="btn btn-primary">Yes</button>
+        <h5 style="margin-top: 5px">Are you sure you want to save this data?</h5>
+        <button type="button" class="btn btn-no" data-dismiss="modal" data-toggle="modal" data-target="#encode">No</button>
+        <button type="submit" class="btn btn-yes">Yes</button>
       </div>
     </div>
   </div>
 </div>
+
+
 
 </form>
 
@@ -1053,4 +1057,3 @@ include '../functions/Functions.php';
         }
     })
 </script>
-<?php include('footer.php'); ?>
