@@ -1,5 +1,5 @@
 <?php
-require('C:\xampp\htdocs\fpdf185\fpdf.php');
+require('C:\xampp\htdocs\fpdf\fpdf.php');
 require('C:\xampp\htdocs\cudho\include\connection.php');
 
 class PDF extends FPDF{
@@ -32,8 +32,8 @@ class PDF extends FPDF{
 
     $this->Image('C:\xampp\htdocs\cudho\img\starosalogo.png', 260, 10, 20);
 
-    $col_widths = array(14, 75, 18, 35, 102, 75, 18);
-    $col_names = array('Tag','Househead Name', 'Gender', 'Monthly Income', 'Community/Association', 'Spouse Name', 'Status');
+    $col_widths = array(14, 75, 18, 35, 102, 53, 40);
+    $col_names = array('Tag','Househead Name', 'Gender', 'Monthly Income', 'Community/Association', 'Occupation', 'Status');
 
     $this->SetFont('Arial','B',9);
 
@@ -74,8 +74,10 @@ if (isset($_POST['startdate']) && isset($_POST['enddate']) && isset($_POST['addr
     $community = $_POST['community'];
     $startMonth = date('F', strtotime($sdate));
     $endMonth = date('F', strtotime($edate));
+    $startYear = date('Y', strtotime($sdate));
+    $endYear = date('Y', strtotime($edate));
 
-    $result = mysqli_query($connString, "SELECT id, househeadname, gender, monthly, samahan, spouse, s_gender FROM testreport WHERE birthdatesample BETWEEN '$sdate' AND '$edate' AND address LIKE '%$address%'") or die("database error:". mysqli_error($connString));
+    $result = mysqli_query($connString, "SELECT firstname, lastname, middlename, extension, community, tag, gender, occupation, monthIncome, tenurStatus FROM tbl_headinfo WHERE yearStay BETWEEN '$sdate' AND '$edate' AND barangay LIKE '%$address%'") or die("database error:". mysqli_error($connString));
 
     $data = array();
     while ($row = mysqli_fetch_assoc($result)) {
@@ -88,18 +90,27 @@ if (isset($_POST['startdate']) && isset($_POST['enddate']) && isset($_POST['addr
 
     $pdf->AliasNbPages();
     $pdf->SetFont('Arial','',7);
-    $col_widths = array(14, 75, 18, 35, 102, 75, 18);
+    $col_widths = array(14, 75, 18, 35, 102, 53, 40);
 
     foreach ($data as $row) {
-        $pdf->Cell($col_widths[0], 7, $row['id'], 1,0,'C');
-        $pdf->Cell($col_widths[1], 7, $row['househeadname'], 1,0,'C');
-        $pdf->Cell($col_widths[2], 7, $row['gender'], 1,0,'C');
-        $pdf->Cell($col_widths[3], 7, $row['monthly'], 1, 0, 'C');
-        $pdf->Cell($col_widths[4], 7, $row['samahan'], 1,0,'C');
-        $pdf->Cell($col_widths[5], 7, $row['spouse'], 1,0,'C');
-        $pdf->Cell($col_widths[6], 7, $row['s_gender'], 1,0,'C');
+        $fullname = $row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname']. ' ' . $row['extension'];
+        
+        if ($row['gender'] === 'Male') {
+            $fullname .= ' ' . $row['extension'];
+        } elseif ($row['gender'] === 'Female') {
+            $fullname .= ' ' . $row['middlename'];
+        }
+        
+        $pdf->Cell($col_widths[0], 7, $row['tag'], 1, 0, 'C');
+        $pdf->Cell($col_widths[1],   7, $fullname, 1, 0, 'C'); // Modified line
+        $pdf->Cell($col_widths[2], 7, $row['gender'], 1, 0, 'C');
+        $pdf->Cell($col_widths[3], 7, $row['monthIncome'], 1, 0, 'C');
+        $pdf->Cell($col_widths[4], 7, $row['community'], 1, 0, 'C');
+        $pdf->Cell($col_widths[5], 7, $row['occupation'], 1, 0, 'C');
+        $pdf->Cell($col_widths[6], 7, $row['tenurStatus'], 1, 0, 'C');
         $pdf->Ln();
     }
+    
 
     // Output the PDF content
     ob_start();
@@ -108,7 +119,7 @@ if (isset($_POST['startdate']) && isset($_POST['enddate']) && isset($_POST['addr
 
     // Send the PDF data as the response
     header('Content-Type: application/pdf');
-    header('Content-Disposition: inline; filename="' . $community . $startMonth .'-'. $endMonth .'"');
+    header('Content-Disposition: inline; filename="' . $community . $startMonth . $startYear .'-'. $endMonth . $endYear .'"');
     header('Content-Length: ' . strlen($pdfData));
     echo $pdfData;
 }

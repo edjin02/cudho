@@ -13,7 +13,6 @@ if (isset($_POST['submit'])) {
     $head_monthSalary = $_POST['head_monthSalary'];
     $head_birthDate = $_POST['head_birthDate'];
     $year_stay = $_POST['year_stay'];
-    $length_stay = $_POST['length_stay'];
     $relocated = $_POST['relocated'];
     $relocUnavailable = $_POST['relocUnavailable'];
     $head_civilStatus = $_POST['head_civilStatus'];
@@ -36,7 +35,6 @@ if (isset($_POST['submit'])) {
                 `monthIncome` = '$head_monthSalary',
                 `birthdate` = '$head_birthDate',
                 `yearStay` = '$year_stay',
-                `lengthStay` = '$length_stay',
                 `relocated` = '$relocated', 
                 `relocUnavailable` = '$relocUnavailable',
                 `civilStatus` = '$head_civilStatus'

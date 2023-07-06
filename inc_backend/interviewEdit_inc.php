@@ -4,13 +4,11 @@ require '../include/user_session.php'; // $user_id
 if (isset($_POST['submit'])) {
     $head_id = $_POST['head_id']; // hidden display  
     $res_id = $_POST['res_id']; // hidden display
-    $res_gender = $_POST['res_gender'];
     $res_relationship = $_POST['res_relationship'];
     $res_lastname = $_POST['res_lastName'];
     $res_givenname = $_POST['res_givenName'];
     $res_middlename = $_POST['res_middleName'];
-    $res_maidenname = $_POST['res_maidenName'];
-    $res_extension = $_POST['res_extension'];
+
     $int_lastname = $_POST['int_lastName'];
     $int_givenname = $_POST['int_givenName'];
     $int_middlename = $_POST['int_middleName'];
@@ -27,9 +25,6 @@ if (isset($_POST['submit'])) {
                 `res_Fname` = '$res_givenname',
                 `res_Mname` = '$res_middlename',
                 `res_Lname` = '$res_lastname',
-                `res_maiden` = '$res_maidenname',
-                `res_extension` = '$res_extension',
-                `gender` = '$res_gender',
                 `relationship` = '$res_relationship',
                 `int_Fname` = '$int_givenname',
                 `int_Mname` = '$int_middlename',

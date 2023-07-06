@@ -92,7 +92,7 @@
 
         <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="info" style="text-align: center; margin-left: 15px; padding: -10px;" >
+        <div class="info" >
         <a class="d-block" style="font-size: 20px;">
             <span id="currentDate"></span><br>
             <span id="currentTime"></span>

@@ -6,7 +6,6 @@
     include '../functions/scripts.php';
     include '../functions/displayTable.php'; //Minor Table Data
 
-    
     if (isset($_POST['id'])) {
         $_SESSION['selected_id'] = $_POST['id'];
         $head_id = $_POST['id'];
@@ -23,6 +22,97 @@
 
 require '../include/datamemberview_inc.php'; // data for memberview
 ?>
+
+<script src="../functions/memberview-drop.js"></script>
+
+<style>
+      
+      /* .card {
+        width: 100%;
+        height: 300px;
+        border: 1px solid #ccc;
+        text-align: center;
+        overflow-x: hidden;
+      }
+    
+      .card img {
+        max-width: 100%;
+        max-height: 200px;
+        margin-bottom: 10px;
+        cursor: pointer;
+      } */
+    
+      .preview-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+    
+      .preview-modal img {
+        max-width: 80%;
+        max-height: 80%;
+      }
+    /* 
+      #fileInput {
+        display: none;
+      } */
+      
+      .content {
+        height: 100%;
+        overflow-y: auto;
+        padding: 10px;
+      }
+      .content-wrapper {
+        position: relative; /* Add position relative to the container */
+      }
+    
+    </style>
+<script>
+  function handleButtonClick() {
+    var fileInput = document.getElementById('fileInput');
+    var headIdInput = document.getElementById('headIdInput');
+    var userIdInput = document.getElementById('userIdInput');
+    fileInput.click();
+
+    fileInput.addEventListener('change', function() {
+      var formData = new FormData();
+      var files = fileInput.files;
+      var headId = headIdInput.value;
+      var userId = userIdInput.value;
+
+      for (var i = 0; i < files.length; i++) {
+        formData.append('files[]', files[i]);
+      }
+
+      formData.append('head_id', headId);
+      formData.append('user_id', userId); // Append the user_id to the form data
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'upload.php', true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var response = xhr.responseText;
+          displayAlert(response);
+          // Refresh the page
+          location.reload();
+        }
+      };
+
+      xhr.send(formData);
+    });
+  }
+
+  function displayAlert(message) {
+    alert(message);
+  }
+</script>
 
 <script src="../functions/jQuerySQL.js"></script>
 
@@ -117,12 +207,13 @@ require '../include/datamemberview_inc.php'; // data for memberview
                         <div class="row">
                             <div class="col">
                                 <h8>Birthdate:</h8>
-                                <?php echo "<h8>" . $head_birthdate ."</h8>"; ?>
+                                <?php echo "<h8>" . $head_birthdatename ."</h8>"; ?>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <h8>Age:</h8>
+                                <?php echo "<h8>" . $head_age ."</h8>"; ?>
                             </div>
                         </div>
                         <div class="row">
@@ -152,7 +243,7 @@ require '../include/datamemberview_inc.php'; // data for memberview
                         <div class="row" style="margin-bottom: 20px;">
                             <div class="col">
                                 <h8>Membership:</h8>
-                                <?php echo "<h8>" . $head_membership ."</h8>"; ?>
+                                <?php echo "<h8>" . $head_pagIbig . " " . $head_sss . " " . $head_other . " " . "</h8>"; ?>
                             </div>
                         </div>
 
@@ -189,7 +280,7 @@ require '../include/datamemberview_inc.php'; // data for memberview
                         <div class="row">
                             <div class="col">
                                 <h8>Year of Stay:</h8>
-                                <?php echo "<h8>" . $head_yearStay ."</h8>"; ?>
+                                <?php echo "<h8>" . $head_yearStayname ."</h8>"; ?>
                             </div>
                         </div>
                         <div class="row" style="margin-bottom: 20px;">
@@ -252,12 +343,13 @@ require '../include/datamemberview_inc.php'; // data for memberview
                     <div class="row">
                         <div class="col">
                             <h8>Birthdate:</h8>
-                            <?php echo "<h8>" . $spouse_birthdate ."</h8>"; ?>
+                            <?php echo "<h8>" . $spouse_birthname ."</h8>"; ?>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <h8>Age:</h8>
+                            <?php echo "<h8>" . $spouse_age ."</h8>"; ?>
                         </div>
                     </div>
                     <div class="row">
@@ -287,7 +379,7 @@ require '../include/datamemberview_inc.php'; // data for memberview
                     <div class="row">
                         <div class="col">
                             <h8>Membership:</h8>
-                            <?php echo "<h8>" . $spouse_membership ."</h8>"; ?>
+                            <?php echo "<h8>" . $spouse_pagIbigName . " " . $spouse_sssName . " " . $spouse_otherName . " " . "</h8>"; ?>
                         </div>
                     </div>
                     </div>
@@ -300,7 +392,7 @@ require '../include/datamemberview_inc.php'; // data for memberview
                                 <h3 class="cheader-text">Working Children</h3>
                             </div>
                             <div class="col text-right">
-                            <button type="submit" class="btn btn-primary btn-sm custom-btn" >Add</button>
+                            <button  id="addWorkBtn" data-toggle='modal' data-target='#workModal' class="btn btn-primary btn-sm custom-btn" >Add</button>
                             </div> 
                         </div>
                     </div>
@@ -316,7 +408,7 @@ require '../include/datamemberview_inc.php'; // data for memberview
                             </thead>
                             <tbody>
                             <?php
-                                workDisplayTbl($head_id)
+                                workDisplayTbl($head_id) //functions/displayTable.php
                             ?>
                             </tbody>
                             </table>
@@ -365,7 +457,7 @@ require '../include/datamemberview_inc.php'; // data for memberview
                                 <h3 class="cheader-text">Senior Citizen / PWD</h3>
                             </div>
                             <div class="col text-right">
-                            <button type="submit" class="btn btn-primary btn-sm custom-btn" >Add</button>
+                            <button id='addSeniorBtn' id = "addSeniorBtn" data-toggle='modal' data-target='#seniorModal' class="btn btn-primary btn-sm custom-btn" >Add</button>
                             </div> 
                         </div>
                     </div>
@@ -374,12 +466,13 @@ require '../include/datamemberview_inc.php'; // data for memberview
                             <div class="card-body table-responsive p-0">
                             <table class="table table-hover text-nowrap" >
                             <thead style="background-color: #ffcc00;">
-                            
                             <th style="width: 80%">Full Name</th>
                             <th style="width: 20%">Status</th>
-                            
                             </thead>
                             <tbody>
+                            <?php
+                                seniorDisplayTbl($head_id);
+                            ?>
                             </tbody>
                             </table>
                             </div>
@@ -394,29 +487,85 @@ require '../include/datamemberview_inc.php'; // data for memberview
             </div>
 
             <div class="col-md-4">
-                <div class="card card-widget widget-user" style="height: 250px;">
-
-                    <div class="cheader-color">
-                        <div class="row">
-                            <div class="col">
-                                <h3 class="cheader-text">Picture </h3>
+            <div class="col">
+                    <div class="card" style="width: 100%; height: 300px; border: 1px solid #ccc; text-align: center; overflow-x: hidden;">
+                        <div class="card-header" style="background-color: maroon; display: flex; justify-content: flex-end;">
+                            <div style="margin-right: auto;">
+                                <span style="color: white; padding-right: 5px;font-size:15px">Images</span>
+                                <form id="uploadForm" method="POST" enctype="multipart/form-data">
+                                    <input id="headIdInput" style="display: none;" type="text" name="head_id" value = <?php echo $head_id?>>
+                                    <input id="userIdInput" style="display: none;" type="text" name="user_id" value = <?php echo $user_id?>>
+                                    <input type="file" id="fileInput" name="files[]" multiple style="display: none;">
+                                </form>
                             </div>
-
-                            <div class="col text-right">
-                            <button type="submit" class="btn btn-primary btn-sm custom-btn"  data-toggle="modal" data-target="#familyModal">Upload</button>
-                            </div> 
-
+                            <input type="button" value="Upload" style="background-color: maroon; color: white; padding: 5px; border: none; font-family: Arial; font-size: 15px;" onclick="handleButtonClick()">
                         </div>
-                    </div>
-                    <div class="card-footer" style ="padding-top: 10px;">
-                        <div class="card-body table-responsive" style="padding: 1px">
-                            <div class="card">
+                        <div class="card-body" style="overflow-y: auto;">
+                            <div class="col-12">
+                            <div class="scrollable" id="imagePreview">
+                            <?php
+                            include '../include/connect1.php';
+                            $query = "SELECT imagePath FROM tbl_image WHERE head_id = $head_id";
+                            $result = $con->query($query);
 
+                            if ($result) {
+                                // Check if there are rows in the result set
+                                if (mysqli_num_rows($result) > 0) {
+                                    // Iterate over each row and display the images
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        $filepath = $row['imagePath'];
+                                        echo '<div style="width: 100%; margin-bottom: 10px;">';
+                                        echo '<img src="' . $filepath . '" alt="Image" onclick="showPreview(\'' . $filepath . '\')" style="border: 1px solid black; max-width: 100%; max-height: 200px; cursor: pointer;">';
+                                        echo '</div>';
+                                        echo '<hr style="border-top: 3px solid black; margin: 5px;">';
+                                    }
+                                } else {
+                                    echo 'No images found.';
+                                }
+
+                                // Free the result set
+                                mysqli_free_result($result);
+                            } else {
+                                // Display the error message
+                                echo 'Error executing the query: ' . mysqli_error($con);
+                            }
+                            
+                            // Close the database connection
+                            mysqli_close($con);
+                            ?>
                             </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="preview-modal" id="previewModal">
+                    <img id="modalImage" alt="Preview">
+                </div>
+                <script>
+                    function showPreview(imageSrc) {
+                        var modal = document.getElementById('previewModal');
+                        var image = document.getElementById('modalImage');
+                        
+                        image.src = imageSrc;
+                        modal.style.display = 'flex';
+                    }
+                    
+                    function hidePreview() {
+                        var modal = document.getElementById('previewModal');
+                        modal.style.display = 'none';
+                    }
+                    
+                    document.addEventListener('click', function(event) {
+                        var modal = document.getElementById('previewModal');
+                        
+                        // Check if the click occurred outside the modal
+                        if (event.target === modal) {
+                        hidePreview();
+                        }
+                    });
+                </script>
 
                 <div class="card card-widget widget-user">
                     <div class="cheader-color">
@@ -529,6 +678,167 @@ require '../include/datamemberview_inc.php'; // data for memberview
 
 </div>      
 
+
+<div class="modal fade" id="seniorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="seniorLbl" class="modal-title">Seniors and PWDs Modal Detail</h5>
+            </div>
+
+            <form action="../inc_backend/seniorAddEdit_inc.php" method="POST">
+                <input style="display: none;" type="text" name="head_id" value = <?php echo $head_id?>>
+                <input style="display: none;" type="text" name="optionSenior" id="optionSenior">
+                <input style="display: none;" type="text" name="senior_id" id="senior_id">
+            <div class="modal-body">   
+                <div class="card" style="border: 2px solid maroon;">
+                <div class="card-body">
+                <div class = "row">
+
+                <div class="col-md-3 mb-3">
+                    <label for="senior_gender">Gender:</label>
+                    <div class="input-group">
+                        <select class="input-border form-control" name="senior_gender" id="senior_gender" required>
+                            <option value="MALE">MALE</option>
+                            <option value="FEMALE">FEMALE</option>
+                        </select>
+                    </div>
+                </div>       
+                <div class="col-md-3 mb-3">
+                <label for="senior_birthDate">Birthdate:</label>
+                <div class="input-group">
+                    <input type="date" class="input-border form-control" name="senior_birthDate" id="senior_birthDate"
+                     placeholder="BirthDate">
+                </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <input type="checkbox" value="checked" name="senior_Box" id="senior_Box" style="margin-bottom: 10px; margin-top: 6px;">
+                        <label for="senior_Box" style="margin-top: 6px;">Senior Citizen</label>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <input type="checkbox" value="checked" name="pwd_Box" id="pwd_Box" style="margin-bottom: 10px; margin-top: 6px;">
+                        <label for="pwd_Box" style="margin-top: 6px;">PWD</label>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                <label for="senior_lastName">LastName:</label>
+                <div class="input-group">
+                    <input type="text" class="input-border form-control" name="senior_lastName" id="senior_lastName"
+                    placeholder="Last Name">
+                </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                <label for="senior_givenName">Given Name:</label>
+                <div class="input-group">
+                    <input type="text" class="input-border form-control" name="senior_givenName" id="senior_givenName"
+                     placeholder="Given Name">
+                </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                <label for="senior_middleName">Middle Name:</label>
+                <div class="input-group">
+                    <input type="text" class="input-border form-control" name="senior_middleName" id="senior_middleName"
+                    placeholder="Middle Name">
+                </div>
+                </div>
+                <div class="col-md-3 mb-3" id="seniorMaidenNameCont">
+                    <label for="senior_maidenName">Maiden Name:</label>
+                    <div class="input-group">
+                        <input type="text" class="input-border form-control" name="senior_maidenName" id="senior_maidenName" placeholder="Maiden Name">
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3" id="seniorextensionCont">
+                    <label for="senior_extension">Extension:</label>
+                    <div class="input-group">
+                        <input type="text" class="input-border form-control" name="senior_extension" id="senior_extension" placeholder="Extension">
+                    </div>
+                </div>
+
+                </div>
+                </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button"  data-dismiss="modal" class="btn btn-warning mr-auto btn-sm" style="margin-left:10px;">Close</button>
+                <button type="submit" name="submit" class="btn btn-primary btn-sm" style="margin-right:10px;">Save</button>
+            </div>
+            </form>
+        
+        </div>
+    </div>
+</div>
+
+<!-- senior and pwd data -->
+<script>
+    var addSeniorBtn = document.getElementById("addSeniorBtn");
+    var optionSenior = document.getElementById("optionSenior");
+    var seniorLbl = document.getElementById("seniorLbl");
+
+    var senior_id = document.getElementById("senior_id");
+    var senior_lastname = document.getElementById("senior_lastName");
+    var senior_firstname = document.getElementById("senior_givenName");
+    var senior_middlename = document.getElementById("senior_middleName");
+    var senior_gender = document.getElementById("senior_gender");
+    var senior_birthdate = document.getElementById("senior_birthDate");
+    var senior_extension = document.getElementById("senior_extension");
+    var senior_maidenname = document.getElementById("senior_maidenName");
+    var senior_Box = document.getElementById("senior_Box");
+    var pwd_Box = document.getElementById("pwd_Box");
+    
+    addSeniorBtn.addEventListener("click", function() {
+        seniorLbl.innerHTML = "Add Seniors and PWDs";
+        optionSenior.value = "add";
+        senior_lastname.value = "";
+        senior_firstname.value = "";
+        senior_middlename.value = "";
+        senior_birthdate.value = "";
+        senior_extension.value = "";
+        senior_maidenname.value = "";
+        senior_Box.checked = false;
+        pwd_Box.checked = false;
+    });
+
+    var editSeniorBtns = document.querySelectorAll('tr.editSeniorBtn');
+    editSeniorBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        var minor_value = this.getAttribute('minor-value');
+        var head_value = this.getAttribute('head-value');
+        var tbl_value = this.getAttribute('tbl-value');
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '../inc_backend/ajaxTbl.php');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                seniorLbl.innerHTML = "Edit Seniors and PWDs";
+                optionSenior.value = "edit";
+
+                var seniorResp = JSON.parse(xhr.responseText);
+                senior_id.value = seniorResp.id;
+                senior_firstname.value = seniorResp.firstname;
+                senior_middlename.value = seniorResp.middlename;
+                senior_lastname.value = seniorResp.lastname;
+                senior_extension.value = seniorResp.extension;
+                senior_maidenname.value = seniorResp.maidenname;
+                senior_birthdate.value = seniorResp.birthdate;
+                senior_Box.checked = seniorResp.senior; // for checkbox
+                pwd_Box.checked = seniorResp.pwd;
+                senior_gender.value = seniorResp.gender;
+                $("#senior_gender").trigger("change");//to change children work gender
+            }
+        };
+        xhr.send('head_value=' + encodeURIComponent(head_value) + '&minor_value=' + encodeURIComponent(minor_value) + '&tbl_value=' + encodeURIComponent(tbl_value));
+    });
+});
+
+</script>
+
 <div class="modal fade" id="workModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -536,13 +846,43 @@ require '../include/datamemberview_inc.php'; // data for memberview
                 <h5 id="workLbl" class="modal-title">Work Children Detail</h5>
             </div>
 
-            <form action="../inc_backend/minorAddEdit_inc.php" method="POST">
+            <form action="../inc_backend/workAddEdit_inc.php" method="POST">
                 <input style="display: none;" type="text" name="head_id" value = <?php echo $head_id?>>
                 <input style="display: none;" type="text" name="optionWork" id="optionWork">
+                <input style="display: none;" type="text" name="work_id" id="work_id">
             <div class="modal-body">   
                 <div class="card" style="border: 2px solid maroon;">
                 <div class="card-body">
                 <div class = "row">
+
+                <div class="col-md-4 mb-3">
+                    <label for="work_gender">Gender:</label>
+                    <div class="input-group">
+                        <select class="input-border form-control" name="work_gender" id="work_gender" required>
+                            <option value="MALE">MALE</option>
+                            <option value="FEMALE">FEMALE</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-3">
+                <label for="work_birthDate">Birthdate:</label>
+                <div class="input-group">
+                    <input type="date" class="input-border form-control" name="work_birthDate" id="work_birthDate" required>
+                </div>
+                </div>
+            
+                <div class="col-md-4 mb-3">
+                    <label for="work_civilStatus">Civil Status:</label>
+                    <div class="input-group">
+                        <select class="input-border form-control" name="work_civilStatus" id="work_civilStatus" required>
+                            <option value="SINGLE">SINGLE</option>
+                            <option value="MARRIED">MARRIED</option>
+                            <option value="DIVORCED">DIVORCED</option>
+                            <option value="WIDOWED">WIDOWED</option>
+                        </select>
+                    </div>
+                </div>
 
                 <div class="col-md-3 mb-3">
                 <label for="work_lastName">LastName:</label>
@@ -551,23 +891,119 @@ require '../include/datamemberview_inc.php'; // data for memberview
                     placeholder="Last Name" required>
                 </div>
                 </div>
-            </div>
-            </div>
-            </div>
+                <div class="col-md-3 mb-3">
+                <label for="work_givenName">Given Name:</label>
+                <div class="input-group">
+                    <input type="text" class="input-border form-control" name="work_givenName" id="work_givenName"
+                     placeholder="Given Name" required>
+                </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                <label for="work_middleName">Middle Name:</label>
+                <div class="input-group">
+                    <input type="text" class="input-border form-control" name="work_middleName" id="work_middleName"
+                    placeholder="Middle Name">
+                </div>
+                </div>
+
+                <div class="col-md-3 mb-3" id="workMaidenNameCont">
+                    <label for="work_maidenName">Maiden Name:</label>
+                    <div class="input-group">
+                        <input type="text" class="input-border form-control" name="work_maidenName" id="work_maidenName" placeholder="Maiden Name">
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3" id="workextensionCont">
+                    <label for="work_extension">Extension:</label>
+                    <div class="input-group">
+                        <input type="text" class="input-border form-control" name="work_extension" id="work_extension" placeholder="Extension">
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                <label for="work_occupation">Occupation:</label>
+                <div class="input-group">
+                    <input type="text" class="input-border form-control" name="work_occupation" id="work_occupation"
+                    placeholder="Occupation" required>
+                </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                <label for="work_monthSalary">Monthly Salary:</label>
+                <div class="input-group">
+                    <input type="text" class="input-border form-control" name="work_monthSalary" id="work_monthSalary"
+                    placeholder="Monthly Salary">
+                </div>
+                </div>
+                
+                <div class="col-md-11" style="margin-left:20px;">
+                    <label>Membership in (Kasapi ng):</label>
+                </div>
+                
+                <div class="col-md-1 mb-3">
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <input type="checkbox" value="checked" name="work_pag-ibigBox" id="work_pag-ibigBox">
+                    <label for="work_pag-ibigBox" style="margin-top:6px;">Pag-IBIG/HDMF</label>
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <input type="checkbox" value="checked" name="work_sssBox" id="work_sssBox">
+                    <label for="work_sssBox" style="margin-top:6px;">SSS/GSIS</label>
+                </div>
+            
+                <div class="col-md-2 mb-3">
+                    <input type="checkbox" value="checked" name="work_othersBox" id="work_othersBox">
+                    <label for="work_othersBox" style="margin-top:6px;">Others</label>
+                </div>
+
+                </div>
+                </div>
+                </div>
+                
             </div>
             <div class="modal-footer">
                 <button type="button"  data-dismiss="modal" class="btn btn-warning mr-auto btn-sm" style="margin-left:10px;">Close</button>
                 <button type="submit" name="submit" class="btn btn-primary btn-sm" style="margin-right:10px;">Save</button>
             </div>
             </form>
+        
         </div>
     </div>
 </div>
 
 <!-- work children data js  -->
 <script>
+    var addWorkBtn = document.getElementById("addWorkBtn");
+
+    var optionWork = document.getElementById("optionWork");
+    var workLbl = document.getElementById("workLbl");
+    var work_id = document.getElementById("work_id");
     var work_lastName = document.getElementById("work_lastName");
+    var work_firstName = document.getElementById("work_givenName");
+    var work_middleName = document.getElementById("work_middleName");
+    var work_gender = document.getElementById("work_gender");
+    var work_birthdate = document.getElementById("work_birthDate");
+    var work_civilStatus = document.getElementById("work_civilStatus");
+    var work_occupation = document.getElementById("work_occupation");
+    var work_monthIncome = document.getElementById("work_monthSalary");
+    var work_extension = document.getElementById("work_extension");
+    var work_maidenname = document.getElementById("work_maidenName");
     
+    addWorkBtn.addEventListener("click", function() {
+        workLbl.innerHTML = "Add Work Children";
+        optionWork.value = "add";
+        work_lastName.value = "";
+        work_firstName.value = "";
+        work_middleName.value = "";
+        work_birthdate.value = "";
+        work_occupation.value = "";
+        work_monthIncome.value = "";
+        work_extension.value = "";
+        work_maidenname.value = "";
+    });
+
+
     var editWorkBtns = document.querySelectorAll('tr.editWorkBtn');
     editWorkBtns.forEach(function(btn) {
     btn.addEventListener('click', function() {
@@ -580,9 +1016,22 @@ require '../include/datamemberview_inc.php'; // data for memberview
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                var workResp = JSON.parse(xhr.responseText);
-                work_lastName.value = workResp.lastname;
+                workLbl.innerHTML = "Edit Work Children";
+                optionWork.value = "edit";
 
+                var workResp = JSON.parse(xhr.responseText);
+                work_id.value = workResp.id;
+                work_lastName.value = workResp.lastname;
+                work_firstName.value = workResp.firstname;
+                work_middleName.value = workResp.middlename;
+                work_birthdate.value = workResp.birthdate;
+                work_civilStatus.value = workResp.civilStatus;
+                work_occupation.value = workResp.occupation;
+                work_monthIncome.value = workResp.monthIncome;
+                work_extension.value = workResp.extension;
+                work_maidenname.value = workResp.maidenname;
+                work_gender.value = workResp.gender;
+                $("#work_gender").trigger("change");//to change children work gender
             }
         };
         xhr.send('head_value=' + encodeURIComponent(head_value) + '&minor_value=' + encodeURIComponent(minor_value) + '&tbl_value=' + encodeURIComponent(tbl_value));
@@ -732,9 +1181,49 @@ require '../include/datamemberview_inc.php'; // data for memberview
             <form action="../inc_backend/headEdit_inc.php" method="POST">
                 <input style="display: none;" type="text" name="head_id" value = <?php echo $head_id?>>
             <div class="modal-body">   
+                
                 <div class="card" style="border: 2px solid maroon;">
                 <div class="card-body">
                 <div class = "row">
+
+                <div class="col-md-4 mb-3">
+                    <label for="barangay-headmodal">Barangay (Bario):</label>
+                    <div class="input-group">
+                        <input type="text" name="barangay-headmodal" id="barangay-headmodal"
+                            class="form-control" onfocus="showAllSuggestionsheadModal()"
+                            oninput="showSuggestionsheadModal(this.value)" onkeydown="handleKeyheadModal(event)"
+                            onblur="changePlaceholderheadModal()" onkeyup="convertToUppercase(this)"
+                            placeholder="Barangay">
+                        <div id="suggestionBoxHeadModal" style='display:none'></div>
+                    </div>
+
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="comAss">Community Association:</label>
+                    <div class="input-group">
+                        <input type="text" name="community-headModal" id="community-headModal"
+                            class="form-control" onfocus="showAllSuggestionsCommunityheadModal()"
+                            oninput="showSuggestionsCommunityheadModal(this.value)"
+                            onkeydown="handleCommunityheadModalKeyDown(event)"
+                            onblur="changeheadCommunityPlaceholder()" onkeyup="convertToUppercase(this)"
+                            placeholder="Community Association">
+                        <div id="headcommunitySuggestionBox" style="display:none"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label for="basicHouse">Basic Housing Data:</label>
+                    <div class="input-group">
+                        <input type="text" name="basicheadModal" id="basicheadModal" class="form-control"
+                            onfocus="showAllSuggestionsHouseheadModal()"
+                            oninput="showSuggestionsHouseheadModal(this.value)"
+                            onkeydown="handleKeyHouseheadModal(event)"
+                            onblur="changePlaceholderHouseheadModal()" onkeyup="convertToUppercase(this)"
+                            placeholder="Basic Housing Data">
+                        <div id="suggestionBoxHouseheadModal" style='display:none'></div>
+                    </div>
+
+                </div>
 
                 <div class="col-md-2 mb-3">
                     <input type="checkbox" value="checked" name="structOwner" id="structOwner">
@@ -761,15 +1250,13 @@ require '../include/datamemberview_inc.php'; // data for memberview
                 <div class="col-md-4 mb-3">
                 <label for="head_birthDate">Birthdate:</label>
                 <div class="input-group">
-                    <input type="text" class="input-border form-control" name="head_birthDate" id="head_birthDate"
-                     placeholder="Birthdate" required>
+                    <input type="date" class="input-border form-control" name="head_birthDate" id="head_birthDate" required>
                 </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="head_civilStatus">Civil Status:</label>
                     <div class="input-group">
                         <select class="input-border form-control" name="head_civilStatus" id="head_civilStatus" required>
-                        <option value="<?= $head_civilStatus ?>"><?= $head_civilStatus ?></option>
                             <option value="SINGLE">SINGLE</option>
                             <option value="MARRIED">MARRIED</option>
                             <option value="DIVORCED">DIVORCED</option>
@@ -858,7 +1345,6 @@ require '../include/datamemberview_inc.php'; // data for memberview
                     <label for="type_structure">Type of Structure:</label>
                     <div class="input-group">
                         <select class="input-border form-control" name="type_structure" id="type_structure" required>
-                        <option value="<?= $head_structure ?>"><?= $head_structure ?></option>
                             <option value="CONCRETE">CONCRETE</option>
                             <option value="SEMI-CONCRETE">SEMI-CONCRETE</option>
                             <option value="LIGHT MATERIALS">LIGHT MATERIALS</option>
@@ -868,8 +1354,7 @@ require '../include/datamemberview_inc.php'; // data for memberview
                 <div class="col-md-4 mb-3">
                 <label for="year_stay">Year of Stay:</label>
                 <div class="input-group">
-                    <input type="text" class="input-border form-control" name="year_stay" id="year_stay"
-                    placeholder="Year of Stay" required>
+                    <input type="date" class="input-border form-control" name="year_stay" id="year_stay" required>
                 </div>
                 </div>
                 <div class="col-md-4 mb-3">
@@ -883,7 +1368,6 @@ require '../include/datamemberview_inc.php'; // data for memberview
                     <label for="relocUnavailable">If Relocation is Unavailable:</label>
                     <div class="input-group">
                         <select class="input-border form-control" name="relocUnavailable" id="relocUnavailable" required>
-                            <option value="<?= $head_relocUnavailable ?>"><?= $head_relocUnavailable ?></option>
                             <option value="FINANCIAL ASSISTANCE">FINANCIAL ASSISTANCE</option>
                             <option value="BALIK PROBISNYA PROGRAM">BALIK PROBINSYA PROGRAM</option>
                             <option value="UNDECIDED">UNDECIDED</option>
@@ -916,6 +1400,7 @@ require '../include/datamemberview_inc.php'; // data for memberview
     var headModal = document.getElementById("headModal");
     var editHeadBtn = document.getElementById("editHeadBtn");
 
+    var head_gender = document.getElementById("head_gender");
     var head_lastName = document.getElementById("head_lastName");
     var head_givenName = document.getElementById("head_givenName");
     var head_middleName = document.getElementById("head_middleName");
@@ -927,6 +1412,9 @@ require '../include/datamemberview_inc.php'; // data for memberview
     var head_yearstay = document.getElementById("year_stay");
     var head_lengthstay = document.getElementById("length_stay");
     var head_relocated = document.getElementById("relocated");
+    var head_structure = document.getElementById("type_structure");
+    var head_civilStatus = document.getElementById("head_civilStatus");
+    var head_relocUnavailable = document.getElementById("relocUnavailable");
 
     editHeadBtn.addEventListener("click", function() {
       head_lastName.value = "<?php echo $head_lastname; ?>";     
@@ -940,6 +1428,12 @@ require '../include/datamemberview_inc.php'; // data for memberview
       head_yearstay.value = "<?php echo $head_yearStay; ?>";
       head_lengthstay.value = "<?php echo $head_lengthStay; ?>";
       head_relocated.value = "<?php echo $head_relocated; ?>";
+      head_structure.value = "<?php echo $head_structure; ?>";
+      head_civilStatus.value = "<?php echo $head_civilStatus; ?>";
+      head_relocUnavailable.value = "<?php echo $head_relocUnavailable; ?>";
+      
+      head_gender.value = "<?php echo $head_gender; ?>";
+      $("#head_gender").trigger("change")
     });
 </script>
 
@@ -961,46 +1455,22 @@ require '../include/datamemberview_inc.php'; // data for memberview
                 <div class="col-md-12">
                 <label>Respondent:</label>
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label for="res_gender">Gender:</label>
-                    <div class="input-group">
-                        <select class="input-border form-control" name="res_gender" id="res_gender" required>
-                        <option value="<?= $respondent_gender ?>"><?= $respondent_gender ?></option>
-                            <option value="MALE">MALE</option>
-                            <option value="FEMALE">FEMALE</option>
-                        </select>
-                    </div>
-                </div>
 
-                <div class="col-md-6 mb-3">
-                    <label for="res_relationship">Relationsip to Household Head:</label>
-                    <div class="input-group">
-                        <select class="input-border form-control" name="res_relationship" id="res_relationship" required>
-                            <option value="<?= $respondent_relationship ?>"><?= $respondent_relationship ?></option>
-                            <option value="PERSON LISTED IN MASTERLIST">PERSON LISTED IN MASTERLIST</option>
-                            <option value="SPOUSE">SPOUSE</option>
-                            <option value="CHILD">CHILD</option>
-                            <option value="SIBLING">SIBLING</option>
-                            <option value="OTHERS">OTHERS</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                 <label for="res_lastName">LastName:</label>
                 <div class="input-group">
                     <input type="text" class="input-border form-control" name="res_lastName" id="res_lastName"
                     placeholder="Last Name" required>
                 </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                 <label for="res_givenName">Given Name:</label>
                 <div class="input-group">
                     <input type="text" class="input-border form-control" name="res_givenName" id="res_givenName"
                      placeholder="Given Name" required>
                 </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                 <label for="res_middleName">Middle Name:</label>
                 <div class="input-group">
                     <input type="text" class="input-border form-control" name="res_middleName" id="res_middleName"
@@ -1008,17 +1478,16 @@ require '../include/datamemberview_inc.php'; // data for memberview
                 </div>
                 </div>
 
-                <div class="col-md-3 mb-3" id="resMaidenNameCont">
-                    <label for="res_maidenName">Maiden Name:</label>
+                <div class="col-md-12 mb-3">
+                    <label for="res_relationship">Relationsip to Household Head:</label>
                     <div class="input-group">
-                        <input type="text" class="input-border form-control" name="res_maidenName" id="res_maidenName" placeholder="Maiden Name">
-                    </div>
-                </div>
-
-                <div class="col-md-3 mb-3" id="resextensionCont">
-                    <label for="res_extension">Extension:</label>
-                    <div class="input-group">
-                        <input type="text" class="input-border form-control" name="res_extension" id="res_extension" placeholder="Extension">
+                        <select class="input-border form-control" name="res_relationship" id="res_relationship" required>
+                            <option value="PERSON LISTED IN MASTERLIST">PERSON LISTED IN MASTERLIST</option>
+                            <option value="SPOUSE">SPOUSE</option>
+                            <option value="CHILD">CHILD</option>
+                            <option value="SIBLING">SIBLING</option>
+                            <option value="OTHERS">OTHERS</option>
+                        </select>
                     </div>
                 </div>
 
@@ -1086,10 +1555,9 @@ require '../include/datamemberview_inc.php'; // data for memberview
 
     var res_lastName = document.getElementById("res_lastName");
     var res_givenName = document.getElementById("res_givenName");
-    var res_middleName = document.getElementById("res_middleName");
-    var res_maidenName = document.getElementById("res_maidenName");
-    var res_extension = document.getElementById("res_extension");
-    
+    var res_middleName = document.getElementById("res_middleName"); 
+    var res_relationship = document.getElementById("res_relationship");
+
     var int_lastname = document.getElementById("int_lastName");
     var int_givenname = document.getElementById("int_givenName");
     var int_middlename = document.getElementById("int_middleName");
@@ -1101,8 +1569,8 @@ require '../include/datamemberview_inc.php'; // data for memberview
       res_lastName.value = "<?php echo $respondent_lastname; ?>";
       res_givenName.value = "<?php echo $respondent_firstname; ?>";
       res_middleName.value = "<?php echo $respondent_middlename; ?>";
-      res_maidenName.value = "<?php echo $respondent_maiden; ?>";  
-      res_extension.value = "<?php echo $respondent_extension; ?>";   
+      res_relationship.value = "<?php echo $respondent_relationship; ?>"; 
+      
       int_lastname.value = "<?php echo $interviewer_lastname; ?>";
       int_givenname.value = "<?php echo $interviewer_firstname; ?>";
       int_middlename.value = "<?php echo $interviewer_middlename; ?>";
@@ -1131,7 +1599,6 @@ require '../include/datamemberview_inc.php'; // data for memberview
                     <label for="spouse_gender">Gender:</label>
                     <div class="input-group">
                         <select class="input-border form-control" name="spouse_gender" id="spouse_gender" required>
-                        <option value="<?= $spouse_gender ?>"><?= $spouse_gender ?></option>
                             <option value="MALE">MALE</option>
                             <option value="FEMALE">FEMALE</option>
                         </select>
@@ -1149,7 +1616,6 @@ require '../include/datamemberview_inc.php'; // data for memberview
                     <label for="spouse_civilStatus">Civil Status:</label>
                     <div class="input-group">
                         <select class="input-border form-control" name="spouse_civilStatus" id="spouse_civilStatus" required>
-                        <option value="<?= $spouse_civilStatus ?>"><?= $spouse_civilStatus ?></option>
                             <option value="SINGLE">SINGLE</option>
                             <option value="MARRIED">MARRIED</option>
                             <option value="DIVORCED">DIVORCED</option>
@@ -1212,12 +1678,13 @@ require '../include/datamemberview_inc.php'; // data for memberview
                 <div class="col-md-11" style="margin-left:20px;">
                     <label>Membership in (Kasapi ng):</label>
                 </div>
-                
+
                 <div class="col-md-1 mb-3">
                 </div>
 
                 <div class="col-md-2 mb-3">
-                    <input type="checkbox" value="checked" name="spouse_pag-ibigBox" id="spouse_pag-ibigBox">
+                    <input type="checkbox" value="checked" name="spouse_pag-ibigBox"
+                        id="spouse_pag-ibigBox">
                     <label for="spouse_pag-ibigBox" style="margin-top:6px;">Pag-IBIG/HDMF</label>
                 </div>
 
@@ -1225,10 +1692,17 @@ require '../include/datamemberview_inc.php'; // data for memberview
                     <input type="checkbox" value="checked" name="spouse_sssBox" id="spouse_sssBox">
                     <label for="spouse_sssBox" style="margin-top:6px;">SSS/GSIS</label>
                 </div>
-            
+
                 <div class="col-md-2 mb-3">
-                    <input type="checkbox" value="checked" name="spouse_othersBox" id="spouse_othersBox">
+                    <input type="checkbox" value="checked" name="spouse_othersBox"
+                        id="spouse_othersBox">
                     <label for="spouse_othersBox" style="margin-top:6px;">Others</label>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="other-textbox-container">
+                        <input type="text" class="input-border form-control" name="spouse_other"
+                            id="spouse_other" placeholder="Other" style="display: none;">
+                    </div>
                 </div>
 
                 </div>
@@ -1250,6 +1724,7 @@ require '../include/datamemberview_inc.php'; // data for memberview
     var spouseModal = document.getElementById("spouseModal");
     var editSpouseBtn = document.getElementById("editSpouseBtn");
 
+    // var spouse_lastName = document.getElementById("spouse_gender");
     var spouse_lastName = document.getElementById("spouse_lastName");
     var spouse_givenName = document.getElementById("spouse_givenName");
     var spouse_middleName = document.getElementById("spouse_middleName");
@@ -1259,8 +1734,11 @@ require '../include/datamemberview_inc.php'; // data for memberview
     var spouse_maidenName = document.getElementById("spouse_maidenName");
     var spouse_extension = document.getElementById("spouse_extension");
     var spouse_birthDate = document.getElementById("spouse_birthDate");
+    var spouse_pagIbigBox = document.getElementById("spouse_pag-ibigBox");
+    var spouse_sssBox = document.getElementById("spouse_sssBox");
+    
 
-    editSpouseBtn.addEventListener("click", function() {
+    editSpouseBtn.addEventListener("click", function() {    
       spouse_lastName.value = "<?php echo $spouse_lastname; ?>";
       spouse_givenName.value = "<?php echo $spouse_firstname; ?>";
       spouse_middleName.value = "<?php echo $spouse_middlename; ?>";
@@ -1269,7 +1747,14 @@ require '../include/datamemberview_inc.php'; // data for memberview
       spouse_monthSalary.value = "<?php echo $spouse_monthIncome; ?>";
       spouse_maidenName.value = "<?php echo $spouse_maidenname; ?>";
       spouse_extension.value = "<?php echo $spouse_extension; ?>";
-      spouse_birthDate.value = "<?php echo $spouse_birthdate; ?>";          
+      spouse_birthDate.value = "<?php echo $spouse_birthdate; ?>";
+      spouse_civilStatus.value = "<?php echo $spouse_civilStatus; ?>";
+      spouse_pagIbigBox.checked = "<?php echo $spouse_pagIbig; ?>";
+      spouse_sssBox.checked = "<?php echo $spouse_sss; ?>";
+      spouse_othersBox.checked = "<?php echo $spouse_other; ?>";
+      
+      spouse_gender.value = "<?php echo $spouse_gender; ?>";
+      $("#spouse_gender").trigger("change")
     });
 
     
@@ -1347,12 +1832,17 @@ require '../include/datamemberview_inc.php'; // data for memberview
 <script>
     var editFacilityBtn = document.getElementById("editFacilityBtn");
     var electricity = document.getElementById("electricity");
+    var water = document.getElementById("water");
+    var toilet = document.getElementById("toilet");
+    var kitchen = document.getElementById("kitchen");
 
     editFacilityBtn.addEventListener("click", function() {
-        electricity.value = "NONE";
+        electricity.value = "<?php echo $electricity; ?>";
+        water.value = "<?php echo $water; ?>";
+        toilet.value = "<?php echo $toilet; ?>";
+        kitchen.value = "<?php echo $kitchen; ?>";
     });
 </script>
-
 
 <!-- for gender change -->
 <script> 
@@ -1369,6 +1859,7 @@ require '../include/datamemberview_inc.php'; // data for memberview
             $(extensionCont).hide();
         }
     }
+
     $("#head_gender").change(function() {
         var selectedGender = $(this).val();
         handleGenderChange(selectedGender, "#headMaidenNameCont", "#headextensionCont");
@@ -1384,12 +1875,25 @@ require '../include/datamemberview_inc.php'; // data for memberview
         handleGenderChange(selectedGender, "#resMaidenNameCont", "#resextensionCont");
     });
 
+    $("#work_gender").change(function() {
+        var selectedGender = $(this).val();
+        handleGenderChange(selectedGender, "#workMaidenNameCont", "#workextensionCont");
+    });
+
+    $("#senior_gender").change(function() {
+        var selectedGender = $(this).val();
+        handleGenderChange(selectedGender, "#seniorMaidenNameCont", "#seniorextensionCont");
+    });
+
     $("#head_gender").trigger("change");  // immediately change whether maiden or extension box
     $("#spouse_gender").trigger("change");  // immediately change whether maiden or extension box
     $("#res_gender").trigger("change");  // immediately change whether maiden or extension box
+    $("#work_gender").trigger("change");  // immediately change whether maiden or extension box
+    $("#senior_gender").trigger("change");  // immediately change whether maiden or extension box
 });
 
 </script>
+
 
 
 <?php include ('footer.php'); ?>

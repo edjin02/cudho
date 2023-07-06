@@ -1357,4 +1357,3 @@ function changePlaceholderWchildCivilStatusModal(index) {
   suggestionBox.style.display = 'none';
   document.getElementById(`Wchild_civilStatus_${index}`).placeholder = 'Civil Status';
 }
-

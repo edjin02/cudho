@@ -5,8 +5,8 @@ include '../include/connect1.php';
 if (isset($_POST['submit'])) {
     $head_id = $_POST['head_id']; // hidden display  
     $optionMinor = $_POST['optionMinor'];
-    $id = $_POST['minor_id'];
 
+    $id = $_POST['minor_id'];
     $gender = $_POST['minor_gender'];
     $birthdate = $_POST['minor_birthDate'];
     $lastname = $_POST['minor_lastName'];

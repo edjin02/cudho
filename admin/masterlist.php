@@ -1,5 +1,8 @@
-<?php   require '../include/user_session.php';
-        include ('nav-bar.php');  
+<?php   
+    require '../include/user_session.php'; // $user_id
+    include '../include/accessrightfunc.php'; //dashboard access
+    checkAccessRights($user_id, 'ar_report');
+    include 'nav-bar.php';
 ?>
 
 <!DOCTYPE html>
@@ -96,21 +99,49 @@
                     <div class="col-md-3">
                         <label for="preparedby">Original Masterlist Prepared By:</label>
                         <div class="form-group">
-                            <select name="preparedby" style="width: 100%; height: 36px;" aria-hidden="true">
-                                <option selected=""></option>
-                                <option data-select2-id="1">Cecilia Tobleron</option>
-                                <option data-select2-id="2">Humphrey Dumpy</option>
-                            </select>
+                        <?php
+                            include '../include/connect1.php';
+
+                            $query = "SELECT firstname, middlename, lastname FROM tbl_user WHERE id = $user_id";
+                            $result = $con->query($query);
+
+                            // Check if the query returned any rows
+                            if ($result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
+                                $firstname = $row['firstname'];
+                                $middlename = $row['middlename'];
+                                $lastname = $row['lastname'];
+
+                                $full_name = $firstname . ' ' . $middlename . ' ' . $lastname;
+
+                                // Display the input box with pre-filled value
+                                echo '<input type="text" name="preparedby" id="preparedby" value="' . $full_name . '" style="width: 100%; height: 36px;" readonly>';
+                            }
+                        ?>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <label for="organizedby">Organized By:</label>
                         <div class="form-group">
-                            <select name="organizedby" style="width: 100%; height: 36px;" aria-hidden="true">
-                                <option selected=""></option>
-                                <option data-select2-id="1">Cecilia Tobleron</option>
-                                <option data-select2-id="2">Humphrey Dumpy</option>
-                            </select>
+                        <?php
+                            include '../include/connect1.php';
+
+                            $query = "SELECT firstname, middlename, lastname FROM tbl_user WHERE id = $user_id";
+                            $result = $con->query($query);
+
+                            // Check if the query returned any rows
+                            if ($result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
+                                $firstname = $row['firstname'];
+                                $middlename = $row['middlename'];
+                                $lastname = $row['lastname'];
+
+                                $full_name = $firstname . ' ' . $middlename . ' ' . $lastname;
+
+                                // Display the input box with pre-filled value
+                                echo '<input type="text" name="organizedby" id="organizedby" value="' . $full_name . '" style="width: 100%; height: 36px;" readonly>';
+                            }
+                        ?>
                         </div>
                     </div>
                     <div class="col-md-3">
