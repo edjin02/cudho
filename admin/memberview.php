@@ -19,12 +19,10 @@
         exit;
     }
 
-
-require '../include/datamemberview_inc.php'; // data for memberview
+    require '../include/datamemberview_inc.php'; // data for memberview
 ?>
-
 <script src="../functions/memberview-drop.js"></script>
-
+<!-- picture ni jonathan -->
 <style>
       
       /* .card {
@@ -74,6 +72,7 @@ require '../include/datamemberview_inc.php'; // data for memberview
       }
     
     </style>
+
 <script>
   function handleButtonClick() {
     var fileInput = document.getElementById('fileInput');
@@ -243,7 +242,7 @@ require '../include/datamemberview_inc.php'; // data for memberview
                         <div class="row" style="margin-bottom: 20px;">
                             <div class="col">
                                 <h8>Membership:</h8>
-                                <?php echo "<h8>" . $head_pagIbig . " " . $head_sss . " " . $head_other . " " . "</h8>"; ?>
+                                <?php echo "<h8>" . $head_pagIbigName . " " . $head_sssName . " " . $head_otherName . " " . "</h8>"; ?>
                             </div>
                         </div>
 
@@ -263,17 +262,20 @@ require '../include/datamemberview_inc.php'; // data for memberview
                         <div class="row">
                             <div class="col">
                                 <h8>Children Working & Living w/ Parents:</h8>
+                                <?php echo "<h8>" . $work_count ."</h8>"; ?>
                             </div>
                         </div>
                         <div class="row" style="margin-bottom: 20px;">
                             <div class="col">
                                 <h8>Minor Children:</h8>
+                                <?php echo "<h8>" . $minor_count ."</h8>"; ?>
                             </div>
                         </div>
 
                         <div class="row" style="margin-bottom: 20px;">
                             <div class="col">
                                 <h8>Total Monthly Income:</h8>
+                                <?php echo "<h8>" . $formatted_total_monthIncome ."</h8>"; ?>
                             </div>
                         </div>
 
@@ -1181,10 +1183,11 @@ require '../include/datamemberview_inc.php'; // data for memberview
             <form action="../inc_backend/headEdit_inc.php" method="POST">
                 <input style="display: none;" type="text" name="head_id" value = <?php echo $head_id?>>
             <div class="modal-body">   
-                
                 <div class="card" style="border: 2px solid maroon;">
                 <div class="card-body">
                 <div class = "row">
+
+                <!-- memberview  -->
 
                 <div class="col-md-4 mb-3">
                     <label for="barangay-headmodal">Barangay (Bario):</label>
@@ -1225,17 +1228,24 @@ require '../include/datamemberview_inc.php'; // data for memberview
 
                 </div>
 
+
                 <div class="col-md-2 mb-3">
                     <input type="checkbox" value="checked" name="structOwner" id="structOwner">
                     <label for="structOwner" style="margin-top:6px;">Structure Owner</label>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <input type="text" class="input-border form-control" name="tenurStatus" id="tenurStatus"
-                    placeholder="Tenurial Status">
+                    <div class="input-group">
+                        <select class="input-border form-control" name="tenurStatus" id="tenurStatus" style="display:none" required>
+                            <option value="OWNER">OWNER</option>
+                            <option value="NEW OWNER">NEW OWNER</option>
+                            <option value="SHARER">SHARER</option>
+                            <option value="RENTER">RENTER</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="col-md-6 mb-3">
                     <input type="text" class="input-border form-control" name="origOwner" id="origOwner"
-                    placeholder="Name in Original Masterlist">
+                        placeholder="Name in Original Masterlist" style="display:none">
                 </div>
                 
                 <div class="col-md-4 mb-3">
@@ -1322,7 +1332,8 @@ require '../include/datamemberview_inc.php'; // data for memberview
                 </div>
 
                 <div class="col-md-2 mb-3">
-                    <input type="checkbox" value="checked" name="head_pag-ibigBox" id="head_pag-ibigBox">
+                    <input type="checkbox" value="checked" name="head_pag-ibigBox"
+                        id="head_pag-ibigBox">
                     <label for="head_pag-ibigBox" style="margin-top:6px;">Pag-IBIG/HDMF</label>
                 </div>
 
@@ -1330,11 +1341,20 @@ require '../include/datamemberview_inc.php'; // data for memberview
                     <input type="checkbox" value="checked" name="head_sssBox" id="head_sssBox">
                     <label for="head_sssBox" style="margin-top:6px;">SSS/GSIS</label>
                 </div>
-            
+
                 <div class="col-md-2 mb-3">
-                    <input type="checkbox" value="checked" name="head_othersBox" id="head_othersBox">
-                    <label for="head_othersBox" style="margin-top:6px;">Others</label>
+                    <input type="checkbox" value="checked" name="head_otherCheck"
+                        id="head_otherCheck">
+                    <label for="head_otherCheck" style="margin-top:6px;">Others</label>
                 </div>
+                <div class="col-md-4 mb-3">
+                    <div class="other-textbox-container">
+                        <input type="text" class="input-border form-control" name="head_other"
+                            id="head_other" placeholder="Other" style="display: none;">
+                    </div>
+                </div>
+
+                
 
                 <div class="col-md-12">
                 <div class="card" style="border: 1px solid maroon;">
@@ -1397,7 +1417,6 @@ require '../include/datamemberview_inc.php'; // data for memberview
 
 <!-- head data js  -->
 <script>
-    var headModal = document.getElementById("headModal");
     var editHeadBtn = document.getElementById("editHeadBtn");
 
     var head_gender = document.getElementById("head_gender");
@@ -1415,8 +1434,36 @@ require '../include/datamemberview_inc.php'; // data for memberview
     var head_structure = document.getElementById("type_structure");
     var head_civilStatus = document.getElementById("head_civilStatus");
     var head_relocUnavailable = document.getElementById("relocUnavailable");
+    var head_pagIbigBox = document.getElementById("head_pag-ibigBox");
+    var head_sssBox = document.getElementById("head_sssBox");
+    var head_otherCheck = document.getElementById("head_otherCheck");
+    var head_other = document.getElementById("head_other");
+
+    var structcheckbox = document.getElementById("structOwner");
+    var tenurStatusInput = document.getElementById("tenurStatus");
+    var origOwnerInput = document.getElementById("origOwner");
+
+    structcheckbox.addEventListener("change", function () {
+        if (this.checked) {
+            tenurStatusInput.style.display = "none";
+            origOwnerInput.style.display = "none";
+        } else {
+            tenurStatusInput.style.display = "block";
+            origOwnerInput.style.display = "block";
+        }
+    });
+
+    head_otherCheck.addEventListener("click", function() {  
+        if (head_otherCheck.checked) {
+        head_other.style.display = "block";
+        } else {
+            head_other.style.display = "none";
+        }
+    });
 
     editHeadBtn.addEventListener("click", function() {
+      head_gender.value = "<?php echo $head_gender; ?>";
+      $("#head_gender").trigger("change")
       head_lastName.value = "<?php echo $head_lastname; ?>";     
       head_givenName.value = "<?php echo $head_firstname; ?>";
       head_middleName.value = "<?php echo $head_middlename; ?>";
@@ -1431,9 +1478,17 @@ require '../include/datamemberview_inc.php'; // data for memberview
       head_structure.value = "<?php echo $head_structure; ?>";
       head_civilStatus.value = "<?php echo $head_civilStatus; ?>";
       head_relocUnavailable.value = "<?php echo $head_relocUnavailable; ?>";
+      head_pagIbigBox.checked = "<?php echo $head_pagIbig; ?>";
+      head_sssBox.checked = "<?php echo $head_sss; ?>";
       
-      head_gender.value = "<?php echo $head_gender; ?>";
-      $("#head_gender").trigger("change")
+      head_other.value = "<?php echo $head_otherName; ?>";
+      head_otherCheck.checked = "<?php echo $head_otherCheck; ?>";
+      head_otherCheck.dispatchEvent(new Event("click")); // to trigger it
+      
+      tenurStatusInput.value = "<?php echo $head_tenurStatus; ?>";
+      origOwnerInput.value = "<?php echo $head_origOwner; ?>";
+      structcheckbox.checked = "<?php echo $head_tenurCheck; ?>";
+      structcheckbox.dispatchEvent(new Event("change")); // to trigger it
     });
 </script>
 
@@ -1694,9 +1749,9 @@ require '../include/datamemberview_inc.php'; // data for memberview
                 </div>
 
                 <div class="col-md-2 mb-3">
-                    <input type="checkbox" value="checked" name="spouse_othersBox"
-                        id="spouse_othersBox">
-                    <label for="spouse_othersBox" style="margin-top:6px;">Others</label>
+                    <input type="checkbox" value="checked" name="spouse_otherCheck"
+                        id="spouse_otherCheck">
+                    <label for="spouse_otherCheck" style="margin-top:6px;">Others</label>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="other-textbox-container">
@@ -1736,9 +1791,20 @@ require '../include/datamemberview_inc.php'; // data for memberview
     var spouse_birthDate = document.getElementById("spouse_birthDate");
     var spouse_pagIbigBox = document.getElementById("spouse_pag-ibigBox");
     var spouse_sssBox = document.getElementById("spouse_sssBox");
+    var spouse_otherCheck = document.getElementById("spouse_otherCheck");
+    var spouse_other = document.getElementById("spouse_other");
     
+    spouse_otherCheck.addEventListener("click", function() {  
+        if (spouse_otherCheck.checked) {
+        spouse_other.style.display = "block";
+        } else {
+            spouse_other.style.display = "none";
+        }
+    });
 
-    editSpouseBtn.addEventListener("click", function() {    
+    editSpouseBtn.addEventListener("click", function() {  
+      spouse_gender.value = "<?php echo $spouse_gender; ?>";
+      $("#spouse_gender").trigger("change")    
       spouse_lastName.value = "<?php echo $spouse_lastname; ?>";
       spouse_givenName.value = "<?php echo $spouse_firstname; ?>";
       spouse_middleName.value = "<?php echo $spouse_middlename; ?>";
@@ -1751,10 +1817,10 @@ require '../include/datamemberview_inc.php'; // data for memberview
       spouse_civilStatus.value = "<?php echo $spouse_civilStatus; ?>";
       spouse_pagIbigBox.checked = "<?php echo $spouse_pagIbig; ?>";
       spouse_sssBox.checked = "<?php echo $spouse_sss; ?>";
-      spouse_othersBox.checked = "<?php echo $spouse_other; ?>";
       
-      spouse_gender.value = "<?php echo $spouse_gender; ?>";
-      $("#spouse_gender").trigger("change")
+      spouse_other.value = "<?php echo $spouse_otherName; ?>";
+      spouse_otherCheck.checked = "<?php echo $spouse_otherCheck; ?>";
+      spouse_otherCheck.dispatchEvent(new Event("click")); // to trigger it
     });
 
     

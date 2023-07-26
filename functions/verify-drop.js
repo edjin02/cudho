@@ -1,126 +1,21 @@
-// Sample suggestions
-// const suggestions = ['APLAYA', 'BALIBAGO', 'CAINGIN', 'DILA', 'DITA', 'DON JOSE', 'IBABA', 'KANLURAN', 'LABAS', 'MACABLING', 'MALITLIT', 'MALUSAK', 'MARKET AREA', 'POOC', 'PULONG SANTA CRUZ', 'SANTO DOMINGO', 'SINALHAN', 'TAGAPO'];
-// let selectedIndex = -1;
-// let suggestionBoxVisible = false;
-
-// function showAllSuggestions() {
-//     showSuggestions('');
-// }
-
-// function showSuggestions(input) {
-//     const suggestionBox = document.getElementById('suggestionBox');
-//     suggestionBox.innerHTML = '';
-
-//     if (input.length === 0) {
-//         suggestionBox.style.display = 'block'; // Show suggestion box
-//         suggestionBoxVisible = true;
-//         suggestions.forEach((suggestion, index) => {
-//             const suggestionElement = createSuggestionElement(suggestion, index);
-//             suggestionBox.appendChild(suggestionElement);
-//         });
-
-//         // Set the first suggestion as placeholder
-//         if (suggestions.length > 0) {
-//             document.getElementById('barangay-select').placeholder = suggestions[0];
-//         }
-//     } else {
-//         const filteredSuggestions = suggestions.filter(suggestion =>
-//             suggestion.toLowerCase().startsWith(input.toLowerCase())
-//         );
-
-//         if (filteredSuggestions.length === 0) {
-//             suggestionBox.style.display = 'none';
-//             suggestionBoxVisible = false;
-//         } else {
-//             suggestionBox.style.display = 'block';
-//             suggestionBoxVisible = true;
-//             filteredSuggestions.forEach((suggestion, index) => {
-//                 const suggestionElement = createSuggestionElement(suggestion, index);
-//                 suggestionBox.appendChild(suggestionElement);
-//             });
-
-//             // Set the first filtered suggestion as placeholder
-//             if (filteredSuggestions.length > 0) {
-//                 document.getElementById('barangay-select').placeholder = filteredSuggestions[0];
-//             }
-//         }
-//     }
-
-//     // Always hover over the first suggestion
-//     selectedIndex = 0;
-//     toggleSelectedSuggestion();
-// }
-
-// function createSuggestionElement(suggestion, index) {
-//     const suggestionElement = document.createElement('div');
-//     suggestionElement.className = 'suggestion';
-//     suggestionElement.textContent = suggestion;
-//     suggestionElement.onclick = () => {
-//         document.getElementById('barangay-select').value = suggestion;
-//         suggestionBox.style.display = 'none';
-//         suggestionBoxVisible = false;
-//     };
-//     suggestionElement.onmouseover = () => {
-//         selectedIndex = index;
-//         toggleSelectedSuggestion();
-//     };
-//     return suggestionElement;
-// }
-
-// function toggleSelectedSuggestion() {
-//     const suggestionBox = document.getElementById('suggestionBox');
-//     const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
-//     Array.from(suggestionElements).forEach((suggestionElement, index) => {
-//         suggestionElement.classList.toggle('selected', index === selectedIndex);
-//     });
-
-//     // Update the placeholder with the selected suggestion
-//     const selectedSuggestion = suggestionElements[selectedIndex];
-//     if (selectedSuggestion) {
-//         document.getElementById('barangay-select').placeholder = selectedSuggestion.textContent;
-//     }
-// }
-
-// function handleKeyDown(event) {
-//     const suggestionBox = document.getElementById('suggestionBox');
-//     const suggestionElements = suggestionBox.getElementsByClassName('suggestion');
-
-//     if (event.key === 'ArrowDown') {
-//         event.preventDefault();
-//         selectedIndex = Math.min(selectedIndex + 1, suggestionElements.length - 1);
-//     } else if (event.key === 'ArrowUp') {
-//         event.preventDefault();
-//         selectedIndex = Math.max(selectedIndex - 1, -1);
-//     } else if (event.key === 'Tab' && selectedIndex >= 0) {
-//         event.preventDefault();
-//         const selectedSuggestion = suggestionElements[selectedIndex];
-//         document.getElementById('barangay-select').value = selectedSuggestion.textContent;
-//         suggestionBox.style.display = 'none';
-//         suggestionBoxVisible = false;
-//         selectedIndex = -1;
-//         return;
-//     } else if (event.key === 'Enter' && selectedIndex >= 0) {
-//         event.preventDefault();
-//         const selectedSuggestion = suggestionElements[selectedIndex];
-//         document.getElementById('barangay-select').value = selectedSuggestion.textContent;
-//         suggestionBox.style.display = 'none';
-//         suggestionBoxVisible = false;
-//         selectedIndex = -1;
-//         return;
-//     }
-
-//     toggleSelectedSuggestion();
-
-// }
-
-// function changePlaceholder() {
-//     document.getElementById('barangay-select').placeholder = 'Barangay';
-// }
-
-
 //original copy
 // barangay filter droplist
-const suggestions = ['APLAYA', 'BALIBAGO', 'CAINGIN', 'DILA', 'DITA', 'DON JOSE', 'IBABA', 'KANLURAN', 'LABAS', 'MACABLING', 'MALITLIT', 'MALUSAK', 'MARKET AREA', 'POOC', 'PULONG SANTA CRUZ', 'SANTO DOMINGO', 'SINALHAN', 'TAGAPO'];
+const suggestions = 
+['APLAYA', 
+'BALIBAGO', 
+'CAINGIN', 
+'DILA', 
+'DITA', 
+'IBABA', 
+'LABAS', 
+'MACABLING', 
+'MALITLIT', 
+'MARKET AREA', 
+'POOC', 
+'PULONG_SANTA_CRUZ', 
+'SINALHAN', 
+'SANTO_DOMINGO', 
+'TAGAPO'];
 let selectedIndex = -1;
 let suggestionBoxVisible = false;
 
@@ -263,22 +158,21 @@ function showfilterCommunitySuggestions(input) {
   suggestionBox.innerHTML = '';
 
   const suggestions = [
-    'COMMUNITY1',
-    'COMMUNITY2',
-    'COMMUNITY3',
-    'COMMUNITY4',
-    'COMMUNITY5',
-    'COMMUNITY6',
-    'COMMUNITY7',
-    'COMMUNITY8',
-    'COMMUNITY9',
-    'COMMUNITY10',
-    'COMMUNITY11',
-    'COMMUNITY12',
-    'COMMUNITY13',
-    'COMMUNITY14',
-    'COMMUNITY15',
-    'COMMUNITY16'
+    'APLAYA TABING ILOG', 'LUPANG ITIM',
+    'BAGONG UMAGA HOA', 'DOCE PARES', 'IN UNITY WE STAND', 'KASIKAP', 'SAMAHANG CHICOHAN', 'PATIONG BATO', 'GARCIA`S AND PEDROSO COMPOUND',
+    'DAANG NIA CAINGIN', 'ORMOC', 'PULONG BUKID', 'TAGUMPAY AT PAG-ASA', 'SAMAHANG MARALITA P-4',
+    'BUROL PUBLIC CEMETERY',
+    'NAGKAKAISANG MARALITA NG CONSOLE', 'SAMAHANG ACACIA', 'BALAGBAG', 'KAPATIRANG SAMAHANG KAPUSPALAD', 'HAPPYLABD HOA(FORMERLY BUROK BUROK)', 'TABING-ILOG, TABING-BUKID', 'C-4 AGUILAR COMPOUND', 'SITIO 14-MANGGAHAN',
+    'BUKLOD IBABA',
+    'SITIO MASIIT',
+    'JORDAN 1', 'JORDAN 2', ' NAGKAKAISANG MAMAMAYAN', 'IRAQ 1', ' IRAQ 2', 'SITIO PUTING TULAY', 'SAMAHANG NAGKAKAISA NG NIA ROAD', 'SITIO IRAN',
+    'DRUMAN II', 'PUROK 5 & 6', 'PUROK 5', 'SITIO HEMEDEZ', 'PH 1 BLK 25 KAPATIRAN SAN LORENZO', 'GOOD SAMARITAN/EMIL`S COMPOUND',
+    'UNITED COMMUNITY ASSOCIATION(FORMERLY ST.CLAIRE)',
+    'SAMAHANG MAGKAKAPITBAHAY', 'CAPT.PERLAS ST.RIVERSIDE',
+    'CORAL NA BATO I', 'CORAL NA BATO II', 'SITIO ANI','SITIO 500', ' SAMAHANG TABING BAYBAY ILOG(SBI)', 'SAMAHANG TABING ILOG', 'ROAD SIDE(NEW HORIZONVILLE)', 'SITIO ARATAN', 'SITIO DAPDAPAN',
+    'KABADA', 'NEAR DIAZ COURT', 'MAPALAD/NEAR BARANGAY HALL',
+    'SITIO CAWAD', 'PAMANA', 'BROOKLAND',
+    'BISIG COMMUNITY ASSOCIATION', 'SAMA NA MASA','DAANG NIA'
   ];
 
   const barangayValue = document.getElementById('barangay-select').value;
@@ -286,87 +180,35 @@ function showfilterCommunitySuggestions(input) {
   if (input.length === 0) {
     suggestionBox.style.display = 'block'; // Show suggestion box
     suggestionBoxVisible = true;
-
-    // SELECTION BASED ON INPUT IN BARANGAY-SELECT
-    let filteredSuggestions;
-    if (barangayValue === 'APLAYA') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY1' || suggestion === 'COMMUNITY2'
-      );
-    } else if (barangayValue === 'BALIBAGO') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY3' || suggestion === 'COMMUNITY4'
-      );
-    } else if (barangayValue === 'CAINGIN') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY5' || suggestion === 'COMMUNITY6'
-      );
-    } else if (barangayValue === 'DILA') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY7' || suggestion === 'COMMUNITY8'
-      );
-    } else if (barangayValue === 'DITA') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY9' || suggestion === 'COMMUNITY10'
-      );
-    } else if (barangayValue === 'DON JOSE') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY11'
-      );
-    } else if (barangayValue === 'IBABA') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY12'
-      );
-    } else if (barangayValue === 'KANLURAN') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY13'
-      );
-    } else if (barangayValue === 'LABAS') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY14'
-      );
-    } else if (barangayValue === 'MACABLING') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY15'
-      );
-    } else if (barangayValue === 'MALITLIT') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY1'
-      );
-    } else if (barangayValue === 'MALUSAK') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY3'
-      );
-    } else if (barangayValue === 'MARKET AREA') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY13'
-      );
-    } else if (barangayValue === 'POOC') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY5'
-      );
-    } else if (barangayValue === 'PULONG SANTA CRUZ') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY8'
-      );
-    } else if (barangayValue === 'SINALHAN') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY3'
-      );
-    } else if (barangayValue === 'TAGAPO') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY10'
-      );
-    }  
-    else {
-      filteredSuggestions = suggestions;
-    }
-
+  
+    // Create a mapping of barangay values to their corresponding community values
+    const barangayToCommunityMap = {
+      APLAYA: ['APLAYA TABING ILOG', 'LUPANG ITIM'],
+      BALIBAGO: ['BAGONG UMAGA HOA', 'DOCE PARES', 'IN UNITY WE STAND', 'KASIKAP', 'SAMAHANG CHICOHAN', 'PATIONG BATO', 'GARCIA`S AND PEDROSO COMPOUND'],
+      CAINGIN: ['DAANG NIA CAINGIN', 'ORMOC', 'PULONG BUKID', 'TAGUMPAY AT PAG-ASA', 'SAMAHANG MARALITA P-4'],
+      DILA: ['BUROL PUBLIC CEMETERY'],
+      DITA: ['NAGKAKAISANG MARALITA NG CONSOLE', 'SAMAHANG ACACIA', 'BALAGBAG', 'KAPATIRANG SAMAHANG KAPUSPALAD', 'HAPPYLABD HOA(FORMERLY BUROK BUROK)', 'TABING-ILOG, TABING-BUKID', 'C-4 AGUILAR COMPOUND', 'SITIO 14-MANGGAHAN'],
+      IBABA: ['BUKLOD IBABA'],
+      LABAS: ['SITIO MASIIT'],
+      MACABLING: ['JORDAN 1', 'JORDAN 2', ' NAGKAKAISANG MAMAMAYAN', 'IRAQ 1', ' IRAQ 2', 'SITIO PUTING TULAY', 'SAMAHANG NAGKAKAISA NG NIA ROAD', 'SITIO IRAN'],
+      MALITLIT: ['DRUMAN II', 'PUROK 5 & 6', 'PUROK 5', 'SITIO HEMEDEZ', 'PH 1 BLK 25 KAPATIRAN SAN LORENZO', 'GOOD SAMARITAN/EMIL`S COMPOUND'],
+      MARKET_AREA: ['UNITED COMMUNITY ASSOCIATION(FORMERLY ST.CLAIRE)'],
+      POOC: ['SAMAHANG MAGKAKAPITBAHAY', 'CAPT.PERLAS ST.RIVERSIDE'],
+      PULONG_SANTA_CRUZ: ['CORAL NA BATO I', 'CORAL NA BATO II', 'SITIO ANI','SITIO 500', ' SAMAHANG TABING BAYBAY ILOG(SBI)', 'SAMAHANG TABING ILOG', 'ROAD SIDE(NEW HORIZONVILLE)', 'SITIO ARATAN', 'SITIO DAPDAPAN'],
+      SINALHAN: ['KABADA', 'NEAR DIAZ COURT', 'MAPALAD/NEAR BARANGAY HALL'],
+      SANTO_DOMINGO: ['SITIO CAWAD', 'PAMANA', 'BROOKLAND'],
+      TAGAPO: ['BISIG COMMUNITY ASSOCIATION', 'SAMA NA MASA','DAANG NIA'],
+    };
+  
+    // Get the filtered suggestions based on the barangay value
+    let filteredSuggestions = barangayToCommunityMap[barangayValue] || suggestions;
+  
     filteredSuggestions.forEach((suggestion, index) => {
       const suggestionElement = createSuggestionElementCommunity(suggestion, index);
       suggestionBox.appendChild(suggestionElement);
     });
-  } else {
+  }
+   else {
     const filteredSuggestions = suggestions.filter((suggestion) =>
       suggestion.toLowerCase().startsWith(input.toLowerCase())
     );
@@ -762,22 +604,21 @@ function showSuggestionsCommunityModal(input) {
   suggestionBox.innerHTML = '';
 
   const suggestions = [
-    'COMMUNITY1',
-    'COMMUNITY2',
-    'COMMUNITY3',
-    'COMMUNITY4',
-    'COMMUNITY5',
-    'COMMUNITY6',
-    'COMMUNITY7',
-    'COMMUNITY8',
-    'COMMUNITY9',
-    'COMMUNITY10',
-    'COMMUNITY11',
-    'COMMUNITY12',
-    'COMMUNITY13',
-    'COMMUNITY14',
-    'COMMUNITY15',
-    'COMMUNITY16'
+    'APLAYA TABING ILOG', 'LUPANG ITIM',
+    'BAGONG UMAGA HOA', 'DOCE PARES', 'IN UNITY WE STAND', 'KASIKAP', 'SAMAHANG CHICOHAN', 'PATIONG BATO', 'GARCIA`S AND PEDROSO COMPOUND',
+    'DAANG NIA CAINGIN', 'ORMOC', 'PULONG BUKID', 'TAGUMPAY AT PAG-ASA', 'SAMAHANG MARALITA P-4',
+    'BUROL PUBLIC CEMETERY',
+    'NAGKAKAISANG MARALITA NG CONSOLE', 'SAMAHANG ACACIA', 'BALAGBAG', 'KAPATIRANG SAMAHANG KAPUSPALAD', 'HAPPYLABD HOA(FORMERLY BUROK BUROK)', 'TABING-ILOG, TABING-BUKID', 'C-4 AGUILAR COMPOUND', 'SITIO 14-MANGGAHAN',
+    'BUKLOD IBABA',
+    'SITIO MASIIT',
+    'JORDAN 1', 'JORDAN 2', ' NAGKAKAISANG MAMAMAYAN', 'IRAQ 1', ' IRAQ 2', 'SITIO PUTING TULAY', 'SAMAHANG NAGKAKAISA NG NIA ROAD', 'SITIO IRAN',
+    'DRUMAN II', 'PUROK 5 & 6', 'PUROK 5', 'SITIO HEMEDEZ', 'PH 1 BLK 25 KAPATIRAN SAN LORENZO', 'GOOD SAMARITAN/EMIL`S COMPOUND',
+    'UNITED COMMUNITY ASSOCIATION(FORMERLY ST.CLAIRE)',
+    'SAMAHANG MAGKAKAPITBAHAY', 'CAPT.PERLAS ST.RIVERSIDE',
+    'CORAL NA BATO I', 'CORAL NA BATO II', 'SITIO ANI','SITIO 500', ' SAMAHANG TABING BAYBAY ILOG(SBI)', 'SAMAHANG TABING ILOG', 'ROAD SIDE(NEW HORIZONVILLE)', 'SITIO ARATAN', 'SITIO DAPDAPAN',
+    'KABADA', 'NEAR DIAZ COURT', 'MAPALAD/NEAR BARANGAY HALL',
+    'SITIO CAWAD', 'PAMANA', 'BROOKLAND',
+    'BISIG COMMUNITY ASSOCIATION', 'SAMA NA MASA','DAANG NIA'
   ];
 
 
@@ -787,81 +628,28 @@ function showSuggestionsCommunityModal(input) {
     suggestionBox.style.display = 'block'; // Show suggestion box
     suggestionBoxVisible = true;
 
-    //SELECTION BASED ON INPUT IN BARANGAY-SELECT-MODAL
-    let filteredSuggestions;
-    if (barangayValue === 'APLAYA') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY1' || suggestion === 'COMMUNITY2'
-      );
-    } else if (barangayValue === 'BALIBAGO') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY3' || suggestion === 'COMMUNITY4'
-      );
-    } else if (barangayValue === 'CAINGIN') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY5' || suggestion === 'COMMUNITY6'
-      );
-    } else if (barangayValue === 'DILA') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY7' || suggestion === 'COMMUNITY8'
-      );
-    } else if (barangayValue === 'DITA') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY9' || suggestion === 'COMMUNITY10'
-      );
-    } else if (barangayValue === 'DON JOSE') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY11'
-      );
-    } else if (barangayValue === 'IBABA') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY12'
-      );
-    } else if (barangayValue === 'KANLURAN') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY13'
-      );
-    } else if (barangayValue === 'LABAS') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY14'
-      );
-    } else if (barangayValue === 'MACABLING') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY15'
-      );
-    } else if (barangayValue === 'MALITLIT') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY1'
-      );
-    } else if (barangayValue === 'MALUSAK') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY3'
-      );
-    } else if (barangayValue === 'MARKET AREA') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY13'
-      );
-    } else if (barangayValue === 'POOC') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY5'
-      );
-    } else if (barangayValue === 'PULONG SANTA CRUZ') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY8'
-      );
-    } else if (barangayValue === 'SINALHAN') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY3'
-      );
-    } else if (barangayValue === 'TAGAPO') {
-      filteredSuggestions = suggestions.filter((suggestion) =>
-        suggestion === 'COMMUNITY10'
-      );
-    }  
-    else {
-      filteredSuggestions = suggestions;
-    }
+    // Create a mapping of barangay values to their corresponding community values
+    const barangayToCommunityMap = {
+      APLAYA: ['APLAYA TABING ILOG', 'LUPANG ITIM'],
+      BALIBAGO: ['BAGONG UMAGA HOA', 'DOCE PARES', 'IN UNITY WE STAND', 'KASIKAP', 'SAMAHANG CHICOHAN', 'PATIONG BATO', 'GARCIA`S AND PEDROSO COMPOUND'],
+      CAINGIN: ['DAANG NIA CAINGIN', 'ORMOC', 'PULONG BUKID', 'TAGUMPAY AT PAG-ASA', 'SAMAHANG MARALITA P-4'],
+      DILA: ['BUROL PUBLIC CEMETERY'],
+      DITA: ['NAGKAKAISANG MARALITA NG CONSOLE', 'SAMAHANG ACACIA', 'BALAGBAG', 'KAPATIRANG SAMAHANG KAPUSPALAD', 'HAPPYLABD HOA(FORMERLY BUROK BUROK)', 'TABING-ILOG, TABING-BUKID', 'C-4 AGUILAR COMPOUND', 'SITIO 14-MANGGAHAN'],
+      IBABA: ['BUKLOD IBABA'],
+      LABAS: ['SITIO MASIIT'],
+      MACABLING: ['JORDAN 1', 'JORDAN 2', ' NAGKAKAISANG MAMAMAYAN', 'IRAQ 1', ' IRAQ 2', 'SITIO PUTING TULAY', 'SAMAHANG NAGKAKAISA NG NIA ROAD', 'SITIO IRAN'],
+      MALITLIT: ['DRUMAN II', 'PUROK 5 & 6', 'PUROK 5', 'SITIO HEMEDEZ', 'PH 1 BLK 25 KAPATIRAN SAN LORENZO', 'GOOD SAMARITAN/EMIL`S COMPOUND'],
+      MARKET_AREA: ['UNITED COMMUNITY ASSOCIATION(FORMERLY ST.CLAIRE)'],
+      POOC: ['SAMAHANG MAGKAKAPITBAHAY', 'CAPT.PERLAS ST.RIVERSIDE'],
+      PULONG_SANTA_CRUZ: ['CORAL NA BATO I', 'CORAL NA BATO II', 'SITIO ANI','SITIO 500', ' SAMAHANG TABING BAYBAY ILOG(SBI)', 'SAMAHANG TABING ILOG', 'ROAD SIDE(NEW HORIZONVILLE)', 'SITIO ARATAN', 'SITIO DAPDAPAN'],
+      SINALHAN: ['KABADA', 'NEAR DIAZ COURT', 'MAPALAD/NEAR BARANGAY HALL'],
+      SANTO_DOMINGO: ['SITIO CAWAD', 'PAMANA', 'BROOKLAND'],
+      TAGAPO: ['BISIG COMMUNITY ASSOCIATION', 'SAMA NA MASA','DAANG NIA'],
+    };
 
+    // Get the filtered suggestions based on the barangay value
+    let filteredSuggestions = barangayToCommunityMap[barangayValue] || suggestions;
+  
     filteredSuggestions.forEach((suggestion, index) => {
       const suggestionElement = createSuggestionElementCommunityModal(suggestion, index);
       suggestionBox.appendChild(suggestionElement);

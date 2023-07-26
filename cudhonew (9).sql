@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2023 at 02:48 AM
+-- Generation Time: Jul 10, 2023 at 05:32 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -48,7 +48,15 @@ INSERT INTO `tbl_childminor` (`id`, `user_id`, `head_id`, `firstname`, `middlena
 (1, 1, 1, 'IAN', 'BAUAN', 'PASCUAL', '', 'MALE', '2011-12-29'),
 (15, 1, 1, 'HADID', '', 'GG', '', 'FEMALE', '2021-01-22'),
 (25, 1, 54, 'ARRISTOPHER', 'CARANZA', 'CASIMIRO', 'JR', 'MALE', '2000-12-29'),
-(26, 1, 54, 'RAICEN JUSTIN', 'CARANZA', 'CASIMIRO', '', 'MALE', '2004-11-19');
+(26, 1, 54, 'RAICEN JUSTIN', 'CARANZA', 'CASIMIRO', '', 'MALE', '2004-11-19'),
+(27, 1, 1, 'EARL', 'BAUAN', 'PASCUAL', '', 'MALE', '2014-12-12'),
+(28, 1, 56, 'JONATHAN', 'OLORVIDA', 'EVANGELIO', '', 'MALE', '2001-07-20'),
+(29, 1, 56, 'JOHN PAUL', 'OLORVIDA', 'EVANGELIO', '', 'MALE', '2006-06-17'),
+(30, 1, 63, 'JONATHAN', 'OLORVIDA', 'PASCUAL', 'JR', 'MALE', '2006-09-14'),
+(31, 1, 63, 'PRINCESS', 'OLORVIDA', 'PASCUAL', '', 'FEMALE', '2008-07-24'),
+(32, 1, 63, 'NENE', 'JUN', 'EVANGELIO', '', 'FEMALE', '2006-07-07'),
+(33, 1, 64, 'JONATHAN', 'OLORVIDA', 'EVANGELIO', 'JR', 'MALE', '2023-02-01'),
+(34, 1, 65, 'RAICEN JUSTIN', 'CARANZA', 'CASIMIRO', '', 'MALE', '2004-11-18');
 
 -- --------------------------------------------------------
 
@@ -82,7 +90,14 @@ CREATE TABLE `tbl_childwork` (
 INSERT INTO `tbl_childwork` (`id`, `user_id`, `head_id`, `firstname`, `middlename`, `lastname`, `extension`, `maidenname`, `monthIncome`, `gender`, `birthdate`, `civilStatus`, `occupation`, `pagIbig`, `sss`, `other`) VALUES
 (1, 1, 1, 'ALAN', 'BAUAN', 'PASQUAL', 'JUNIOR', '', 3000, 'MALE', '1998-01-01', 'SINGLE', 'BOUNCER', 0, 0, ''),
 (5, 1, 1, 'VIKTOR', 'MAG', 'TANGOL', '', '', 2000, 'FEMALE', '2001-12-11', 'MARRIED', 'SUPERHERO', 0, 0, ''),
-(11, 1, 54, 'CHRISTOPHER', 'CARANZA', 'CASIMIRO', '', '', 17000, 'MALE', '1999-11-18', 'SINGLE', 'PROGRAMMER', 1, 0, '');
+(11, 1, 54, 'CHRISTOPHER', 'CARANZA', 'CASIMIRO', '', '', 17000, 'MALE', '1999-11-18', 'SINGLE', 'PROGRAMMER', 1, 0, ''),
+(12, 1, 56, 'MARIA CELINE', 'OLORVIDA', 'EVANGELIO', '', 'EVANGELIO', 50000, 'FEMALE', '1998-02-14', 'SINGLE', 'BANK TELLER', 1, 1, ''),
+(13, 1, 56, 'JACINTO', 'OLORVIDA', 'EVANGELIO', 'JR', '', 30000, 'MALE', '1997-12-03', 'SINGLE', 'HUMAN RESOURSES STAFF', 1, 1, ''),
+(14, 1, 63, 'JAMES', 'HARDEN', 'PASCUAL', '', '', 200, 'MALE', '2002-06-27', 'SINGLE', 'BANK TELLER', 1, 0, ''),
+(15, 1, 63, 'JOMS', 'JONATHAN', 'EVANGELIO', 'JR', '', 20, 'MALE', '2003-06-06', 'SINGLE', 'TAGA TALI NG YELO', 0, 0, ''),
+(16, 1, 64, 'MARIA CELINE', 'OLORVIDA', 'PASCUAL', '', 'PASCUAL', 50000, 'FEMALE', '2023-01-31', 'SINGLE', 'BANK TELLER', 0, 0, ''),
+(17, 1, 65, 'CHRISTOPHER', 'CARANZA', 'CASIMIRO', '', '', 100, 'MALE', '1999-11-28', 'SINGLE', 'PROGRAMMER', 1, 1, ''),
+(18, 1, 64, '11', '11', '11', '11', '', 11, 'MALE', '1111-11-11', 'SINGLE', '11', 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -107,7 +122,17 @@ CREATE TABLE `tbl_facility` (
 INSERT INTO `tbl_facility` (`id`, `user_id`, `head_id`, `electricity`, `water`, `toilet`, `kitchen`) VALUES
 (1, 1, 1, 'NONE', 'DEEPWELL', 'SHARED', 'SHARED'),
 (2, 1, 2, 'NONE', 'DEEPWELL', 'OWN', 'OWN'),
-(5, 1, 54, 'OWN', 'DEEPWELL', 'OWN', 'OWN');
+(5, 1, 54, 'OWN', 'DEEPWELL', 'OWN', 'OWN'),
+(7, 1, 56, 'NONE', 'DEEPWELL', 'OWN', 'OWN'),
+(8, 1, 57, 'OWN', 'LAGUNA WATERS', 'OWN', 'OWN'),
+(9, 1, 58, 'OWN', 'LAGUNA WATERS', 'OWN', 'OWN'),
+(10, 1, 59, 'OWN', 'LAGUNA WATERS', 'OWN', 'OWN'),
+(11, 1, 60, 'OWN', 'LAGUNA WATERS', 'OWN', 'OWN'),
+(12, 1, 61, 'OWN', 'LAGUNA WATERS', 'OWN', 'OWN'),
+(13, 1, 62, 'OWN', 'LAGUNA WATERS', 'OWN', 'OWN'),
+(14, 1, 63, 'OWN', 'DEEPWELL', 'SHARED', 'OWN'),
+(15, 1, 64, 'OWN', 'DEEPWELL', 'OWN', 'SHARED'),
+(16, 1, 65, 'OWN', 'LAGUNA WATERS', 'OWN', 'OWN');
 
 -- --------------------------------------------------------
 
@@ -148,11 +173,13 @@ CREATE TABLE `tbl_headinfo` (
 --
 
 INSERT INTO `tbl_headinfo` (`id`, `user_id`, `firstname`, `lastname`, `middlename`, `maidenname`, `extension`, `barangay`, `community`, `basicHouse`, `tag`, `birthdate`, `gender`, `civilStatus`, `occupation`, `monthIncome`, `pagIbig`, `sss`, `other`, `tenurStatus`, `origOwner`, `structure`, `yearStay`, `relocUnavailable`, `relocated`) VALUES
-(1, 1, 'DOMINIC', 'PASCUAL', 'BAUAN', 'MAIDEN', 'EXTEND', 'TAGAPO', 'JORDAN1', '', '1A', '1111-12-11', 'MALE', 'MARRIED', 'DANCER', 1000000, 0, 0, '', 'OWNER', '', 'CONCRETE', '0000-00-00', 'BALIK PROBISNYA PROGRAM', 'SUVB. MERCEDES SINALHAN'),
-(2, 1, 'JONATHAN', 'EVANGELIO', 'UTANE', 'GIRL', 'JR', 'TAGAPO', 'JORDAN1', '', '1A', '1985-11-11', 'MALE', 'SINGLE', 'PUSHER', 1000000, 0, 0, '', 'OWNER', '', 'CONCRETE', '0000-00-00', 'FINANCIAL ASSISTANCE', 'SUVB. MERCEDES SINALHAN'),
-(5, 1, 'JONATS', 'EVANGELIO', 'UTANE', 'GIRL', 'JR', 'TAGAPO', 'JORDAN1', '', '1A', '1985-11-11', 'MALE', 'SINGLE', 'PUSHER', 1000000, 0, 0, '', 'OWNER', '', 'CONCRETE', '0000-00-00', 'BALIK PROBISNYA PROGRAM', 'SUVB. MERCEDES SINALHAN'),
-(6, 1, 'JOANA', 'EVANGELIO', 'UTANE', 'GIRL', 'JR', 'TAGAPO', 'JORDAN1', '', '1A', '1985-11-11', 'MALE', 'SINGLE', 'PUSHER', 1000000, 0, 0, '', 'OWNER', '', 'CONCRETE', '0000-00-00', 'FINANCIAL ASSISTANCE', 'SUVB. MERCEDES SINALHAN'),
-(54, 1, 'OLIVIA', 'CASIMIRO', 'TUMABACAL', 'CARANZA', '', 'SINALHAN', 'COMMUNITY3', 'FLOOD', '1A', '1970-12-12', 'FEMALE', 'MARRIED', 'HOUSEWIFE', 0, 1, 1, 'PALENGKE', 'OWNER', 'OLIVIA TUMABACAL CASIMIRO', 'CONCRETE', '2000-12-12', 'FINANCIAL ASSISTANCE', 'SUVB. MERCEDESS');
+(1, 1, 'DOMINIC', 'PASCUAL', 'BAUAN', 'MAIDEN', 'EXTEND', 'TAGAPO', 'JORDAN1', '', '1A', '2000-12-11', 'MALE', 'MARRIED', 'DANCER', 10000, 1, 0, 'DANCER', 'OWNER', 'DOMINIC BAUAN PASCUAL', 'CONCRETE', '2011-02-22', 'BALIK PROBISNYA PROGRAM', 'SUVB. MERCEDES SINALHAN'),
+(2, 1, 'JONATHAN', 'EVANGELIO', 'UTANE', 'GIRL', 'JR', 'TAGAPO', 'JORDAN1', '', '1A', '1985-11-11', 'MALE', 'SINGLE', 'PUSHER', 1000000, 0, 0, '', 'OWNER', '', 'CONCRETE', '2013-11-11', 'FINANCIAL ASSISTANCE', 'SUVB. MERCEDES SINALHAN'),
+(54, 1, 'OLIVIA', 'CASIMIRO', 'TUMABACAL', 'CARANZA', '', 'SINALHAN', 'COMMUNITY3', 'FLOOD', '1A', '1970-12-12', 'FEMALE', 'MARRIED', 'HOUSEWIFE', 10000, 1, 1, '', 'OWNER', 'OLIVIA TUMABACAL CASIMIRO', 'CONCRETE', '2000-12-12', 'FINANCIAL ASSISTANCE', 'SUVB. MERCEDESS'),
+(56, 1, 'JACINTO', 'EVANGELIO', 'GARCIA', '', 'SR', 'SINALHAN', 'COMMUNITY3', 'FLOOD', '2A', '1990-07-20', 'MALE', 'MARRIED', 'GUARD', 10000, 1, 0, 'GSIS', 'OWNER', 'JACINTO GARCIA EVANGELIO', 'SEMI-CONCRETE', '2000-12-12', 'BALIK PROBISNYA PROGRAM', 'lol'),
+(63, 1, 'DOMINI', 'PASCUA', 'CADATA', '', '', 'TAGAPO', 'COMMUNITY10', 'FLOOD', '1A', '2000-05-05', 'FEMALE', 'DIVORCED', 'GUAR', 100, 0, 1, '', 'OWNER', 'DOMINI CADATA PASCUA', 'CONCRETE', '2013-07-30', 'UNDECIDED', 'idk'),
+(64, 1, 'JANE', 'EVANGELIO', 'OLORVIDA', 'GARCIA', '', 'DON JOSE', 'COMMUNITY11', 'SEA LEVEL RISE', 'A2', '2023-01-01', 'FEMALE', 'MARRIED', 'GUARD', 10000, 1, 0, '', 'OWNER', 'JANE OLORVIDA EVANGELIO', 'SEMI-CONCRETE', '2013-01-01', 'FINANCIAL ASSISTANCE', 'YES'),
+(65, 1, 'ARRISTOPHER ', 'CASIMIRO', 'CACAO', '', 'SR', 'SINALHAN', 'COMMUNITY3', 'LANDSLIDE', '1A', '2001-10-10', 'MALE', 'SINGLE', 'GUARD', 10, 1, 1, '', 'OWNER', 'ARRISTOPHER  CACAO CASIMIRO', 'CONCRETE', '2000-12-11', 'FINANCIAL ASSISTANCE', 'MERCEDEZ');
 
 -- --------------------------------------------------------
 
@@ -173,7 +200,10 @@ CREATE TABLE `tbl_image` (
 
 INSERT INTO `tbl_image` (`id`, `user_id`, `head_id`, `imagePath`) VALUES
 (7, 1, 1, 'uploads/newd.png'),
-(8, 1, 1, 'uploads/Untitled.png');
+(8, 1, 1, 'uploads/Untitled.png'),
+(9, 1, 54, 'uploads/fam.jpg'),
+(10, 1, 65, 'uploads/-1111.png'),
+(11, 1, 64, 'uploads/-22222.png');
 
 -- --------------------------------------------------------
 
@@ -201,8 +231,18 @@ CREATE TABLE `tbl_interinfo` (
 --
 
 INSERT INTO `tbl_interinfo` (`id`, `user_id`, `head_id`, `res_Fname`, `res_Mname`, `res_Lname`, `relationship`, `int_Fname`, `int_Mname`, `int_Lname`, `date`, `remarks`) VALUES
-(1, 1, 1, 'DOMINIC', 'BAUAN', 'PASCUAL', 'CHILD', 'JOMARI', 'ALBIONS', 'GALANGS', '2007-01-24', 'SI DOMINIC MAHILIG SA IMMERSIONS'),
-(5, 1, 54, 'OLIVIA', 'CARANZA', 'CASIMIRO', 'PERSON LISTED IN MASTERLIST', 'JOMARI', 'ALBION', 'GALANG', '2010-12-12', 'MOVE IN');
+(1, 1, 1, 'DOMINIC', 'BAUAN', 'PASCUAL', 'CHILD', 'JOMARI', 'ALBIONS', 'GALANGS', '2011-01-24', 'SI DOMINIC MAHILIG SA IMMERSIONS'),
+(5, 1, 54, 'OLIVIA', 'CARANZA', 'CASIMIRO', 'PERSON LISTED IN MASTERLIST', 'JOMARI', 'ALBION', 'GALANG', '2010-12-12', 'MOVE OUT'),
+(7, 1, 56, 'JANE', 'OLORVIDA', 'EVANGELIO', 'SPOUSE', 'JENNY', 'OMNI', 'LEON', '2023-11-01', ''),
+(8, 1, 57, '', '', '', 'PERSON LISTED IN MASTERLIST', '', '', '', '0000-00-00', ''),
+(9, 1, 58, '', '', '', 'PERSON LISTED IN MASTERLIST', '', '', '', '0000-00-00', ''),
+(10, 1, 59, '', '', '', 'PERSON LISTED IN MASTERLIST', '', '', '', '0000-00-00', ''),
+(11, 1, 60, '', '', '', 'PERSON LISTED IN MASTERLIST', '', '', '', '0000-00-00', ''),
+(12, 1, 61, '', '', '', 'PERSON LISTED IN MASTERLIST', '', '', '', '0000-00-00', ''),
+(13, 1, 62, '', '', '', 'PERSON LISTED IN MASTERLIST', '', '', '', '0000-00-00', ''),
+(14, 1, 63, 'JAN', 'OLORVID', 'EVANG', 'SPOUSE', 'JENN', 'OMN', 'LEO', '2023-07-05', '??'),
+(15, 1, 64, 'JANE', 'OLORVIDA', 'EVANGELIO', 'OTHERS', 'JENNY', 'OMNI', 'LEON', '2001-01-01', 'OK'),
+(16, 1, 65, 'ARRISTOPHER ', 'CARANZA', 'CASIMIRO', 'PERSON LISTED IN MASTERLIST', 'JOMARI', 'ALBION', 'GALANG', '2010-12-10', 'MOVE IN');
 
 -- --------------------------------------------------------
 
@@ -235,7 +275,13 @@ INSERT INTO `tbl_seniorpwd` (`id`, `user_id`, `head_id`, `firstname`, `middlenam
 (3, 1, 1, 'LELENG', 'BAUAN', 'PASCUAL', 'JR', '', 'MALE', '1999-12-03', 0, 1),
 (4, 1, 1, 'MORPH', 'POMMY', 'POLLY', '', '', 'MALE', '1950-12-12', 0, 1),
 (18, 1, 54, 'LOLU', 'LOLE', 'LOLO', 'LOLA', '', 'MALE', '1970-01-01', 1, 1),
-(20, 1, 54, 'ANDENG', 'BAE', 'TUMABACAL', '', 'LOL', 'FEMALE', '1960-12-29', 1, 0);
+(20, 1, 54, 'ANDENG', 'BAE', 'TUMABACAL', '', 'LOL', 'FEMALE', '1960-12-29', 1, 0),
+(21, 1, 56, 'LOLA', 'BEDOYA', 'OLORVIDA', '', 'BUSCOS', 'FEMALE', '1890-12-12', 1, 0),
+(22, 1, 56, 'JENNo', 'EVANGELIO', 'OLORVIDA', '', '', 'MALE', '1890-12-12', 1, 1),
+(23, 1, 63, 'LOLA', 'BEDOYA', 'OLORVIDA', '', 'BUSCOS', 'FEMALE', '1978-02-25', 0, 1),
+(24, 1, 63, 'JENNA', 'EVANGELIO', 'OLORVIDA', '', 'JONS', 'FEMALE', '1974-09-09', 0, 1),
+(25, 1, 64, 'LOLA', 'BEDOYA', 'OLORVIDA', '', 'BUSCOS', 'FEMALE', '1940-01-02', 1, 1),
+(26, 1, 65, 'LOLO', 'BAKAW', 'CASIMIRO', '', '', 'MALE', '1975-11-29', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -268,8 +314,18 @@ CREATE TABLE `tbl_spouseinfo` (
 
 INSERT INTO `tbl_spouseinfo` (`id`, `user_id`, `head_id`, `firstname`, `middlename`, `lastname`, `maidenname`, `extension`, `birthdate`, `gender`, `civilStatus`, `occupation`, `monthIncome`, `pagIbig`, `sss`, `other`) VALUES
 (1, 1, 1, 'ALYANA', 'CRUZ', 'PASQUAL', 'CASTRILLO', '', '2000-12-29', 'FEMALE', 'MARRIED', 'CASHIER', 100, 0, 0, ''),
-(2, 1, 2, 'BABA', 'JACQUI', 'POLY', 'CRUZ', '', '1999-02-16', 'FEMALE', 'MARRIED', 'TEACHER', 20, 0, 0, ''),
-(9, 1, 54, 'ARRISTOPHER', 'CACAO', 'CASIMIRO', '', 'SR', '1985-08-01', 'MALE', 'SINGLE', 'GRAB DRIVER', 50000, 1, 1, '');
+(2, 1, 2, 'BABA', 'JACQUI', 'POLY', 'CRUZ', '', '1999-02-16', 'FEMALE', 'MARRIED', 'TEACHER', 20, 1, 1, ''),
+(9, 1, 54, 'ARRISTOPHER', 'CACAO', 'CASIMIRO', '', 'SR', '1985-08-01', 'MALE', 'SINGLE', 'GRAB DRIVER', 20000, 1, 1, ''),
+(11, 1, 56, 'RACHEL', 'OLORVIDA', 'EVANGELIO', 'BEDOYA', '', '1990-12-12', 'FEMALE', 'MARRIED', 'HOUSEWIFE', 0, 1, 0, ''),
+(12, 1, 57, '', '', '', '', '', '0000-00-00', 'MALE', 'SINGLE', '', 0, 0, 0, ''),
+(13, 1, 58, '', '', '', '', '', '0000-00-00', 'MALE', 'SINGLE', '', 0, 0, 0, ''),
+(14, 1, 59, '', '', '', '', '', '0000-00-00', 'MALE', 'SINGLE', '', 0, 0, 0, ''),
+(15, 1, 60, '', '', '', '', '', '0000-00-00', 'MALE', 'SINGLE', '', 0, 0, 0, ''),
+(16, 1, 61, '', '', '', '', '', '0000-00-00', 'MALE', 'SINGLE', '', 0, 0, 0, ''),
+(17, 1, 62, '', '', '', '', '', '0000-00-00', 'MALE', 'SINGLE', '', 0, 0, 0, ''),
+(18, 1, 63, 'YAN', 'BAUA', 'PASCUA', 'CASTRILL', '', '2000-07-27', 'FEMALE', 'WIDOWED', 'FULL STAC', 50, 0, 1, ''),
+(19, 1, 64, 'JACK', 'OLORVIDA', 'EVANGELIO', '', 'SR', '0000-00-00', 'MALE', 'SINGLE', 'GUARD', 10000, 0, 0, ''),
+(20, 1, 65, 'OLIVIA', 'TUMABACAL', 'CASIMIRO', 'CARANZA', '', '2000-01-01', 'FEMALE', 'MARRIED', 'HOUSEWIFE', 0, 1, 1, '');
 
 -- --------------------------------------------------------
 
@@ -369,49 +425,49 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_childminor`
 --
 ALTER TABLE `tbl_childminor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `tbl_childwork`
 --
 ALTER TABLE `tbl_childwork`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tbl_facility`
 --
 ALTER TABLE `tbl_facility`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tbl_headinfo`
 --
 ALTER TABLE `tbl_headinfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `tbl_image`
 --
 ALTER TABLE `tbl_image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tbl_interinfo`
 --
 ALTER TABLE `tbl_interinfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tbl_seniorpwd`
 --
 ALTER TABLE `tbl_seniorpwd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `tbl_spouseinfo`
 --
 ALTER TABLE `tbl_spouseinfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`

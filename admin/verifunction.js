@@ -489,7 +489,7 @@ function generateChildFields() {
             <div class="col-md-2 mb-3">
                 <label for="Mchild_gender_${i}">Gender:</label>
                 <div class="input-group">
-                    <select class="input-border form-control" name="Mchild_gender_${i}" id="Mchild_gender_${i}" onchange="handleMinorGenderChange(${i})">
+                    <select class="input-border form-control" name="Mchild_gender_${i}" id="Mchild_gender_${i}">
                         <option value="MALE">MALE</option>
                         <option value="FEMALE">FEMALE</option>
                     </select>
@@ -516,12 +516,6 @@ function generateChildFields() {
                         placeholder="Middle Name" onkeyup="convertToUppercase(this)">
                 </div>
             </div>
-            <div class="col-md-2 mb-3" id="minorMaidenNameCont_${i}">
-                <label for="Mchild_maidenName_${i}">Maiden Name:</label>
-                <div class="input-group">
-                    <input type="text" class="input-border form-control" name="Mchild_maidenName_${i}" id="Mchild_maidenName_${i}" placeholder="Maiden Name" onkeyup="convertToUppercase(this)">
-                </div>
-            </div>
             <div class="col-md-2 mb-3" id="minorExtensionCont_${i}">
                 <label for="Mchild_extension_${i}">Extension:</label>
                 <div class="input-group">
@@ -540,7 +534,6 @@ function generateChildFields() {
 
         childRow.appendChild(childFieldset);
         container.appendChild(childRow);
-        handleMinorGenderChange(i);
     }
     var numWorkChildren = parseInt(document.getElementById('num_workChildren').value);
     var num_children = parseInt(document.getElementById('num_children').value);
@@ -550,22 +543,6 @@ function generateChildFields() {
 
 }
 
-function handleMinorGenderChange(i) {
-    //minor child gender select filter
-    var minorGenderSelect = document.getElementById(`Mchild_gender_${i}`);
-    var minorGenderValue = minorGenderSelect.value;
-
-    var maidenNameCont = document.getElementById(`minorMaidenNameCont_${i}`);
-    var extensionCont = document.getElementById(`minorExtensionCont_${i}`);
-
-    if (minorGenderValue === "FEMALE") {
-        maidenNameCont.style.display = "block";
-        extensionCont.style.display = "none";
-    } else if (minorGenderValue === "MALE") {
-        maidenNameCont.style.display = "none";
-        extensionCont.style.display = "block";
-    }
-}
 
 function handleWorkGenderChange(i) {
     //working child gender select filter

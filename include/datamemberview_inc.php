@@ -23,7 +23,6 @@ $head_gender = $row["gender"];
 $head_civilStatus = $row["civilStatus"];
 $head_occupation = $row["occupation"];
 $head_monthIncome = $row["monthIncome"];
-$head_tenurStatus = $row["tenurStatus"];
 $head_structure = $row["structure"];
 $head_yearStay = $row["yearStay"];
 $head_yearStayname = date("Y-F-d", strtotime($row["yearStay"]));
@@ -31,9 +30,16 @@ $head_lengthStay = date_diff(date_create($row["yearStay"]), date_create($serverd
 $head_relocUnavailable = $row["relocUnavailable"];
 $head_relocated = $row["relocated"];
 
-$head_pagIbig = ($row["pagIbig"] == 1) ? 'Pag-IBIG/HDMF' : '';
-$head_sss = ($row["sss"] == 1) ? 'SSS/GSIS' : '';
-$head_other = $row["other"];
+$head_pagIbigName = ($row["pagIbig"] == 1) ? 'Pag-IBIG/HDMF' : '';
+$head_sssName = ($row["sss"] == 1) ? 'SSS/GSIS' : '';
+$head_otherName = $row["other"];
+$head_pagIbig = ($row["pagIbig"] == 1) ? true : false;
+$head_sss = ($row["sss"] == 1) ? true : false; 
+$head_otherCheck = ($row["other"] == '') ? false : true; 
+
+$head_tenurStatus = $row["tenurStatus"];
+$head_origOwner = $row["origOwner"];
+$head_tenurCheck = ($row["tenurStatus"] == 'OWNER') ? true : false;
 
 
 // spouse data
@@ -61,7 +67,7 @@ $spouse_otherName = $row["other"];
 
 $spouse_pagIbig = ($row["pagIbig"] == 1) ? true : false;
 $spouse_sss = ($row["sss"] == 1) ? true : false; 
-$spouse_other = ($row["other"] == '') ? false : true; 
+$spouse_otherCheck = ($row["other"] == '') ? false : true; 
 
 // FACILITY data
 $query = "SELECT * FROM tbl_facility WHERE head_id = $head_id";
@@ -91,29 +97,29 @@ $interviewer_lastname = $row["int_Lname"];
 $interviewer_date = $row["date"];
 $interviewer_remarks = $row["remarks"];
 
-include '../include/connect1.php';
 
-// minor children
+// minor children count
 $query = "SELECT * FROM tbl_childminor WHERE head_id = $head_id";
 $result = $con->query($query);
+$minor_count = $result->num_rows;
 
-$minor_id = array();
-$minor_firstname = array();
-$minor_middlename = array();
-$minor_lastname = array();
-$minor_extension = array();
-$minor_birthdate = array();
-$minor_gender = array();
+// working children count
+$query = "SELECT * FROM tbl_childwork WHERE head_id = $head_id";
+$result = $con->query($query);
+$work_count = $result->num_rows;
 
-while ($row = $result->fetch_assoc()) {
-    $minor_id[] = $row["id"];
-    $minor_firstname[] = $row["firstname"];
-    $minor_middlename[] = $row["middlename"];
-    $minor_lastname[] = $row["lastname"];
-    $minor_extension[] = $row["extension"];
-    $minor_birthdate[] = $row["birthdate"];
-    $minor_birthdate[] = $row["gender"];
+// working children total monthincome
+$childwork_Income = array();
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    $income = $row["monthIncome"];
+    $childwork_Income[] = $income;
+  }
 }
+$workchildren_total_income = array_sum($childwork_Income);
 
+//total monthly income
+$total_monthIncome = $head_monthIncome + $spouse_monthIncome + $workchildren_total_income;
+$formatted_total_monthIncome = number_format($total_monthIncome);
 
 ?>

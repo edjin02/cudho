@@ -6,10 +6,9 @@ checkAccessRights($user_id, 'ar_systman');
 include '../admin/nav-bar.php';
 
 include '../functions/scripts.php';
-include '../functions/Functions.php';
+include '../functions/verify-function.php';
+include '../functions/verify-select.php';
 ?>
-<script src="../functions/jQuerySQL.js"></script>
-<script src="../functions/jQueryAuth.js"></script>
 <script src="../functions/user-script.js"></script>
 
 
@@ -78,12 +77,13 @@ include '../functions/Functions.php';
                                 </thead>
 
                                 <tbody id="userTable">
-
-
+                                    <?php
+                                        showUserData($con); 
+                                    ?>
                                 </tbody>
                             </table>
 
-                            <p id="no-data-message" class="centered-text" style="display: none;"><span>No user data existing</span></p>
+                            <p id="no-data-message" class="centered-text" style="display: none;">No user data existing</p>
                         </div>
                     </div>
                 </form>

@@ -15,14 +15,16 @@ if (isset($_POST['submit'])) {
     $extension = $_POST['spouse_extension'];
     $birthdate = $_POST['spouse_birthDate'];
 
-    // echo "Gender: " . $gender;
+    $pagibigBox = isset($_POST["spouse_pag-ibigBox"]) && $_POST["spouse_pag-ibigBox"] === 'checked' ? 1 : 0;
+    $sssBox = isset($_POST["spouse_sssBox"]) && $_POST["spouse_sssBox"] === 'checked' ? 1 : 0;
+    $other = isset($_POST["spouse_other"]) ? $_POST["spouse_other"] : "";
+
+    // echo "pagibigBox: " . $pagibigBox;
     // echo '<br>';
-    // echo "Maiden Name: " . $maidenname;
+    // echo " sssBox: " . $sssBox;
     // echo '<br>';
-    // echo "Extension: " . $extension;
+    // echo "other: " . $other;
     // echo '<br>';
-    echo "Birthdate: " . $birthdate;
-    echo '<br>';
 
     include '../include/connect1.php';
 
@@ -37,7 +39,10 @@ if (isset($_POST['submit'])) {
                 `gender` = '$gender',
                 `maidenname` = '$maidenname',
                 `extension` = '$extension',
-                `birthdate` = '$birthdate'  
+                `birthdate` = '$birthdate',
+                `pagIbig` = '$pagibigBox',
+                `sss` = '$sssBox',
+                `other` = '$other'  
             WHERE `id` = '$spouse_id'";
 
 

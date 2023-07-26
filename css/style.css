@@ -182,12 +182,15 @@ div.col h8 {
   top: 100%;
   left: 0;
   width: 100%;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-top: none;
   max-height: 200px;
   overflow-y: auto;
   display: none;
+  z-index: 9999;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .suggestion {
@@ -215,14 +218,15 @@ div.col h8 {
   top: 100%;
   left: 0;
   width: 100%;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-top: none;
   max-height: 200px;
   overflow-y: auto;
   display: none;
   z-index: 9999;
-  /* Set a high z-index to ensure the suggestion box appears on top */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #suggestionBoxHouseModal {
@@ -230,14 +234,15 @@ div.col h8 {
   top: 100%;
   left: 0;
   width: 100%;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-top: none;
   max-height: 200px;
   overflow-y: auto;
   display: none;
   z-index: 9999;
-  /* Set a high z-index to ensure the suggestion box appears on top */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #communitySuggestionBox {
@@ -461,3 +466,25 @@ div.col h8 {
 .confirmation-modal .btn-yes:hover {
   background-color: #0056b3;
 }
+
+
+/* Add any other styles you want for the buttons here */
+.btnVerif {
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 5px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.btnVerif.btn-primary {
+  background-color: #7f8081;
+  color: #fff;
+}
+
+/* Add a pressed effect when the button is clicked */
+.btnVerif.pressed {
+  background-color: #007bff;
+}
+

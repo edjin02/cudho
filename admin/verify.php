@@ -5,10 +5,12 @@ include '../include/accessrightfunc.php'; //dashboard access
 checkAccessRights($user_id, 'ar_record');
 include 'nav-bar.php';
 
+
 include '../functions/scripts.php';
 include 'option.php';
-include '../functions/Functions.php';
 include '../include/serverdate.php'; //$serverdate
+include '../functions/verify-function.php'; //query
+// include '../functions/verify-select.php'; //table data
 ?>
 
 <!-- barangay editing on the modal -->
@@ -16,7 +18,6 @@ include '../include/serverdate.php'; //$serverdate
 <script src="../functions/verify-drop.js"></script>
 <script src="../admin/verifunction.js"></script>
 <script src="../functions/verify-filter.js"></script>
-<script src="../functions/jQuerySQL.js"></script>
 
 
 <title> CUDHO | Encode </title>
@@ -63,6 +64,10 @@ include '../include/serverdate.php'; //$serverdate
                                 </div>
                                 <input type="search" id="search" class="form-control" name="search"
                                     placeholder="Search">
+                                    <button type="button" class="btn btn-block" data-toggle="modal" data-target="#encode"
+                            style="margin-left:10px;height:36px; width:100px; color:white; background-color:maroon">
+                            Add
+                        </button>
                             </div>
                         </div>
                     </div>
@@ -72,7 +77,7 @@ include '../include/serverdate.php'; //$serverdate
                                 <input type="text" id="barangay-select" class="form-control"
                                     onfocus="showAllSuggestions()" oninput="showSuggestions(this.value)"
                                     onkeydown="handleKeyDown(event)" onblur="changePlaceholder()"
-                                    placeholder="Search by Barangay" />
+                                    placeholder="Search by Barangay" style="display: none;">
                                 <div id="suggestionBox" style='display:none'></div>
                             </div>
                         </div>
@@ -83,22 +88,163 @@ include '../include/serverdate.php'; //$serverdate
                                     oninput="showfilterCommunitySuggestions(this.value)"
                                     onkeydown="handlefilterCommunityKeyDown(event)"
                                     onblur="changefilterCommunityPlaceholder()" onkeyup="convertToUppercase(this)"
-                                    placeholder="Search by Community Association">
+                                    placeholder="Search by Community Association" style="display: none;">
                                 <div id="communitysearchSuggestionBox" style="display:none"></div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-block" data-toggle="modal" data-target="#encode"
-                            style="height:36px; width:100px; color:white; background-color:maroon">
-                            Add
-                        </button>
+                        
 
 
                     </div>
                 </div>
+                <div class="row">
+                    <button type="button" id="householdButton" class="btnVerif btn-primary" style="margin-left: 20px; position: relative;" onclick="showHouseholdTable()">
+                        Household
+                        <span id="householdLabel" style="position: absolute; top: -5px; right: -10px; background-color: red; color: white; border-radius:50%; width: 25px; height: 25px; display: none;">0</span>
+                    </button>
+                    <button type="button" id="spouseButton" class="btnVerif btn-primary"  style="margin-left: 10px; position: relative;" onclick="showSpouseTable()">
+                        Spouse
+                        <span id="spouseLabel" style="position: absolute; top: -5px; right: -10px; background-color: red; color: white; border-radius:50%; width: 25px; height: 25px; display: none;">0</span>
+                    </button>
+                    <button type="button" id="MinorButton"class="btnVerif btn-primary" style="margin-left: 10px; position: relative;" onclick="showMinorTable()">
+                        Minor Children
+                        <span id="minorLabel" style="position: absolute; top: -5px; right: -10px; background-color: red; color: white; border-radius:50%; width: 25px; height: 25px; display: none;">0</span>
+                    </button>
+                    <button type="button" id="WorkingButton" class="btnVerif btn-primary" style="margin-left: 10px; position: relative;" onclick="showWorkingTable()">
+                        Working Adult
+                        <span id="workLabel" style="position: absolute; top: -5px; right: -10px; background-color: red; color: white; border-radius:50%; width: 25px; height: 25px; display: none;">0</span>
+                    </button>
+                    <button type="button" id="SeniorButton" class="btnVerif btn-primary" style="margin-left: 10px; position: relative;" onclick="showSeniorTable()">
+                        Senior/PWD
+                        <span id="seniorLabel" style="position: absolute; top: -5px; right: -10px; background-color: red; color: white; border-radius:50%; width: 25px; height: 25px; display: none;">0</span>
+                    </button>
+                </div>
 
-                <div class="box box-primary" style="padding-top: auto; margin:10px;">
+                <script>
+                     // Set the "Household" button as active by default when the page loads
+                    document.addEventListener("DOMContentLoaded", function () {
+                        var householdButton = document.getElementById("householdButton");
+                        householdButton.classList.add("pressed"); // Add the "active" class to the button
+                        showHouseholdTable(); // Show the household table by default
+                    });
+
+                    
+                    function toggleTextboxes() {
+                        var barangayTextbox = $("#barangay-select");
+                        var communityTextbox = $("#community-selectSearch");
+                        
+                        // Toggle the display of the textboxes based on the current state
+                        if (barangayTextbox.css("display") === "none") {
+                            barangayTextbox.show();
+                            communityTextbox.show();
+                            document.getElementById("householdTable").style.display = "block";
+                        }
+                        
+                    }
+
+                    function initializeButtons() {
+                        const buttons = document.querySelectorAll(".btnVerif");
+
+                        function handleButtonClick(button) {
+                            buttons.forEach((btn) => {
+                                if (btn !== button) {
+                                    btn.classList.remove("pressed");
+                                }
+                            });
+                            button.classList.toggle("pressed");
+                        }
+
+                        buttons.forEach((button) => {
+                            button.addEventListener("click", () => {
+                                handleButtonClick(button);
+                            });
+                        });
+                    }
+
+                    
+                    function hideTextboxes() {
+                        var barangayTextbox = $("#barangay-select");
+                        var communityTextbox = $("#community-selectSearch");
+                        
+                        // Hide the textboxes
+                        barangayTextbox.hide();
+                        communityTextbox.hide();
+                        document.getElementById("householdTable").style.display = "none"
+                    }
+
+                    function showHouseholdTable() {
+                        // Show the household table
+                        document.getElementById("minorTable").style.display = "none";
+                        document.getElementById("spouseTable").style.display = "none";
+                        document.getElementById("seniorTable").style.display = "none";
+                        document.getElementById("workingTable").style.display = "none";
+                        document.getElementById("householdTable").style.display = "block";
+
+                        // Call toggleTextboxes() to toggle visibility of barangay-select and community-selectSearch
+                        toggleTextboxes();
+                    }
+                    
+
+                    function showSpouseTable(){
+                        document.getElementById("minorTable").style.display = "none";
+                        document.getElementById("householdTable").style.display = "none";
+                        document.getElementById("workingTable").style.display = "none";
+                        document.getElementById("seniorTable").style.display = "none";
+                        document.getElementById("spouseTable").style.display = "block";
+                        hideTextboxes();
+                    }
+
+                    function showMinorTable(){
+                        document.getElementById("minorTable").style.display = "block";
+                        document.getElementById("workingTable").style.display = "none";
+                        document.getElementById("householdTable").style.display = "none";
+                        document.getElementById("seniorTable").style.display = "none";
+                        document.getElementById("spouseTable").style.display = "none";
+                        hideTextboxes();
+                    }
+
+                    function showWorkingTable(){
+                        document.getElementById("workingTable").style.display = "block";
+                        document.getElementById("minorTable").style.display = "none";
+                        document.getElementById("householdTable").style.display = "none";
+                        document.getElementById("spouseTable").style.display = "none";
+                        document.getElementById("seniorTable").style.display = "none";
+                        hideTextboxes();
+                    }
+
+                    function showSeniorTable(){
+                        document.getElementById("minorTable").style.display = "none";
+                        document.getElementById("householdTable").style.display = "none";
+                        document.getElementById("workingTable").style.display = "none";
+                        document.getElementById("seniorTable").style.display = "block";
+                        document.getElementById("spouseTable").style.display = "none";
+                        hideTextboxes();
+                    }
+                    
+                    function openMemberview(event) {
+                    var row = event.currentTarget;
+                    var id = row.getAttribute('value');
+                    
+                    var form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = 'memberview.php';
+
+                    var hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = 'id';
+                    hiddenInput.value = id;
+                    form.appendChild(hiddenInput);
+
+                    document.body.appendChild(form);
+                    form.submit();
+                    }   
+
+                    initializeButtons();
+                </script>
+
+                <div id="householdTable" class="box box-primary" style="padding-top: auto; margin:10px; display: none;">
                     <div class="box-body table-responsive" style="padding: 1px">
-                        <table class="table table-hover text-bordered table-condensed table-striped" id="getVerifData">
+                        <table class="table table-hover text-bordered table-condensed table-striped" id="getHouseholdData">
                             <thead class="btn-yellow">
                                 <th class="text-center">Tag</th>
                                 <th class="text-center">Household Head</th>
@@ -108,12 +254,137 @@ include '../include/serverdate.php'; //$serverdate
 
                             </thead>
                             <tbody id="verifTable">
+                                <?php
+                                    $sql = "SELECT * FROM tbl_headinfo";
+                                    $result = $con->query($sql);
+                                
+                                        while ($r = $result->fetch_assoc()) {
+                                            echo "<tr style='vertical-align: middle;' id='engrlink' onclick='openMemberview(event);' value='" . $r['id'] . "'>";
+                                            echo "<td><span>" . $r['tag'] . "</span></td>";
+                                            echo "<td><span>" . $r['firstname'] . " " . $r['middlename'] . " " . $r['lastname'] . " " . $r['extension'] . "</span></td>";
+                                            echo "<td><span>" . $r['community'] . "</span></td>";
+                                            echo "<td><span>" . $r['barangay'] . "</span></td>";
+                                            echo "<td><span>" . $r['monthIncome'] . "</span></td>";
+                                            
+                                            echo "</tr>";
+                                        }
+                                ?>
                             </tbody>
                         </table>
-                        <div id="no-data-message" class="centered-text" style="display: none;"><span>No Data Available</span></div>
-                        <!-- Add the following pagination controls -->
-<!-- <button id="prevPageBtn">Previous</button>
-<button id="nextPageBtn">Next</button> -->
+                        <div id="no-data-message" class="centered-text" style="display: none;"><span>No Data Available for Household Head</span></div>
+                    </div>
+                </div>
+                <div id="spouseTable" class="box box-primary" style="padding-top: auto; margin:10px; display: none;">
+                    <div class="box-body table-responsive" style="padding: 1px">
+                        <table class="table table-hover text-bordered table-condensed table-striped" id="getSpouseData">
+                            <thead class="btn-yellow">
+                                <th class="text-center;" style="width: 40%">Name</th>
+                                <th class="text-center;" style="width: 20%">Birth Date</th>
+                                <th class="text-center;" style="width: 10%">Gender</th>
+                                <th class="text-center;" style="width: 20%">Occupation</th>
+                                <th class="text-center;" style="width: 10%">Civil Status</th>
+
+                            </thead>
+                            <tbody id="spouseTbl">
+                                <?php
+                                    $sql = "SELECT * FROM tbl_spouseInfo";
+                                    $result = $con->query($sql);
+                                
+                                        while ($r = $result->fetch_assoc()) {
+                                            echo "<tr style='vertical-align: middle;' id='engrlink' onclick='openMemberview(event);' value='" . $r['id'] . "'>";
+                                            echo "<td><span>" . $r['firstname'] . " " . $r['middlename'] . " " . $r['lastname'] . " " . $r['extension'] . " ". $r['maidenname'] . "</span></td>";
+                                            echo "<td><span>" . $r['birthdate'] . "</span></td>";
+                                            echo "<td><span>" . $r['gender'] . "</span></td>";
+                                            echo "<td><span>" . $r['occupation'] . "</span></td>";
+                                            echo "<td><span>" . $r['civilStatus'] . "</span></td>";
+                                            echo "</tr>";
+                                        }
+                                ?>
+                            </tbody>
+                        </table>
+                        <div id="no-data-message1" class="centered-text" style="display: none;"><span>No Data Available for Spouse</span></div>
+                    </div>
+                </div>
+                <div id="minorTable" class="box box-primary" style="padding-top: auto; margin:10px; display: none;">
+                    <div class="box-body table-responsive" style="padding: 1px">
+                        <table class="table table-hover text-bordered table-condensed table-striped" id="getMinorData">
+                            <thead class="btn-yellow">
+                                <th class="text-center;" style="width: 60%">Name</th>
+                                <th class="text-center;" style="width: 20%">Birth Date</th>
+                                <th class="text-center;" style="width: 20%">Gender</th>
+                            </thead>
+                            <tbody id="minorTbl">
+                                <?php
+                                    $sql = "SELECT * FROM tbl_childminor";
+                                    $result = $con->query($sql);
+                                
+                                        while ($r = $result->fetch_assoc()) {
+                                            echo "<tr style='vertical-align: middle;' id='engrlink' onclick='openMemberview(event);' value='" . $r['id'] . "'>";
+                                            echo "<td><span>" . $r['firstname'] . " " . $r['middlename'] . " " . $r['lastname'] . " " . $r['extension'] . " </span></td>";
+                                            echo "<td><span>" . $r['birthdate'] . "</span></td>";
+                                            echo "<td><span>" . $r['gender'] . "</span></td>";
+                                            echo "</tr>";
+                                        }
+                                ?>
+                            </tbody>
+                        </table>
+                        <div id="no-data-message2" class="centered-text" style="display: none;"><span>No Data Available for Minor Children</span></div>
+                    </div>
+                </div>
+                <div id="workingTable" class="box box-primary" style="padding-top: auto; margin:10px; display: none;">
+                    <div class="box-body table-responsive" style="padding: 1px">
+                        <table class="table table-hover text-bordered table-condensed table-striped" id="getWorkData">
+                            <thead class="btn-yellow">
+                                <th class="text-center;" style="width: 40%">Name</th>
+                                <th class="text-center;" style="width: 20%">Birth Date</th>
+                                <th class="text-center;" style="width: 10%">Gender</th>
+                                <th class="text-center;" style="width: 20%">Occupation</th>
+                                <th class="text-center;" style="width: 10%">Civil Status</th>
+                            </thead>
+                            <tbody id="workTbl">
+                                <?php
+                                    $sql = "SELECT * FROM tbl_childwork";
+                                    $result = $con->query($sql);
+                                
+                                        while ($r = $result->fetch_assoc()) {
+                                            echo "<tr style='vertical-align: middle;' id='engrlink' onclick='openMemberview(event);' value='" . $r['id'] . "'>";
+                                            echo "<td><span>" . $r['firstname'] . " " . $r['middlename'] . " " . $r['lastname'] . " " . $r['extension'] . " " . $r['maidenname'] . " </span></td>";
+                                            echo "<td><span>" . $r['birthdate'] . "</span></td>";
+                                            echo "<td><span>" . $r['gender'] . "</span></td>";
+                                            echo "<td><span>" . $r['occupation'] . "</span></td>";
+                                            echo "<td><span>" . $r['civilStatus'] . "</span></td>";
+                                            echo "</tr>";
+                                        }
+                                ?>
+                            </tbody>
+                        </table>
+                        <div id="no-data-message3" class="centered-text" style="display: none;"><span>No Data Available for Working Adult</span></div>
+                    </div>
+                </div>
+                <div id="seniorTable" class="box box-primary" style="padding-top: auto; margin:10px; display: none;">
+                    <div class="box-body table-responsive" style="padding: 1px">
+                        <table class="table table-hover text-bordered table-condensed table-striped" id="getSeniorData">
+                            <thead class="btn-yellow">
+                                <th class="text-center;" style="width: 60%">Name</th>
+                                <th class="text-center;" style="width: 20%">Birth Date</th>
+                                <th class="text-center;" style="width: 20%">Gender</th>
+                            </thead>
+                            <tbody id="seniorTbl">
+                                <?php
+                                    $sql = "SELECT * FROM tbl_seniorpwd";
+                                    $result = $con->query($sql);
+                                
+                                        while ($r = $result->fetch_assoc()) {
+                                            echo "<tr style='vertical-align: middle;' id='engrlink' onclick='openMemberview(event);' value='" . $r['id'] . "'>";
+                                            echo "<td><span>" . $r['firstname'] . " " . $r['middlename'] . " " . $r['lastname'] . " " . $r['extension'] . " " . $r['maidenname'] . " </span></td>";
+                                            echo "<td><span>" . $r['birthdate'] . "</span></td>";
+                                            echo "<td><span>" . $r['gender'] . "</span></td>";
+                                            echo "</tr>";
+                                        }
+                                ?>
+                            </tbody>
+                        </table>
+                        <div id="no-data-message4" class="centered-text" style="display: none;"><span>No Data Available for Senior/PWD</span></div>
                     </div>
                 </div>
             </div>
@@ -830,7 +1101,7 @@ include '../include/serverdate.php'; //$serverdate
                                 </div>
 
                                 <div class="col-md-4 mb-3">
-                                    <input type="radio" value="BALIK PROBINSYA PROGRAM" name="relocationChoice"
+                                    <input type="radio" value="BALIK PROBISNYA PROGRAM" name="relocationChoice"
                                         id="balikProbinsya">
                                     <label for="balikProbinsya" style="margin-top: 6px;">Balik Probinsya Program</label>
                                 </div>

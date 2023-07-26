@@ -242,5 +242,7 @@
     } else {
         echo "Error updating in Spouse Head: " . $con->error;
     } 
-    
+
+    header("Location: ../admin/verify.php");
+    exit();
 ?>

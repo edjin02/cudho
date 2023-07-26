@@ -12,8 +12,8 @@
     
 </head>
 <body>
-
-    <div style="background-image: url(../img/albion.jpeg); background-size: cover">
+    
+    <div style="background-image: url(../img/santarosa_arch2.jpg); background-size: cover">
   <!-- /.login-logo -->
     <div class="container vh-100">
         <div class="row justify-content-center h-100">

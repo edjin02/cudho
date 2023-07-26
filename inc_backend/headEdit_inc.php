@@ -17,8 +17,26 @@ if (isset($_POST['submit'])) {
     $relocUnavailable = $_POST['relocUnavailable'];
     $head_civilStatus = $_POST['head_civilStatus'];
 
-    
-    // echo "Gender: " . $head_gender;
+    $pagibigBox = isset($_POST["head_pag-ibigBox"]) && $_POST["head_pag-ibigBox"] === 'checked' ? 1 : 0;
+    $sssBox = isset($_POST["head_sssBox"]) && $_POST["head_sssBox"] === 'checked' ? 1 : 0;
+    $other = isset($_POST["head_other"]) ? $_POST["head_other"] : "";
+
+    $structOwner = isset($_POST["structOwner"]) && $_POST["structOwner"] === 'checked' ? 1 : 0;
+
+    if ($structOwner == 1) {
+        $tenurStatus = 'OWNER';
+        $origOwner = $head_firstName . " " . $head_middleName . " " . $head_lastName;
+    }
+    else {
+        $tenurStatus = isset($_POST["tenurStatus"]) ? $_POST["tenurStatus"] : "";
+        $origOwner = isset($_POST["origOwner"]) ? $_POST["origOwner"] : "";
+    }
+
+    // echo "structOwner: " . $structOwner;  
+    // echo '<br>';
+    // echo "tenurstatuss: " . $tenurStatus;  
+    // echo '<br>';
+    // echo "origOwner: " . $origOwner;  
     // echo '<br>';
 
     include '../include/connect1.php';
@@ -37,7 +55,12 @@ if (isset($_POST['submit'])) {
                 `yearStay` = '$year_stay',
                 `relocated` = '$relocated', 
                 `relocUnavailable` = '$relocUnavailable',
-                `civilStatus` = '$head_civilStatus'
+                `civilStatus` = '$head_civilStatus',
+                `pagIbig` = '$pagibigBox',
+                `sss` = '$sssBox',
+                `other` = '$other',
+                `tenurStatus` = '$tenurStatus',
+                `origOwner` = '$origOwner'  
              
             WHERE `id` = '$head_id'";
 
