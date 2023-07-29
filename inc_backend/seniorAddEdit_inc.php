@@ -1,6 +1,7 @@
 <?php
 require '../include/user_session.php'; // $user_id
-include '../include/connect1.php';
+include '../include/connect1.php'; //$con
+require '../include/serverDate&Time.php'; // $$serverDateTime
 
 if (isset($_POST['submit'])) {
     $head_id = $_POST['head_id']; // hidden display  
@@ -35,23 +36,48 @@ if (isset($_POST['submit'])) {
                 `senior` = '$senior_Box',
                 `pwd` = '$pwd_Box'
             WHERE `id` = $id";
+
+        $result = $con->query($sql);
+
+        //AUDIT TRAIL
+        $sql = "INSERT INTO `tbl_audit` (`datecommit`,`user_id`,`actiondone`,`subject`) 
+        VALUES ('$serverDateTime','$user_id','MODIFIED A SENIOR/PWD','$id')";
+        $result = $con->query($sql);
     
     } 
     else if ($option == 'add') {
         $sql = "INSERT INTO `tbl_seniorpwd` (`head_id`, `user_id`, `firstname`, `lastname`, `middlename`, `extension`,`maidenname`,`gender`,`birthdate`,`senior`,`pwd`) 
                 VALUES ('$head_id', '$user_id', '$firstname', '$lastname', '$middlename', '$extension', '$maidenname', '$gender', '$birthdate' , '$senior_Box' , '$pwd_Box')";
+
+        $result = $con->query($sql);
+        $incrementId = $con->insert_id; // to get the auto-increment value
+
+        //AUDIT TRAIL
+        $sql = "INSERT INTO `tbl_audit` (`datecommit`,`user_id`,`actiondone`,`subject`) 
+        VALUES ('$serverDateTime','$user_id','ADDED A SENIOR/PWD','$incrementId')";
+        $result = $con->query($sql);
     }
 
-    if ($con->query($sql) === TRUE) {
-        mysqli_close($con);
+    else if ($option == 'delete') {
+        $sql = "UPDATE `tbl_seniorpwd` 
+            SET 
+                `isdelete` = 1
+            WHERE `id` = $id";
+
+        $result = $con->query($sql);
+
+        //AUDIT TRAIL
+        $sql = "INSERT INTO `tbl_audit` (`datecommit`,`user_id`,`actiondone`,`subject`) 
+        VALUES ('$serverDateTime','$user_id','DELETED A SENIOR/PWD','$id')";
+        $result = $con->query($sql);
+    } 
+      
+
+
+    $_SESSION['head_id'] = $head_id;
+    header("Location: ../admin/memberview.php");
+    exit();
         
-        $_SESSION['head_id'] = $head_id;
-        header("Location: ../admin/memberview.php");
-        exit();
-        
-    } else {
-        echo "Error updating record: " . $con->error;
-    }
 
 
 

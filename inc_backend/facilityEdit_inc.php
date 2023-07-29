@@ -1,5 +1,7 @@
 <?php
 require '../include/user_session.php'; // $user_id
+include '../include/connect1.php'; // $con
+require '../include/serverDate&Time.php'; // $$serverDateTime
 
 if (isset($_POST['submit'])) {
     $head_id = $_POST['head_id']; // hidden display  
@@ -8,19 +10,6 @@ if (isset($_POST['submit'])) {
     $water = $_POST['water'];
     $toilet = $_POST['toilet'];
     $kitchen = $_POST['kitchen'];
-
-    // echo "Facility: " . $facility_id;
-    // echo '<br>';
-    // echo "Electricity: " . $electricity;
-    // echo '<br>';
-    // echo "Water: " . $water;
-    // echo '<br>';
-    // echo "Toilet: " . $toilet;
-    // echo '<br>';
-    // echo "Kitchen: " . $kitchen;
-    // echo '<br>';
-
-    include '../include/connect1.php';
 
     $sql = "UPDATE `tbl_facility` 
             SET 
@@ -32,7 +21,11 @@ if (isset($_POST['submit'])) {
 
 
     if ($con->query($sql) === TRUE) {
-        mysqli_close($con);
+        
+        //AUDIT TRAIL
+        $sql = "INSERT INTO `tbl_audit` (`datecommit`,`user_id`,`actiondone`,`subject`) 
+        VALUES ('$serverDateTime','$user_id','MODIFIED A FACILITY','$facility_id')";
+        $result = $con->query($sql);
         
         $_SESSION['head_id'] = $head_id;
         header("Location: ../admin/memberview.php");

@@ -40,6 +40,10 @@ function work() {
     $monthIncome = $row["monthIncome"];
     $extension = $row["extension"];
     $maidenname = $row["maidenname"];
+    $pagIbig = ($row["pagIbig"] == 1) ? true : false;
+    $sss = ($row["sss"] == 1) ? true : false; 
+    $otherCheck = ($row["other"] == '') ? false : true;
+    $other = $row["other"]; 
 
     $response = array(
         'id' => $id,
@@ -52,7 +56,11 @@ function work() {
         'occupation' => $occupation,
         'monthIncome' => $monthIncome,
         'extension' => $extension,
-        'maidenname' => $maidenname
+        'maidenname' => $maidenname,
+        'pagIbig' => $pagIbig,
+        'sss' => $sss,
+        'othercheck' => $otherCheck,
+        'other' => $other
     );
 
     echo json_encode($response);

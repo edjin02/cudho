@@ -26,8 +26,6 @@
                 </div>
                 <div class="card-body">
 
-
-
                 <form id="login-form" method="POST" action="../include/loginfunc_inc.php">
                     <div class="input-group mb-3">
                     <input type="username" id="username" class="form-control" name="username" placeholder="username" required>
@@ -46,21 +44,19 @@
                     </div>
                     
                     </div>
-                    <!-- /.col -->
+    
                     <div class="col-13">
                         <button type="submit" class="btn btn-warning btn-block" value="Login">Sign In</button>
                     </div>
-                    <!-- /.col -->  
                 </form>
 
 
                 </div>
-                <!-- /.login-card-body -->
+
             </div>
         </div>
     </div> 
     </div>
-<!-- /.login-box -->
 
 
 

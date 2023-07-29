@@ -4,7 +4,7 @@
     checkAccessRights($user_id, 'ar_record');
     include 'nav-bar.php';
     include '../functions/scripts.php';
-    include '../functions/displayTable.php'; //Minor Table Data
+    include '../functions/displayTable.php'; // Table Data
 
     if (isset($_POST['id'])) {
         $_SESSION['selected_id'] = $_POST['id'];
@@ -21,8 +21,11 @@
 
     require '../include/datamemberview_inc.php'; // data for memberview
 ?>
+
+
+<!-- JONATHAN'S PART - INLINE SCRIPT FOR UPLOAD IMAGES -->
 <script src="../functions/memberview-drop.js"></script>
-<!-- picture ni jonathan -->
+
 <style>
       
       /* .card {
@@ -767,7 +770,7 @@
                 
             </div>
             <div class="modal-footer">
-                <button type="button"  data-dismiss="modal" class="btn btn-warning mr-auto btn-sm" style="margin-left:10px;">Close</button>
+                <button type="submit" name="submit" id ="delSeniorBtn" class="btn btn-danger mr-auto btn-sm" style="margin-left:10px;">Delete</button>
                 <button type="submit" name="submit" class="btn btn-primary btn-sm" style="margin-right:10px;">Save</button>
             </div>
             </form>
@@ -779,6 +782,8 @@
 <!-- senior and pwd data -->
 <script>
     var addSeniorBtn = document.getElementById("addSeniorBtn");
+    var delSeniorBtn = document.getElementById("delSeniorBtn");
+
     var optionSenior = document.getElementById("optionSenior");
     var seniorLbl = document.getElementById("seniorLbl");
 
@@ -796,6 +801,7 @@
     addSeniorBtn.addEventListener("click", function() {
         seniorLbl.innerHTML = "Add Seniors and PWDs";
         optionSenior.value = "add";
+        delSeniorBtn.style.display = "none";
         senior_lastname.value = "";
         senior_firstname.value = "";
         senior_middlename.value = "";
@@ -804,6 +810,10 @@
         senior_maidenname.value = "";
         senior_Box.checked = false;
         pwd_Box.checked = false;
+    });
+
+    delSeniorBtn.addEventListener("click", function() {
+        optionSenior.value = "delete";
     });
 
     var editSeniorBtns = document.querySelectorAll('tr.editSeniorBtn');
@@ -820,6 +830,7 @@
             if (xhr.readyState === 4 && xhr.status === 200) {
                 seniorLbl.innerHTML = "Edit Seniors and PWDs";
                 optionSenior.value = "edit";
+                delSeniorBtn.style.display = "block";
 
                 var seniorResp = JSON.parse(xhr.responseText);
                 senior_id.value = seniorResp.id;
@@ -846,6 +857,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 id="workLbl" class="modal-title">Work Children Detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
 
             <form action="../inc_backend/workAddEdit_inc.php" method="POST">
@@ -959,13 +973,20 @@
                     <label for="work_othersBox" style="margin-top:6px;">Others</label>
                 </div>
 
+                <div class="col-md-4 mb-3">
+                    <div class="other-textbox-container">
+                        <input type="text" class="input-border form-control" name="work_other"
+                            id="work_other" placeholder="Other" >
+                    </div>
+                </div>
+
                 </div>
                 </div>
                 </div>
                 
             </div>
             <div class="modal-footer">
-                <button type="button"  data-dismiss="modal" class="btn btn-warning mr-auto btn-sm" style="margin-left:10px;">Close</button>
+                <button type="submit" name="submit" id ="delWorkBtn" class="btn btn-danger mr-auto btn-sm" style="margin-left:10px;">Delete</button>
                 <button type="submit" name="submit" class="btn btn-primary btn-sm" style="margin-right:10px;">Save</button>
             </div>
             </form>
@@ -977,6 +998,7 @@
 <!-- work children data js  -->
 <script>
     var addWorkBtn = document.getElementById("addWorkBtn");
+    var delWorkBtn = document.getElementById("delWorkBtn");
 
     var optionWork = document.getElementById("optionWork");
     var workLbl = document.getElementById("workLbl");
@@ -992,9 +1014,15 @@
     var work_extension = document.getElementById("work_extension");
     var work_maidenname = document.getElementById("work_maidenName");
     
+    var work_pag_ibigBox = document.getElementById("work_pag-ibigBox");
+    var work_sssBox = document.getElementById("work_sssBox");
+    var work_othersBox = document.getElementById("work_othersBox");
+    var work_other = document.getElementById("work_other");
+
     addWorkBtn.addEventListener("click", function() {
         workLbl.innerHTML = "Add Work Children";
         optionWork.value = "add";
+        delWorkBtn.style.display = "none";
         work_lastName.value = "";
         work_firstName.value = "";
         work_middleName.value = "";
@@ -1003,6 +1031,14 @@
         work_monthIncome.value = "";
         work_extension.value = "";
         work_maidenname.value = "";
+        work_pag_ibigBox.checked = false;
+        work_sssBox.checked = false;
+        work_othersBox.checked = false;
+        work_other.value = "";
+    });
+
+    delWorkBtn.addEventListener("click", function() {
+        optionWork.value = "delete";
     });
 
 
@@ -1020,6 +1056,7 @@
             if (xhr.readyState === 4 && xhr.status === 200) {
                 workLbl.innerHTML = "Edit Work Children";
                 optionWork.value = "edit";
+                delWorkBtn.style.display = "block";
 
                 var workResp = JSON.parse(xhr.responseText);
                 work_id.value = workResp.id;
@@ -1032,6 +1069,11 @@
                 work_monthIncome.value = workResp.monthIncome;
                 work_extension.value = workResp.extension;
                 work_maidenname.value = workResp.maidenname;
+                work_pag_ibigBox.checked = workResp.pagIbig;
+                work_sssBox.checked = workResp.sss;
+                work_othersBox.checked = workResp.othercheck;
+                work_other.value = workResp.other;
+
                 work_gender.value = workResp.gender;
                 $("#work_gender").trigger("change");//to change children work gender
             }
@@ -1106,7 +1148,7 @@
                 
             </div>
             <div class="modal-footer">
-                <button type="button"  data-dismiss="modal" class="btn btn-warning mr-auto btn-sm" style="margin-left:10px;">Close</button>
+                <button type="submit" name="submit" id ="delMinorBtn" class="btn btn-danger mr-auto btn-sm" style="margin-left:10px;">Delete</button>
                 <button type="submit" name="submit" class="btn btn-primary btn-sm" style="margin-right:10px;">Save</button>
             </div>
             </form>
@@ -1116,9 +1158,8 @@
 
 <!-- Minor data js  -->
 <script>
-    
-    var minorModal = document.getElementById("minorModal");
     var addMinorBtn = document.getElementById("addMinorBtn");
+    var delMinorBtn = document.getElementById("delMinorBtn");
 
     var optionMinor = document.getElementById("optionMinor");
     var minorLbl = document.getElementById("minorLbl");
@@ -1133,11 +1174,16 @@
     addMinorBtn.addEventListener("click", function() {
         minorLbl.innerHTML = "Add Minor Children";
         optionMinor.value = "add";
+        delMinorBtn.style.display = "none";
         minor_lastName.value = "";
         minor_firstName.value = "";
         minor_middleName.value = "";
         minor_extension.value = "";
         minor_birthdate.value = "";
+    });
+
+    delMinorBtn.addEventListener("click", function() {
+        optionMinor.value = "delete";
     });
 
     var editMinorBtns = document.querySelectorAll('tr.editMinorBtn');
@@ -1155,6 +1201,7 @@
             if (xhr.readyState === 4 && xhr.status === 200) {
                 minorLbl.innerHTML = "Edit Minor Children";
                 optionMinor.value = "edit";
+                delMinorBtn.style.display = "block";
 
                 var minorResp = JSON.parse(xhr.responseText);
                 minor_id.value = minorResp.id;

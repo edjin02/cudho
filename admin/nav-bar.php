@@ -190,9 +190,9 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index.html" class="nav-link">
+              <a href="./audit_trail.php" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Auditry</p>
+                <p>Audit Trail</p>
               </a>
             </li>
           </ul>

@@ -1,5 +1,7 @@
 <?php
 require '../include/user_session.php'; // $user_id
+include '../include/connect1.php'; // $con
+require '../include/serverDate&Time.php'; // $$serverDateTime
 
 if (isset($_POST['submit'])) {
     $head_id = $_POST['head_id']; // hidden display  
@@ -18,15 +20,6 @@ if (isset($_POST['submit'])) {
     $pagibigBox = isset($_POST["spouse_pag-ibigBox"]) && $_POST["spouse_pag-ibigBox"] === 'checked' ? 1 : 0;
     $sssBox = isset($_POST["spouse_sssBox"]) && $_POST["spouse_sssBox"] === 'checked' ? 1 : 0;
     $other = isset($_POST["spouse_other"]) ? $_POST["spouse_other"] : "";
-
-    // echo "pagibigBox: " . $pagibigBox;
-    // echo '<br>';
-    // echo " sssBox: " . $sssBox;
-    // echo '<br>';
-    // echo "other: " . $other;
-    // echo '<br>';
-
-    include '../include/connect1.php';
 
     $sql = "UPDATE `tbl_spouseinfo` 
             SET 
@@ -47,7 +40,11 @@ if (isset($_POST['submit'])) {
 
 
     if ($con->query($sql) === TRUE) {
-        mysqli_close($con);
+        
+        //AUDIT TRAIL
+        $sql = "INSERT INTO `tbl_audit` (`datecommit`,`user_id`,`actiondone`,`subject`) 
+        VALUES ('$serverDateTime','$user_id','MODIFIED A SPOUSE','$spouse_id')";
+        $result = $con->query($sql);
         
         $_SESSION['head_id'] = $head_id;
         header("Location: ../admin/memberview.php");

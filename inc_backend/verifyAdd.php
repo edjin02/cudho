@@ -1,6 +1,7 @@
 <?php
     require '../include/user_session.php'; // $user_id
-    include '../include/connect1.php';
+    include '../include/connect1.php'; // $con
+    require '../include/serverDate&Time.php'; // $$serverDateTime
 
     // echo "SIR KUNG DI NIYO ITO NAIINTINDIHAN, KAMI RIN PO :D";
     $barangay = isset($_POST["barangay-select-modal"]) ? $_POST["barangay-select-modal"] : "";
@@ -242,6 +243,11 @@
     } else {
         echo "Error updating in Spouse Head: " . $con->error;
     } 
+
+    //AUDIT TRAIL
+    $sql = "INSERT INTO `tbl_audit` (`datecommit`,`user_id`,`actiondone`,`subject`) 
+    VALUES ('$serverDateTime','$user_id','ADDED A NEW MEMBER','$head_id')";
+    $result = $con->query($sql);
 
     header("Location: ../admin/verify.php");
     exit();

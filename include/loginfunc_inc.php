@@ -1,4 +1,5 @@
 <?php
+include '../include/connect1.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -9,22 +10,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $password = $_POST['password'];
     }
 
-    // Database connection
-    $con = new mysqli("localhost", "root", "", "cudhonew");
-    if ($con->connect_error) {
-        die("Failed to connect: " . $con->connect_error);
-    }
-
     // Prepare and execute a SELECT statement to retrieve user data
     $query = "SELECT * FROM tbl_user WHERE username = '$username'";
     $result = $con->query($query);
 
     if ($result->num_rows > 0) {
         $data = $result->fetch_assoc();
-        $hashedPassword = $data['password']; // Assuming the encrypted password is stored in the 'password' column
-
+        $storedPassword = $data['password'];
+    
         // Verify the password
-        if (password_verify($password, $hashedPassword)) {
+        if ($password === $storedPassword) {
             // Password is correct
             $_SESSION['user_id'] = $data['id'];
             header("Location: ../admin/index.php");
@@ -39,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               window.history.back();
               </script>";
     }
+    
 
     $con->close();
 }

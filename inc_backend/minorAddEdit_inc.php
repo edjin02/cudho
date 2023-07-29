@@ -1,6 +1,7 @@
 <?php
 require '../include/user_session.php'; // $user_id
-include '../include/connect1.php';
+include '../include/connect1.php'; //$con
+require '../include/serverDate&Time.php'; // $$serverDateTime
 
 if (isset($_POST['submit'])) {
     $head_id = $_POST['head_id']; // hidden display  
@@ -14,10 +15,6 @@ if (isset($_POST['submit'])) {
     $middlename = $_POST['minor_middleName'];
     $extension = $_POST['minor_extension'];
 
-    // echo "Id " . $id ;
-    // echo '<br>';
-
-    // CONDITION EITHER EDIT OR UPDATE IN SQL
     if ($optionMinor == 'edit') {
         $sql = "UPDATE `tbl_childminor` 
             SET 
@@ -28,25 +25,44 @@ if (isset($_POST['submit'])) {
                 `gender` = '$gender',
                 `extension` = '$extension'
             WHERE `id` = $id";
-    
+        $result = $con->query($sql);
+
+        //AUDIT TRAIL
+        $sql = "INSERT INTO `tbl_audit` (`datecommit`,`user_id`,`actiondone`,`subject`) 
+        VALUES ('$serverDateTime','$user_id','MODIFIED A MINOR CHILD','$id')";
+        $result = $con->query($sql);
     } 
     else if ($optionMinor == 'add') {
-        echo 'insert';
         $sql = "INSERT INTO `tbl_childminor` (`head_id`, `user_id`, `firstname`, `lastname`, `middlename`, `extension`,`gender`,`birthdate`) 
                 VALUES ('$head_id', '$user_id', '$firstname', '$lastname', '$middlename', '$extension', '$gender', '$birthdate')";
+
+        $result = $con->query($sql);
+        $incrementId = $con->insert_id; // to get the auto-increment value
+
+        //AUDIT TRAIL
+        $sql = "INSERT INTO `tbl_audit` (`datecommit`,`user_id`,`actiondone`,`subject`) 
+        VALUES ('$serverDateTime','$user_id','ADDED A MINOR CHILD','$incrementId')";
+        $result = $con->query($sql);
+    }
+
+    else if ($optionMinor == 'delete') {
+        $sql = "UPDATE `tbl_childminor` 
+            SET 
+                `isdelete` = 1
+            WHERE `id` = $id";
+
+        $result = $con->query($sql);
+
+        //AUDIT TRAIL
+        $sql = "INSERT INTO `tbl_audit` (`datecommit`,`user_id`,`actiondone`,`subject`) 
+        VALUES ('$serverDateTime','$user_id','DELETED A MINOR CHILD','$id')";
+        $result = $con->query($sql);
+
     }
     
-
-    if ($con->query($sql) === TRUE) {
-        mysqli_close($con);
-        
-        $_SESSION['head_id'] = $head_id;
-        header("Location: ../admin/memberview.php");
-        exit();
-        
-    } else {
-        echo "Error updating record: " . $con->error;
-    }
+    $_SESSION['head_id'] = $head_id;
+    header("Location: ../admin/memberview.php");
+    exit();
 
 
 }

@@ -14,12 +14,14 @@ function minorDisplayTbl($head_id){
     $birthdate = array();
 
     while ($row = $result->fetch_assoc()) {
-        $id[] = $row["id"];
-        $firstname[] = $row["firstname"];
-        $middlename[] = $row["middlename"];
-        $lastname[] = $row["lastname"];
-        $extension[] = $row["extension"];
-        $birthdate[] = $row["birthdate"];
+        if ($row['isdelete'] == 0){ // CHECK IF DATA IS DELETED
+            $id[] = $row["id"];
+            $firstname[] = $row["firstname"];
+            $middlename[] = $row["middlename"];
+            $lastname[] = $row["lastname"];
+            $extension[] = $row["extension"];
+            $birthdate[] = $row["birthdate"];
+        }
     }
 
     //for calculating age
@@ -60,12 +62,14 @@ function seniorDisplayTbl($head_id){
     
 
     while ($row = $result->fetch_assoc()) {
-        $id[] = $row["id"];
-        $firstname[] = $row["firstname"];
-        $middlename[] = $row["middlename"];
-        $lastname[] = $row["lastname"];
-        $senior[] = $row["senior"];
-        $pwd[] = $row["pwd"];
+        if ($row['isdelete'] == 0){ // CHECK IF DATA IS DELETED
+            $id[] = $row["id"];
+            $firstname[] = $row["firstname"];
+            $middlename[] = $row["middlename"];
+            $lastname[] = $row["lastname"];
+            $senior[] = $row["senior"];
+            $pwd[] = $row["pwd"];
+        }
   
     }
 
@@ -109,11 +113,13 @@ function workDisplayTbl($head_id){
     $monthIncome = array();
 
     while ($row = $result->fetch_assoc()) {
-        $id[] = $row["id"];
-        $firstname[] = $row["firstname"];
-        $middlename[] = $row["middlename"];
-        $lastname[] = $row["lastname"];
-        $monthIncome[] = $row["monthIncome"];
+        if ($row['isdelete'] == 0){ // CHECK IF DATA IS DELETED
+            $id[] = $row["id"];
+            $firstname[] = $row["firstname"];
+            $middlename[] = $row["middlename"];
+            $lastname[] = $row["lastname"];
+            $monthIncome[] = $row["monthIncome"];
+        }
     }
 
     $i = 0;
@@ -126,6 +132,75 @@ function workDisplayTbl($head_id){
     }
     
 }   
+
+function userDisplayTbl(){
+    $query = "SELECT * FROM tbl_user";
+    $result = $GLOBALS['con']->query($query);
+
+    $id = array();
+    $isactive = array();
+    $username = array();
+    $firstname = array();
+    $middlename = array();
+    $lastname = array();
+    $contactno = array();
+    $memberof = array();
+
+    while ($row = $result->fetch_assoc()) {
+        if ($row['isdelete'] == 0){
+            $id[] = $row["id"];
+            $isactive[] = $row["isactive"];
+            $username[] = $row["username"];
+            $firstname[] = $row["firstname"];
+            $middlename[] = $row["middlename"];
+            $lastname[] = $row["lastname"];
+            $contactno[] = $row["contactno"];
+            $memberof[] = $row["memberof"];
+        }
+    }
+
+    $i = 0;
+    while ($i < count($id)) {
+        echo "<tr class='editUserBtn' data-toggle='modal' data-target='#myModal' id='$id[$i]'>
+            <td>" . $isactive[$i] . "</td> 
+            <td>" . $username[$i] . "</td> 
+            <td>" . $firstname[$i] . " " . $middlename[$i] . " " . $lastname[$i] . "</td>
+            <td>" . $contactno[$i] . "</td> 
+            <td>" . $memberof[$i] . "</td> 
+        </tr>";
+        $i++;
+    }
+    
+}
+
+function auditDisplayTbl(){
+    $query = "SELECT * FROM tbl_audit ORDER BY id DESC LIMIT 50"; // LIMIT TO 50 only
+    $result = $GLOBALS['con']->query($query);
+    
+    $datecommit = array();
+    $user_id = array();
+    $actiondone = array();
+    $subject = array();
+    
+    while ($row = $result->fetch_assoc()) {
+        $datecommit[] = $row["datecommit"];
+        $user_id[] = $row["user_id"];
+        $actiondone[] = $row["actiondone"];
+        $subject[] = $row["subject"];
+    }
+
+    $i = 0;
+    while ($i < count($datecommit)) {
+        echo "<tr>
+            <td>" . $datecommit[$i] . "</td> 
+            <td>" . $user_id[$i] . "</td> 
+            <td>" . $actiondone[$i] ."</td>
+            <td>" . $subject[$i] . "</td> 
+        </tr>";
+        $i++;
+    }
+    
+}
 
 ?>
 

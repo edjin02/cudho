@@ -557,4 +557,3 @@ SeniorSearchInput.addEventListener("keyup", function() {
 
 
 });
-

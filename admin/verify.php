@@ -291,7 +291,7 @@ include '../functions/verify-function.php'; //query
                                     $result = $con->query($sql);
                                 
                                         while ($r = $result->fetch_assoc()) {
-                                            echo "<tr style='vertical-align: middle;' id='engrlink' onclick='openMemberview(event);' value='" . $r['id'] . "'>";
+                                            echo "<tr style='vertical-align: middle;' id='engrlink' onclick='openMemberview(event);' value='" . $r['head_id'] . "'>";
                                             echo "<td><span>" . $r['firstname'] . " " . $r['middlename'] . " " . $r['lastname'] . " " . $r['extension'] . " ". $r['maidenname'] . "</span></td>";
                                             echo "<td><span>" . $r['birthdate'] . "</span></td>";
                                             echo "<td><span>" . $r['gender'] . "</span></td>";
@@ -319,7 +319,7 @@ include '../functions/verify-function.php'; //query
                                     $result = $con->query($sql);
                                 
                                         while ($r = $result->fetch_assoc()) {
-                                            echo "<tr style='vertical-align: middle;' id='engrlink' onclick='openMemberview(event);' value='" . $r['id'] . "'>";
+                                            echo "<tr style='vertical-align: middle;' id='engrlink' onclick='openMemberview(event);' value='" . $r['head_id'] . "'>";
                                             echo "<td><span>" . $r['firstname'] . " " . $r['middlename'] . " " . $r['lastname'] . " " . $r['extension'] . " </span></td>";
                                             echo "<td><span>" . $r['birthdate'] . "</span></td>";
                                             echo "<td><span>" . $r['gender'] . "</span></td>";
@@ -347,7 +347,7 @@ include '../functions/verify-function.php'; //query
                                     $result = $con->query($sql);
                                 
                                         while ($r = $result->fetch_assoc()) {
-                                            echo "<tr style='vertical-align: middle;' id='engrlink' onclick='openMemberview(event);' value='" . $r['id'] . "'>";
+                                            echo "<tr style='vertical-align: middle;' id='engrlink' onclick='openMemberview(event);' value='" . $r['head_id'] . "'>";
                                             echo "<td><span>" . $r['firstname'] . " " . $r['middlename'] . " " . $r['lastname'] . " " . $r['extension'] . " " . $r['maidenname'] . " </span></td>";
                                             echo "<td><span>" . $r['birthdate'] . "</span></td>";
                                             echo "<td><span>" . $r['gender'] . "</span></td>";
@@ -375,7 +375,7 @@ include '../functions/verify-function.php'; //query
                                     $result = $con->query($sql);
                                 
                                         while ($r = $result->fetch_assoc()) {
-                                            echo "<tr style='vertical-align: middle;' id='engrlink' onclick='openMemberview(event);' value='" . $r['id'] . "'>";
+                                            echo "<tr style='vertical-align: middle;' id='engrlink' onclick='openMemberview(event);' value='" . $r['head_id'] . "'>";
                                             echo "<td><span>" . $r['firstname'] . " " . $r['middlename'] . " " . $r['lastname'] . " " . $r['extension'] . " " . $r['maidenname'] . " </span></td>";
                                             echo "<td><span>" . $r['birthdate'] . "</span></td>";
                                             echo "<td><span>" . $r['gender'] . "</span></td>";

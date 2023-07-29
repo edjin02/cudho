@@ -1,5 +1,7 @@
 <?php
 require '../include/user_session.php'; // $user_id
+include '../include/connect1.php'; // $con
+require '../include/serverDate&Time.php'; // $$serverDateTime
 
 if (isset($_POST['submit'])) {
     $head_id = $_POST['head_id']; // hidden display  
@@ -32,15 +34,6 @@ if (isset($_POST['submit'])) {
         $origOwner = isset($_POST["origOwner"]) ? $_POST["origOwner"] : "";
     }
 
-    // echo "structOwner: " . $structOwner;  
-    // echo '<br>';
-    // echo "tenurstatuss: " . $tenurStatus;  
-    // echo '<br>';
-    // echo "origOwner: " . $origOwner;  
-    // echo '<br>';
-
-    include '../include/connect1.php';
-
     $sql = "UPDATE `tbl_headinfo` 
             SET 
                 `gender` = '$head_gender',
@@ -66,7 +59,11 @@ if (isset($_POST['submit'])) {
 
 
     if ($con->query($sql) === TRUE) {
-        mysqli_close($con);
+
+        //AUDIT TRAIL
+        $sql = "INSERT INTO `tbl_audit` (`datecommit`,`user_id`,`actiondone`,`subject`) 
+        VALUES ('$serverDateTime','$user_id','MODIFIED A HOUSEHOLD HEAD','$head_id')";
+        $result = $con->query($sql);
         
         $_SESSION['head_id'] = $head_id;
         header("Location: ../admin/memberview.php");

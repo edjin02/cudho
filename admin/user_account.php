@@ -1,21 +1,13 @@
-<?php require '../include/user_session.php';
-
+<?php 
+require '../include/user_session.php';
 include '../include/accessrightfunc.php'; //access rights
 checkAccessRights($user_id, 'ar_systman');
-
 include '../admin/nav-bar.php';
-
+include '../functions/displayTable.php'; // Table Data
 include '../functions/scripts.php';
-include '../functions/verify-function.php';
-include '../functions/verify-select.php';
 ?>
-<script src="../functions/user-script.js"></script>
-
-
-
 
 <title> CUDHO | User Account </title>
-
 
 <div class="content-wrapper" style="min-height: 820px;">
     <div class="content-header">
@@ -38,302 +30,293 @@ include '../functions/verify-select.php';
     <div class="content">
         <div class="col-md-15">
             <div class="card card">
-                <div class="card-header" style="background-color:maroon; padding: .10rem;">
-                    <h7 style="font-size: 15px;margin-left: 10px;">Account Management</h7>
-                </div><br>
+            <div class="cheader-color">
+                <div class="row">
+                    <div class="col">
+                    <h3 class="cheader-text" style="margin-top: 5px; font-size: 18px;">Account Management</h3>
 
+                    </div>
+                    <div class="col text-right">
+                    <button class="btn btn-primary btn-sm custom-btn" id='addUserBtn' data-toggle='modal' data-target='#myModal'>Add User Account</button>
+                    </div> 
+                </div>
+            </div>
 
-                <form method="post">
-                    <div class="card-body">
-                        <div class="row justify-content-center">
+            <div class="card-body">
+                <table class="table table-hover text-bordered table-condensed table-striped">
+                    <thead class="btn-yellow">
+                        <th class="text-center">ISACTIVE</th>
+                        <th class="text-center">USERNAME</th>
+                        <th class="text-center">FULLNAME</th>
+                        <th class="text-center">CONTACTNO</th>
+                        <th class="text-center">MEMBEROF</th>
+                    </thead>
+                    <tbody id="userTableBody">
+                        <?php
+                                userDisplayTbl() //functions/displayTable.php
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="addmember">User Account Form</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+            <div class="modal-body">
+            <div class="card" style="border: 2px solid maroon;">
+                <div class="card-body">
+                    <div class="row" style="margin-top:-10px">
+
+                    <div class="col-md-4 text-center">
+                        <div class="col-md-12">
+                            <label>Username:</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input id="username" name="username" type="text" size="20" placeholder="Username">
+                        </div>
+
+                        <div class="col-md-12 mt-2">
+                            <label>Password:</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input id="password" type="passsword" size="20" placeholder="Password">
+                        </div>
+
+                        <div class="col-md-12 mt-2">
+                            <label>MemberOf:</label>
+                        </div>
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <span class="fa fa-search"></span>
-                                        </span>
-                                    </div>
-                                    <input type="search" id="search" class="form-control" style="width: 600px" name="search" placeholder="search">
-                                </div>
+                                <select id="memberof"style="width: 200px; height: 30px;">
+                                    <option value="ENCODER">ENCODER</option>    
+                                    <option value="ADMINISTRATOR">ADMINISTRATOR</option>
+                                </select>
                             </div>
-                            <div class="col-auto mr-2">
-                                <button type="button" class="btn" data-toggle="modal" data-target="#myModal" style="color:white; background-color:maroon; height:38px; width:auto;">
-                                    Add User Account
-                                </button>
+                        </div>
+
+                        <div class="col-md-12" style="margin-top: -9px;">
+                            <label>isActive:</label>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <select id="isactive" style="width: 200px; height: 30px;">
+                                    <option value="ACTIVE">ACTIVE</option>
+                                    <option value="INACTIVE">INACTIVE</option>
+                                </select>
                             </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4 text-center">
+                        <div class="col-md-12">
+                            <label>Lastname:</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input id="lastname" type="text" size="20" placeholder="Lastname">
+                        </div>
+
+                        <div class="col-md-12 mt-2">
+                            <label>Firstname:</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input id="firstname" type="text" size="20" placeholder="Firsname">
+                        </div>
+
+                        <div class="col-md-12 mt-2">
+                            <label>Middlename:</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input id="middlename" type="text" size="20" placeholder="Middlename">
+                        </div>
+
+                        <div class="col-md-12 mt-2">
+                            <label>ContactNo:</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input id="contactno" type="text" size="20" placeholder="ContactNo">
                         </div>
                     </div>
 
-
-                    <div class="card card-primary" style="width:98%; margin: 0 auto;">
-                        <div class="card-body table-bordered">
-                            <table class="table table-hover text-bordered table-condensed table-striped" id="getUserData">
-                                <thead class="btn-yellow">
-                                    <th class="text-center">ISACTIVE</th>
-                                    <th class="text-center">USERNAME</th>
-                                    <th class="text-center">FULLNAME</th>
-                                    <th class="text-center">CONTACTNO</th>
-                                    <th class="text-center">MEMBEROF</th>
-                                </thead>
-
-                                <tbody id="userTable">
-                                    <?php
-                                        showUserData($con); 
-                                    ?>
-                                </tbody>
-                            </table>
-
-                            <p id="no-data-message" class="centered-text" style="display: none;">No user data existing</p>
+                    <div class="col-md-4 text-left" style="font-size: 14px;">
+                        <div class="col-md-12 text-center" style="font-size: 15px;">
+                            <label>Access Rights:</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="checkbox" id="dashboard" name="dashboard" value="checked" style="margin-right:5px;">
+                            <label for="dashboard" style="margin-top:6px; margin-right:30px;">Dashboard</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="checkbox" id="record" name="record" value="checked" style="margin-right:5px;">
+                            <label for="record" style="margin-top:6px; margin-right:30px;">Records</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="checkbox" id="report" name="report" value="checked" style="margin-right:5px;">
+                            <label for="report" style="margin-top:6px; margin-right:30px;">Reports</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="checkbox" id="systmanager" name="systmanager" value="checked" style="margin-right:5px;">
+                            <label for="systmanager" style="margin-top:6px; margin-right:30px;">System Manager</label>
                         </div>
                     </div>
-                </form>
 
-            </div>
-
-        </div>
-
-
-        <!--    / .content-->
-    </div>
-    <!--    /.content-wrapper-->
-
-
-    <!--User Account-->
-    <div class="modal fade in" id="viewUserModal" tabindex="-1" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered modal-primary small">
-
-            <form id="editUser">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editmember">User Account Form</h5>
-                        <!-- open a print form modal -->
-                        <button type="button" id='printForm' name='printForm' class="btn-info btn pull-left" data-toggle='modal' data-target="#printFormModal">Print Form</button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="editUser">
-                            <div class="card" style="border: 2px solid maroon;">
-                                <div class="card-body">
-                                    <div class="row" style="margin-top:-10px">
-
-                                        <div class="col-md-4 text-center">
-                                            <div class="form-group">
-                                                <div class="col-md-12">
-                                                    <label>Username:</label>
-                                                    <input name="username" type="text" class="form-control" id="username" size="20" placeholder="Username">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <select name="memberof" class="select2 select2-hidden-accessible" style="width: 200px; height: 30px;" data-select2-id="3" tabindex="-1" aria-hidden="true">
-                                                        <option value="ADMINISTRATOR" selected="" data-select2-id="0">ADMINISTRATOR</option>
-                                                        <option value="ENCODER" data-select2-id="1">ENCODER</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12" style="margin-top: -9px;">
-                                                <label>isActive:</label>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <select name="isactive" class="select2 select2-hidden-accessible" style="width: 200px; height: 30px;" data-select2-id="3" tabindex="-1" aria-hidden="true">
-                                                        <option value="ACTIVE" selected="" data-select2-id="0">ACTIVE</option>
-                                                        <option value="INACTIVE" data-select2-id="1">INACTIVE</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-md-4 text-left" style="font-size: 14px;">
-                                                <div class="col-md-12 text-center" style="font-size: 15px;">
-                                                    <label>Access Rights:</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <div class="col-md-12">
-                                                        <input class="form-check-input" type="checkbox" id="incomingmodule" name="incomingmodule" value="on">
-                                                        <label class="form-check-label" for="incomingmodule">Incoming_Module</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <input type="hidden" class="form-control" id="mode" name="mode" value="add">
-                                        <input type="hidden" class="form-control" id="userid" name="userid" value="<?php echo $userid; ?>">
-                                        <input type="hidden" class="form-control" id="action" name="action" value="saveEditModal">
-
-
-
-
-                                    </div>
-                                </div>
-                            </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning mr-auto btn-sm" data-dismiss="modal" style="margin-left:10px;">Close</button>
-                        <button type="submit" id="saveEditModal" name="saveEditModal" class="btn btn-primary submit" style="margin-right:10px;">Save</button>
                     </div>
                 </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addmember">User Account Form</h5>
-                    <!-- <button type="button" id='printForm' name='printForm' class="btn-info btn pull-left"
-                    data-toggle='modal' data-target="#printFormModal">Print Form</button> -->
-                </div>
-
-                <form action="../include/adduser_inc.php" method="post">
-                    <div class="modal-body">
-                        <div class="card" style="border: 2px solid maroon;">
-                            <div class="card-body">
-                                <div class="row" style="margin-top:-10px">
-
-                                    <div class="col-md-4 text-center">
-                                        <div class="col-md-12">
-                                            <label>Username:</label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <input name="username" type="text" size="20" placeholder="Username">
-                                        </div>
-
-                                        <div class="col-md-12 mt-2">
-                                            <label>Password:</label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <input name="password" type="passsword" size="20" placeholder="Password">
-                                        </div>
-
-                                        <div class="col-md-12 mt-2">
-                                            <label>MemberOf:</label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <select name="memberof" class="select2 select2-hidden-accessible" style="width: 200px; height: 30px;" data-select2-id="3" tabindex="-1" aria-hidden="true">
-                                                    <option value="ADMINISTRATOR" selected="" data-select2-id="0">ADMINISTRATOR</option>
-                                                    <option value="ENCODER" data-select2-id="1">ENCODER</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12" style="margin-top: -9px;">
-                                            <label>isActive:</label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <select name="isactive" class="select2 select2-hidden-accessible" style="width: 200px; height: 30px;" data-select2-id="3" tabindex="-1" aria-hidden="true">
-                                                    <option value="ACTIVE" selected="" data-select2-id="0">ACTIVE</option>
-                                                    <option value="INACTIVE" data-select2-id="1">INACTIVE</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-md-4 text-center">
-                                        <div class="col-md-12">
-                                            <label>Lastname:</label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <input name="lastname" type="text" size="20" placeholder="Lastname">
-                                        </div>
-
-                                        <div class="col-md-12 mt-2">
-                                            <label>Firstname:</label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <input name="firstname" type="text" size="20" placeholder="Firsname">
-                                        </div>
-
-                                        <div class="col-md-12 mt-2">
-                                            <label>Middlename:</label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <input name="middlename" type="text" size="20" placeholder="Middlename">
-                                        </div>
-
-                                        <div class="col-md-12 mt-2">
-                                            <label>ContactNo:</label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <input name="contactno" type="text" size="20" placeholder="ContactNo">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4 text-left" style="font-size: 14px;">
-                                        <div class="col-md-12 text-center" style="font-size: 15px;">
-                                            <label>Access Rights:</label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <input type="checkbox" id="incomingmodule" name="myCheckbox" value="checked" style="margin-right:5px;">
-                                            <label for="incomingmodule" style="margin-top:6px; margin-right:30px;">Incoming Module</label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <input type="checkbox" id="remarksforincoming" name="myCheckbox" value="checked" style="margin-right:5px;">
-                                            <label for="remarksforincoming" style="margin-top:6px; margin-right:30px;">Remarks for Incoming</label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <input type="checkbox" id="staffassignment" name="myCheckbox" value="checked" style="margin-right:5px;">
-                                            <label for="staffassignment" style="margin-top:6px; margin-right:30px;">Staff Assignment</label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <input type="checkbox" id="outgoingmodule" name="myCheckbox" value="checked" style="margin-right:5px;">
-                                            <label for="outgoingmodule" style="margin-top:6px; margin-right:30px;">Outgoing Module</label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <input type="checkbox" id="workingpermitmodule" name="myCheckbox" value="checked" style="margin-right:5px;">
-                                            <label for="workingpermitmodule" style="margin-top:6px; margin-right:30px;">Working Permit Module</label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <input type="checkbox" id="clearancemodule" name="myCheckbox" value="checked" style="margin-right:5px;">
-                                            <label for="clearancemodule" style="margin-top:6px; margin-right:30px;">Clearance Module</label>
-                                        </div>
-
-
-                                    </div>
-
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning mr-auto btn-sm" data-dismiss="modal" style="margin-left:10px;">Close</button>
-                        <button type="submit" value="Submit" class="btn btn-primary btn-sm" style="margin-right:10px;">Save</button>
-                    </div>
-                </form>
             </div>
+            </div>
+
+            <div class="modal-footer">
+                <button id ="deletebutton" class="btn btn-danger mr-auto btn-sm" style="margin-left:10px" data-dismiss="modal" data-toggle="modal" data-target="#confirmationModal">Delete</button>
+                <button data-dismiss="modal" data-toggle="modal" data-target="#confirmationModal" class="btn btn-primary btn-sm" style="margin-right:10px;">Save</button>
+            </div>
+       
+    </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Are you sure you want to save these data?</h5>
+        </div>
+        <div class="modal-body d-flex justify-content-end">
+            <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal" data-toggle="modal" data-target="#myModal">No</button>
+            <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="proceedChanges()">Yes</button>
+        </div>
         </div>
     </div>
 </div>
 
-<!-- Modal -->
-<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">User Details</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body" id="modalBody">
-                User data will be inserted here -->
-<!-- </div>
-        </div>
-    </div>
-</div> -->
+<script> 
+var addUserBtn = document.getElementById("addUserBtn");
+var id = '';
+var userOption = '';
+var deletebutton = document.getElementById("deletebutton");
 
+var isactive = document.getElementById("isactive");
+var username = document.getElementById("username");
+var password = document.getElementById("password");
+var firstname = document.getElementById("firstname");
+var middlename = document.getElementById("middlename");
+var lastname = document.getElementById("lastname");
+var contactno = document.getElementById("contactno");
+var memberof = document.getElementById("memberof");
+var dashboard = document.getElementById("dashboard");
+var record = document.getElementById("record");
+var report = document.getElementById("report");
+var systmanager = document.getElementById("systmanager");
 
-<!-- </div> -->
+addUserBtn.addEventListener("click", function() {
+    userOption = 'add';
+    deletebutton.style.display = "none";
+    username.value = "";
+    password.value = "";
+    isactive.value = "ACTIVE";
+    firstname.value = "";
+    middlename.value = "";
+    lastname.value = "";
+    contactno.value = "";
+    memberof.value = "ENCODER";
+    dashboard.checked = false;
+    report.checked = false;
+    record.checked = false;
+    systmanager.checked = false;
+});
 
+deletebutton.addEventListener("click", function() {
+    userOption = 'delete';
+});
 
+// Function to register event listener for "editUserBtns"
+function registerEditUserBtnListeners() {
+  var editUserBtns = document.querySelectorAll('tr.editUserBtn');
+  editUserBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      id = this.getAttribute('id');
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '../inc_backend/userDataModal.php');
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          userOption = 'edit';
+          deletebutton.style.display = "block";
+
+          var userResp = JSON.parse(xhr.responseText);
+          username.value = userResp.username;
+          firstname.value = userResp.firstname;
+          middlename.value = userResp.middlename;
+          lastname.value = userResp.lastname;
+          isactive.value = userResp.isactive;
+          contactno.value = userResp.contactno;
+          memberof.value = userResp.memberof;
+          dashboard.checked = userResp.ar_dashboard;
+          report.checked = userResp.ar_report;
+          record.checked = userResp.ar_record;
+          systmanager.checked = userResp.ar_systman;
+        }
+      };
+      xhr.send('id=' + encodeURIComponent(id));
+    });
+  });
+}
+
+// Call the function to register event listeners when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+  registerEditUserBtnListeners();
+});
+
+function proceedChanges() {
+  $.ajax({
+    url: '../inc_backend/userAddEdit_inc.php',
+    type: 'POST',
+    data: { id: id, userOption: userOption, username: username.value, isactive: isactive.value, password: password.value,  
+            firstname: firstname.value, middlename: middlename.value, lastname: lastname.value,
+            contactno: contactno.value, memberof: memberof.value, dashboard: dashboard.checked,
+            report: report.checked, record: record.checked, systmanager: systmanager.checked},
+    success: function(response) {
+      //clear the table body
+      var tbody = document.getElementById("userTableBody");
+      while (tbody.firstChild) {
+        tbody.removeChild(tbody.firstChild);
+      }
+
+      // data retrieve in ajax
+      var data = JSON.parse(response);
+
+      for (var index in data.username) {
+        $('#userTableBody').append(
+          "<tr class='editUserBtn' data-toggle='modal' data-target='#myModal' id='" + data.id[index] + "'>" +
+          '<td>' + data.isactive[index] + '</td>' +
+          '<td>' + data.username[index] + '</td>' +
+          '<td>' + data.firstname[index] + " " + data.middlename[index] + " " + data.lastname[index] + '</td>' +
+          '<td>' + data.contactno[index] + '</td>' +
+          '<td>' + data.memberof[index] + '</td></tr>'
+        );
+      }
+
+      // After adding new elements, register event listeners again
+      registerEditUserBtnListeners();
+    },
+    error: function(xhr, status, error) {
+      console.error(xhr.responseText);
+    }
+  });
+}
+
+</script>
 
 <?php include('../admin/footer.php'); ?>
